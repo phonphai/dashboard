@@ -1,5 +1,6 @@
 // POST /api/publish — ทีมกรมแชร์ CSV ชุดใหม่ให้ผู้ชมทุกคน
-// ต้องเชื่อม Blob store ใน Vercel (สร้าง BLOB_READ_WRITE_TOKEN ให้เอง)
+// ต้องเชื่อม Blob store ใน Vercel: Vercel ตั้ง BLOB_STORE_ID ให้ และ @vercel/blob ขอ OIDC token จาก Vercel เองตอนรัน
+// (โปรเจกต์ที่เชื่อมแบบเก่าจะได้ BLOB_READ_WRITE_TOKEN แทน ใช้ได้เหมือนกัน)
 // รหัสผ่าน (ไม่บังคับ): ถ้าตั้ง PUBLISH_PASSWORD ไว้ ต้องส่ง header x-publish-password ให้ตรง ถ้าไม่ตั้ง ใครเปิดเว็บก็แชร์ได้
 // body: { files: [{ name, text }] }
 import { put } from '@vercel/blob';
@@ -52,10 +53,10 @@ export default async function handler(req, res) {
       access: 'private', contentType: 'application/json', allowOverwrite: true, cacheControlMaxAge: 60,
     });
   } catch (err) {
-    // Usually setup: no Blob store connected / not redeployed since (no BLOB_READ_WRITE_TOKEN), or a public-only store.
+    // Usually setup: no Blob store connected / not redeployed since (no BLOB_STORE_ID or BLOB_READ_WRITE_TOKEN), or a public store.
     // The SDK message names the cause and holds no secret, so pass it on for the person sharing to report.
     console.error(err);
-    const hint = process.env.BLOB_READ_WRITE_TOKEN ? '' : ' (ไม่พบ BLOB_READ_WRITE_TOKEN: เชื่อม Blob store กับโปรเจกต์แล้ว Redeploy)';
+    const hint = process.env.BLOB_STORE_ID || process.env.BLOB_READ_WRITE_TOKEN ? '' : ' (ไม่พบ BLOB_STORE_ID: เชื่อม Blob store กับโปรเจกต์ (ติ๊ก Production) แล้ว Redeploy)';
     return res.status(500).json({ error: `บันทึกไฟล์ลง Blob ไม่สำเร็จ${hint}: ${err.message}` });
   }
   return res.status(200).json({ publishedAt, files: saved.map(f => f.name) });

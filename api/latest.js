@@ -21,6 +21,8 @@ export default async function handler(req, res) {
     return res.status(200).json({ publishedAt, files: files.map((f, i) => ({ name: f.name, text: texts[i] })) });
   } catch (err) {
     console.error(err);
-    return res.status(503).json({ error: 'อ่านข้อมูลที่แชร์ไม่ได้ (ตรวจการเชื่อม Blob store)' });
+    // Same setup causes as api/publish.js; the SDK message holds no secret and makes the cause visible at /api/latest.
+    const hint = process.env.BLOB_STORE_ID || process.env.BLOB_READ_WRITE_TOKEN ? '' : ' ไม่พบ BLOB_STORE_ID: เชื่อม Blob store กับโปรเจกต์ (ติ๊ก Production) แล้ว Redeploy';
+    return res.status(503).json({ error: `อ่านข้อมูลที่แชร์ไม่ได้ (ตรวจการเชื่อม Blob store)${hint}`, detail: err.message });
   }
 }
