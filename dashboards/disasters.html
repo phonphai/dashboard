@@ -242,12 +242,8 @@ document.addEventListener('pointermove',ev=>{const r=ev.target.closest?.('.bar-r
 document.addEventListener('focusin',ev=>{const r=ev.target.closest?.('.bar-row');if(r){const b=r.getBoundingClientRect();showTip(r,b.left+b.width/2,b.bottom-10);}});
 document.addEventListener('focusout',()=>{tip.style.display='none';});
 
-$('csv').addEventListener('change',async ev=>{
-  const picked=[...ev.target.files];ev.target.value='';
-  if(!picked.length)return;
-  try{render(build(await readCSVFiles(picked)),picked.length===1?picked[0].name:`${picked.length} ไฟล์: ${picked.map(f=>f.name).join(', ')}`);}
-  catch(err){console.error(err);alert('อ่านไฟล์ CSV ไม่สำเร็จ: '+err.message);}
-});
+// Default data from data/ on load; an upload replaces it (see connectCSV in shared/csv.js).
+connectCSV($('csv'),(files,label)=>render(build(files),label));
 </script>
 </body>
 </html>

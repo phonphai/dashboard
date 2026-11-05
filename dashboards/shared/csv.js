@@ -59,3 +59,104 @@ function decodeCSV(buf){try{return new TextDecoder('utf-8',{fatal:true}).decode(
 
 // FileList from <input type="file" multiple> -> [{name, text}]
 const readCSVFiles=list=>Promise.all([...list].map(async f=>({name:f.name,text:decodeCSV(await f.arrayBuffer())})));
+
+// ===== ที่มาของข้อมูล =====
+// ตอนเปิดหน้า: 1) ข้อมูลล่าสุดที่ทีมกรมเผยแพร่ (/api/latest บน Vercel)  2) ถ้าไม่มี ใช้ข้อมูลตั้งต้นใน data/
+// ทุกแท็บใช้ข้อมูลชุดเดียวกัน (path เทียบกับไฟล์ใน dashboards/)
+const LATEST_API='../api/latest';
+const PUBLISH_API='../api/publish';
+// ข้อมูลตั้งต้น: ใช้เมื่อยังไม่เคยเผยแพร่ หรือรันในเครื่องด้วย python3 -m http.server
+const DEFAULT_CSV_FILES=['../data/md_flood_report.csv'];
+
+const thaiTime=iso=>new Date(iso).toLocaleString('th-TH',{dateStyle:'medium',timeStyle:'short'});
+function describeFiles(files,source,publishedAt){
+  const names=files.map(f=>f.name);
+  const list=names.length===1?names[0]:`${names.length} ไฟล์: ${names.join(', ')}`;
+  if(source==='published') return `ข้อมูลล่าสุด เผยแพร่ ${thaiTime(publishedAt)} · ${list}`;
+  if(source==='default') return `ข้อมูลตั้งต้น · ${list}`;
+  return `${list} · ตัวอย่าง ยังไม่ได้เผยแพร่ (รีเฟรชหน้าเพื่อกลับไปดูข้อมูลล่าสุด)`;
+}
+
+// -> {files:[{name,text}], label}, or null when nothing can be loaded (e.g. page opened via file://)
+async function loadInitialData(){
+  try{
+    const res=await fetch(LATEST_API,{cache:'no-store'});
+    if(res.ok){const m=await res.json();return {files:m.files,label:describeFiles(m.files,'published',m.publishedAt)};}
+    if(res.status!==404) console.warn('อ่านข้อมูลที่เผยแพร่ไม่ได้:',res.status);
+  }catch(err){/* no API here (local server or file://) */}
+  try{
+    const files=await Promise.all(DEFAULT_CSV_FILES.map(async path=>{
+      const res=await fetch(path,{cache:'no-cache'});
+      if(!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
+      return {name:path.split('/').pop(),text:decodeCSV(await res.arrayBuffer())};
+    }));
+    return {files,label:describeFiles(files,'default')};
+  }catch(err){console.warn('ไม่ได้โหลดข้อมูลตั้งต้น:',err.message);return null;}
+}
+
+function askPublishPassword(){
+  return new Promise(resolve=>{
+    const dlg=document.createElement('dialog');
+    dlg.style.cssText='border:1px solid #d5d8de;border-radius:14px;padding:20px 22px;width:min(360px,calc(100vw - 32px));font:inherit;color:#303947';
+    dlg.innerHTML=`<form method="dialog">
+      <strong style="display:block;font-size:16px">เผยแพร่ข้อมูลชุดนี้ให้ทุกคน</strong>
+      <p style="margin:6px 0 14px;font-size:13px;color:#5a6270">ผู้ชมทุกคนจะเห็นข้อมูลชุดนี้ในทุกแท็บเมื่อเปิดหรือรีเฟรชหน้า แทนข้อมูลเดิม</p>
+      <input type="password" required autocomplete="current-password" placeholder="รหัสผ่านสำหรับเผยแพร่" style="width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #c9cdd4;border-radius:8px;font:inherit">
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
+        <button value="cancel" formnovalidate style="padding:8px 14px;border-radius:8px;border:1px solid #c9cdd4;background:#fff;font:inherit;cursor:pointer">ยกเลิก</button>
+        <button value="ok" style="padding:8px 14px;border-radius:8px;border:0;background:#913D50;color:#fff;font:inherit;font-weight:700;cursor:pointer">เผยแพร่</button>
+      </div></form>`;
+    document.body.append(dlg);
+    dlg.addEventListener('close',()=>{const pw=dlg.returnValue==='ok'?dlg.querySelector('input').value:null;dlg.remove();resolve(pw);});
+    dlg.showModal();
+  });
+}
+
+async function publishFiles(files,password){
+  let res;
+  try{res=await fetch(PUBLISH_API,{method:'POST',headers:{'content-type':'application/json','x-publish-password':password},body:JSON.stringify({files})});}
+  catch(err){throw new Error('เชื่อมต่อระบบเผยแพร่ไม่ได้');}
+  const body=await res.json().catch(()=>({}));
+  if(res.status===404||res.status===501) throw new Error('ปุ่มเผยแพร่ใช้ได้เฉพาะบนเว็บที่ deploy บน Vercel');
+  if(!res.ok) throw new Error(body.error||`HTTP ${res.status}`);
+  return body; // {publishedAt, files:[names]}
+}
+
+// Wires a page to its data:
+// - on load shows the latest published data (or data/ defaults)
+// - an upload is a private preview for the uploader, with a "เผยแพร่" button that makes it the latest data for everyone
+// apply(files, label) must throw on bad data before changing the page, so a bad upload keeps the current view.
+function connectCSV(input,apply){
+  const label=input.closest('label');
+  const publishBtn=document.createElement('button');
+  publishBtn.type='button';publishBtn.className=(label?.className||'')+' csv-publish';
+  publishBtn.textContent='เผยแพร่';publishBtn.title='เผยแพร่ข้อมูลที่อัปโหลดให้ผู้ชมทุกคน (ต้องใช้รหัสผ่าน)';
+  publishBtn.style.display='none';publishBtn.style.font='inherit'; // <button> does not inherit the page font by default
+  (label||input).after(publishBtn);
+
+  let uploaded=false,preview=null; // an upload that lands before the initial data finishes loading wins
+  input.addEventListener('change',async()=>{
+    const picked=[...input.files];input.value='';
+    if(!picked.length)return;
+    uploaded=true;
+    try{const files=await readCSVFiles(picked);apply(files,describeFiles(files,'preview'));preview=files;publishBtn.style.display='';}
+    catch(err){console.error(err);alert('อ่านไฟล์ CSV ไม่สำเร็จ: '+err.message);}
+  });
+  publishBtn.addEventListener('click',async()=>{
+    if(!preview)return;
+    const password=await askPublishPassword();
+    if(!password)return;
+    publishBtn.disabled=true;publishBtn.textContent='กำลังเผยแพร่…';
+    try{
+      const result=await publishFiles(preview,password);
+      apply(preview,describeFiles(preview,'published',result.publishedAt));
+      preview=null;publishBtn.style.display='none';
+      alert('เผยแพร่แล้ว ผู้ชมจะเห็นข้อมูลชุดนี้เมื่อเปิดหรือรีเฟรชหน้า (ภายในไม่เกิน 1 นาที)');
+    }catch(err){alert('เผยแพร่ไม่สำเร็จ: '+err.message);}
+    finally{publishBtn.disabled=false;publishBtn.textContent='เผยแพร่';}
+  });
+  loadInitialData().then(data=>{
+    if(!data||uploaded)return;
+    try{apply(data.files,data.label);}catch(err){console.error('ข้อมูลเริ่มต้นอ่านไม่ได้:',err);}
+  });
+}

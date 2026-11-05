@@ -3,3 +3,6 @@ source/
 
 # Vercel CLI (npx vercel)
 .vercel/
+
+# npm
+node_modules/

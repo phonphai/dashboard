@@ -65,12 +65,5 @@ function renderDashboard(cfg){
     document.getElementById('sd-tfoot').innerHTML=`<tr><td>รวม</td>${columns.map((c,i)=>i===0&&!c.number&&!c.distinct?'<td></td>':cell(c,totals,rows)).join('')}</tr>`;
   }
 
-  document.getElementById('sd-input').addEventListener('change',async ev=>{
-    const picked=[...ev.target.files];ev.target.value='';
-    if(!picked.length)return;
-    try{
-      const report=build(await readCSVFiles(picked));
-      render(report,picked.length===1?picked[0].name:`${picked.length} ไฟล์: ${picked.map(f=>f.name).join(', ')}`);
-    }catch(err){console.error(err);alert('อ่านไฟล์ CSV ไม่สำเร็จ: '+err.message);}
-  });
+  connectCSV(document.getElementById('sd-input'),(files,label)=>render(build(files),label));
 }

@@ -1675,6 +1675,8 @@ html:not(.view-mobile) .mobile-totals-list{display:none!important}
 html.view-web .table-scroll{max-height:460px;overflow-y:auto!important}
 html.view-web .data-table thead th{position:sticky;top:0;z-index:2}
 html.view-web .data-table tfoot td{position:sticky;bottom:0;z-index:2}
+/* Viewers on phones still need to see which data (and publish time) they are looking at */
+html.view-mobile #csv-file-name{display:block!important;font-size:11px!important;line-height:1.35;color:var(--secondary)}
 
 
 /* V24: edit of the uploaded flood.html. Remove contacts and balance the two remaining insight cards and table. */
@@ -2272,23 +2274,18 @@ ${cell('vulnerable-num','จำนวนผู้เปราะบาง (ร�
    v16row('ร้อยละให้ความช่วยเหลือแล้ว',formatPercent(calculatedPercent),'g'),
    v16row('จำนวนผู้เปราะบาง (ราย)',number(totalVulnerable),'p')
   ].join('');
-  document.querySelector('#data-audit').textContent=stats.length?`ข้อมูลจาก ${fileLabel} · ${stats.length} จังหวัด (${DISASTER})`:'ยังไม่มีข้อมูล กรุณากด “อัปโหลด CSV”';
+  document.querySelector('#data-audit').textContent=stats.length?`${fileLabel} · ${stats.length} จังหวัด (${DISASTER})`:'ยังไม่มีข้อมูล กรุณากด “อัปโหลด CSV”';
   hideTooltip();
   if(geoSource) drawMap(geoSource.geo,geoSource.name); else updateSelection(null);
 }
 // Each upload replaces what is shown with the files picked in that upload (one or many).
-document.getElementById('csv-file').addEventListener('change',async ev=>{
-  const picked=[...ev.target.files];ev.target.value='';
-  if(!picked.length)return;
-  try{
-    const files=await readCSVFiles(picked);
-    const report=buildReport(files);
-    const label=picked.length===1?picked[0].name:`${picked.length} ไฟล์: ${picked.map(f=>f.name).join(', ')}`;
-    affectedData=report.data;period=report.period;render(label);
-    document.getElementById('csv-file-name').textContent=label;
-  }catch(err){console.error(err);alert('อ่านไฟล์ CSV ไม่สำเร็จ: '+err.message);}
-});
 render('-');
+// Default data from data/ on load; an upload replaces it (see connectCSV in shared/csv.js).
+connectCSV(document.getElementById('csv-file'),(files,label)=>{
+  const report=buildReport(files);
+  affectedData=report.data;period=report.period;render(label);
+  document.getElementById('csv-file-name').textContent=label;
+});
 </script>
 <script>
 (function(){

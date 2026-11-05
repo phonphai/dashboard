@@ -1,0 +1,53 @@
+รายงานจำนวนคำร้องและความเสียหาย,,,,,,,,,,,,,,,,
+ข้อมูลตั้งแต่วันที่ 1 ตุลาคม 2569 ถึงวันที่ 15 ตุลาคม 2569,,,,,,,,,,,,,,,,
+province,disaster,all_issue,all_issue_warning,all_issue_need_help,help_issue,all_household,help_household,percent_help,vuner_count,all_building,help_building,all_agriculture,help_agriculture,all_infrastructure,help_infrastructure,region
+จ.กำแพงเพชร,อุทกภัย,1017,10,1007,6,9650,4341,44.98,5883,4672,3633,4000,4000,2,2,ภาคกลาง
+จ.พระนครศรีอยุธยา,อุทกภัย,391,27,364,44,21172,9231,43.60,12814,null,null,null,null,null,null,ภาคกลาง
+จ.อ่างทอง,อุทกภัย,107,null,107,107,723,723,100.00,5985,556,556,null,null,null,null,ภาคกลาง
+จ.นครสวรรค์,อุทกภัย,84,34,50,null,250,null,null,12649,null,null,null,null,null,null,ภาคกลาง
+จ.สุพรรณบุรี,อุทกภัย,63,7,56,null,4905,null,null,5557,1869,null,4080,null,7,null,ภาคกลาง
+จ.ชัยนาท,อุทกภัย,55,3,52,44,7443,7363,98.93,3825,1231,1195,null,null,null,null,ภาคกลาง
+จ.ปทุมธานี,อุทกภัย,29,3,26,24,9382,9232,98.40,2856,null,null,null,null,null,null,ภาคกลาง
+กรุงเทพมหานคร,อุทกภัย,27,2,25,9,3524,516,14.64,4188,null,null,null,null,null,null,ภาคกลาง
+จ.นครนายก,อุทกภัย,21,1,20,4,7267,3197,43.99,2693,null,null,null,null,null,null,ภาคกลาง
+จ.กาญจนบุรี,อุทกภัย,19,1,18,null,34,null,null,7152,null,null,null,null,null,null,ภาคตะวันตก
+จ.บุรีรัมย์,อุทกภัย,16,12,4,null,459,null,null,12216,459,null,null,null,null,null,ภาคตะวันออกเฉียงเหนือ
+จ.ฉะเชิงเทรา,อุทกภัย,14,12,2,2,6194,6194,100.00,5251,1799,1799,null,null,null,null,ภาคตะวันออก
+จ.สงขลา,อุทกภัย,13,6,7,null,4414,null,null,14251,2202,null,null,null,null,null,ภาคใต้
+จ.ปราจีนบุรี,อุทกภัย,12,null,12,12,83228,83228,100.00,4154,null,null,null,null,null,null,ภาคตะวันออก
+จ.อุทัยธานี,อุทกภัย,10,null,10,10,2397,2397,100.00,3142,null,null,null,null,null,null,ภาคกลาง
+จ.ลพบุรี,อุทกภัย,10,2,8,3,4630,4072,87.95,5702,4000,4000,null,null,null,null,ภาคกลาง
+จ.สระแก้ว,อุทกภัย,9,2,7,2,3059,3034,99.18,5405,162,162,null,null,null,null,ภาคตะวันออก
+จ.สิงห์บุรี,อุทกภัย,8,1,7,7,1439,1439,100.00,3188,87,87,null,null,null,null,ภาคกลาง
+จ.ตาก,อุทกภัย,7,null,7,3,1651,767,46.46,5704,358,null,null,null,null,null,ภาคตะวันตก
+จ.จันทบุรี,อุทกภัย,5,null,5,5,1363,1363,100.00,3902,null,null,null,null,null,null,ภาคตะวันออก
+จ.เชียงใหม่,อุทกภัย,5,null,5,5,55,55,100.00,9876,7,7,null,null,null,null,ภาคเหนือ
+จ.นราธิวาส,อุทกภัย,4,1,3,null,15,null,null,2273,null,null,null,null,null,null,ภาคใต้
+จ.สงขลา,อื่น ๆ,4,3,1,null,2,null,null,14251,null,null,null,null,null,null,ภาคใต้
+จ.ลำพูน,อุทกภัย,3,null,3,3,230,230,100.00,7581,230,230,null,null,null,null,ภาคเหนือ
+จ.นครสวรรค์,วาตภัย,3,1,2,null,4,null,null,12649,null,null,null,null,null,null,ภาคกลาง
+จ.พระนครศรีอยุธยา,อื่น ๆ,3,null,3,3,3500,3500,100.00,12814,null,null,null,null,null,null,ภาคกลาง
+จ.สุโขทัย,อุทกภัย,3,2,1,null,115,null,null,8578,null,null,null,null,null,null,ภาคกลาง
+จ.ระยอง,อุทกภัย,3,2,1,1,30,30,100.00,2112,null,null,null,null,null,null,ภาคตะวันออก
+จ.อุบลราชธานี,อัคคีภัย,3,null,3,3,3,3,100.00,43856,3,3,null,null,null,null,ภาคตะวันออกเฉียงเหนือ
+จ.สมุทรปราการ,อุทกภัย,2,null,2,null,101,null,null,3241,null,null,null,null,null,null,ภาคกลาง
+จ.ศรีสะเกษ,อื่น ๆ,2,2,null,null,null,null,null,16450,null,null,null,null,null,null,ภาคตะวันออกเฉียงเหนือ
+จ.ตาก,วาตภัย,2,null,2,2,4,4,100.00,5704,4,4,null,null,null,null,ภาคตะวันตก
+จ.เพชรบุรี,อุทกภัย,2,null,2,2,20,20,100.00,3012,12,12,null,null,null,null,ภาคตะวันตก
+กรุงเทพมหานคร,อื่น ๆ,1,1,null,null,null,null,null,4188,null,null,null,null,null,null,ภาคกลาง
+จ.พิษณุโลก,การคมนาคม,1,1,null,null,null,null,null,7658,null,null,null,null,null,null,ภาคกลาง
+จ.ขอนแก่น,อุทกภัย,1,null,1,null,3,null,null,17370,null,null,null,null,null,null,ภาคตะวันออกเฉียงเหนือ
+จ.นครราชสีมา,อัคคีภัย,1,null,1,1,1,1,100.00,25089,1,1,null,null,null,null,ภาคตะวันออกเฉียงเหนือ
+จ.บุรีรัมย์,วาตภัย,1,null,1,1,28,28,100.00,12216,28,28,null,null,null,null,ภาคตะวันออกเฉียงเหนือ
+จ.บุรีรัมย์,อัคคีภัย,1,null,1,null,1,null,null,12216,null,null,null,null,null,null,ภาคตะวันออกเฉียงเหนือ
+จ.พระนครศรีอยุธยา,พายุไต้ฝุ่น,1,null,1,1,1200,1200,100.00,12814,null,null,null,null,null,null,ภาคกลาง
+จ.สุรินทร์,อุทกภัย,1,null,1,1,23,23,100.00,25256,null,null,null,null,null,null,ภาคตะวันออกเฉียงเหนือ
+กรุงเทพมหานคร,ภัยจากการสู้รบ,1,1,null,null,null,null,null,4188,null,null,null,null,null,null,ภาคกลาง
+จ.ตรัง,อุทกภัย,1,null,1,1,10,10,100.00,5597,10,10,null,null,null,null,ภาคใต้
+จ.พระนครศรีอยุธยา,ฝุ่น PM2.5,1,null,1,null,1,null,null,12814,null,null,null,null,null,null,ภาคกลาง
+จ.ชัยนาท,วาตภัย,1,null,1,1,1,1,100.00,3825,1,1,null,null,null,null,ภาคกลาง
+จ.กำแพงเพชร,วาตภัย,1,null,1,null,12,null,null,5883,null,null,null,null,null,null,ภาคกลาง
+จ.สุพรรณบุรี,อื่น ๆ,1,1,null,null,null,null,null,5557,null,null,null,null,null,null,ภาคกลาง
+จ.สิงห์บุรี,อื่น ๆ,1,1,null,null,null,null,null,3188,null,null,null,null,null,null,ภาคกลาง
+จ.ชลบุรี,อุทกภัย,1,1,null,null,null,null,null,3791,null,null,null,null,null,null,ภาคตะวันออก
+จ.เพชรบูรณ์,อุทกภัย,1,null,1,null,22,null,null,13165,null,null,null,null,null,null,ภาคกลาง
