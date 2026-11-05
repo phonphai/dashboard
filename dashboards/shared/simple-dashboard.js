@@ -62,5 +62,5 @@ function renderDashboard(cfg){
     document.getElementById('sd-tfoot').innerHTML=`<tr><td>รวม</td>${columns.map((c,i)=>i===0&&!c.number&&!c.distinct?'<td></td>':cell(c,totals,rows)).join('')}</tr>`;
   }
 
-  receiveCSV(files=>render(build(files))); // data comes from the bar above the tabs (index.html)
+  receiveCSV(files=>render(build(files)),cfg.dataset||'report'); // data comes from the bar above the tabs (index.html)
 }

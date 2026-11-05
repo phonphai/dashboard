@@ -1,10 +1,11 @@
-// POST /api/publish — ทีมกรมแชร์ CSV ชุดใหม่ให้ผู้ชมทุกคน
+// POST /api/publish?dataset=<id> — ทีมกรมแชร์ CSV ชุดใหม่ให้ผู้ชมทุกคน (id ดู api/_datasets.js, ไม่ใส่ = report)
 // ต้องเชื่อม Blob store ใน Vercel: Vercel ตั้ง BLOB_STORE_ID ให้ และ @vercel/blob ขอ OIDC token จาก Vercel เองตอนรัน
 // (โปรเจกต์ที่เชื่อมแบบเก่าจะได้ BLOB_READ_WRITE_TOKEN แทน ใช้ได้เหมือนกัน)
 // รหัสผ่าน (ไม่บังคับ): ถ้าตั้ง PUBLISH_PASSWORD ไว้ ต้องส่ง header x-publish-password ให้ตรง ถ้าไม่ตั้ง ใครเปิดเว็บก็แชร์ได้
 // body: { files: [{ name, text }] }
 import { put } from '@vercel/blob';
 import { timingSafeEqual } from 'node:crypto';
+import { DATASETS, blobPrefix, datasetFrom } from './_datasets.js';
 
 const MAX_FILES = 20;
 const MAX_TOTAL_CHARS = 4_000_000; // Vercel rejects request bodies over 4.5 MB
@@ -17,6 +18,9 @@ function passwordOk(given, expected) {
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'ใช้ได้เฉพาะ POST' });
+  const dataset = datasetFrom(req);
+  if (!dataset) return res.status(400).json({ error: 'ไม่รู้จักชุดข้อมูลนี้' });
+  const { headerFirstColumn } = DATASETS[dataset];
   const expected = process.env.PUBLISH_PASSWORD;
   if (expected) {
     const given = req.headers['x-publish-password'];
@@ -31,9 +35,9 @@ export default async function handler(req, res) {
   for (const f of files) {
     if (typeof f?.name !== 'string' || typeof f?.text !== 'string' || !/\.csv$/i.test(f.name) || !f.text.trim())
       return res.status(400).json({ error: 'ทุกไฟล์ต้องเป็น .csv และมีข้อมูล' });
-    // Every tab reads the same report format; reject anything without its header row so a stray file cannot blank the dashboards
-    if (!/^\s*"?province"?\s*,/m.test(f.text))
-      return res.status(400).json({ error: `${f.name}: ไม่ใช่ไฟล์รายงานจำนวนคำร้องและความเสียหาย (ไม่พบแถวหัวคอลัมน์ province)` });
+    // Tabs of this dataset all read its format; reject a file without its header row so a stray file cannot blank them
+    if (!new RegExp(`^\\s*"?${headerFirstColumn}"?\\s*,`, 'm').test(f.text))
+      return res.status(400).json({ error: `${f.name}: ไม่ใช่ไฟล์ของชุดข้อมูลนี้ (ไม่พบแถวหัวคอลัมน์ที่ขึ้นต้นด้วย ${headerFirstColumn})` });
     total += f.text.length;
   }
   if (total > MAX_TOTAL_CHARS) return res.status(413).json({ error: 'ไฟล์รวมกันใหญ่เกินไป (สูงสุดประมาณ 4 MB)' });
@@ -41,7 +45,8 @@ export default async function handler(req, res) {
   // Each publish gets its own folder (kept as history); latest.json points at the newest one.
   // Files are written first and the pointer last, so viewers never see a half-written publish.
   const publishedAt = new Date().toISOString();
-  const folder = `published/${publishedAt.replace(/[:.]/g, '-')}`;
+  const prefix = blobPrefix(dataset);
+  const folder = `${prefix}published/${publishedAt.replace(/[:.]/g, '-')}`;
   const saved = [];
   try {
     for (const [i, f] of files.entries()) {
@@ -52,7 +57,7 @@ export default async function handler(req, res) {
     const manifest = JSON.stringify({ publishedAt, files: saved });
     // manifest.json keeps this share's file names for the history list (api/history.js); latest.json is overwritten
     await put(`${folder}/manifest.json`, manifest, { access: 'private', contentType: 'application/json' });
-    await put('latest.json', manifest, {
+    await put(`${prefix}latest.json`, manifest, {
       access: 'private', contentType: 'application/json', allowOverwrite: true, cacheControlMaxAge: 60,
     });
   } catch (err) {

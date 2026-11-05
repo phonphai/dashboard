@@ -1,6 +1,7 @@
-// GET /api/latest — ข้อมูลชุดล่าสุดที่ทีมกรมแชร์ ให้ทุก dashboard โหลดตอนเปิดหน้า
+// GET /api/latest?dataset=<id> — ข้อมูลชุดล่าสุดที่ทีมกรมแชร์ ให้แท็บของชุดข้อมูลนั้นโหลดตอนเปิดหน้า (ไม่ใส่ = report)
 // -> { publishedAt, files: [{ name, text }] } หรือ 404 ถ้ายังไม่เคยแชร์ (หน้าเว็บจะใช้ไฟล์ใน data/ แทน)
 import { get } from '@vercel/blob';
+import { blobPrefix, datasetFrom } from './_datasets.js';
 
 const readText = async (pathname, useCache) => {
   const blob = await get(pathname, { access: 'private', useCache });
@@ -9,8 +10,10 @@ const readText = async (pathname, useCache) => {
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store'); // errors and "not published yet" are never cached
+  const dataset = datasetFrom(req);
+  if (!dataset) return res.status(400).json({ error: 'ไม่รู้จักชุดข้อมูลนี้' });
   try {
-    const pointer = await readText('latest.json', false); // bypass CDN: latest.json is overwritten on every publish
+    const pointer = await readText(`${blobPrefix(dataset)}latest.json`, false); // bypass CDN: latest.json is overwritten on every publish
     if (!pointer) return res.status(404).json({ error: 'ยังไม่มีข้อมูลที่แชร์' });
     const { publishedAt, files } = JSON.parse(pointer);
     const texts = await Promise.all(files.map(f => readText(f.pathname, true))); // published files never change
