@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+
+<html data-default-view="auto" data-mobile-tab="overview" lang="th">
+<head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>สรุปการให้ความช่วยเหลือผู้ประสบอุทกภัยรายจังหวัด | พ้นภัย</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--maroon:#913D50;--rose:#CE8296;--sky:#6499D0;--gold:#D6AE62;--green:#61A58B;--bg:#F5F7FA;--paper:#FFFFFF;--ink:#303947;--secondary:#758091;--line:#E5EAF0;--muted:#EEF1F5;--shadow:0 3px 16px rgba(37,53,74,.045);--radius:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Sarabun','Noto Sans Thai','Segoe UI',Tahoma,sans-serif;font-size:15px;line-height:1.54}button,table{font:inherit}button{cursor:pointer}button:focus-visible,tr:focus-visible,path:focus-visible{outline:3px solid #6499d0;outline-offset:2px}button:disabled{opacity:.5;cursor:not-allowed}.lucide{width:22px;height:22px;flex:none}
+.page{max-width:1820px;margin:auto;padding:22px 24px 26px}.card,.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+/* Header: original official identity remains, with a clearer executive hierarchy. */
+.hero{display:flex;align-items:center;gap:20px;padding:19px 23px;border-left:5px solid var(--maroon);min-height:126px}.logo-frame{flex:0 0 100px;width:100px;height:100px;display:grid;place-items:center;border-radius:50%;background:#fff;border:1px solid #E6E6EB;box-shadow:0 2px 10px rgba(31,44,60,.05);overflow:hidden}.org-logo{width:100%;height:100%;object-fit:contain;border-radius:50%;display:block}.hero-copy{flex:1;min-width:0}.eyebrow{display:flex;align-items:center;gap:7px;color:var(--maroon);font-size:12px;letter-spacing:.04em;font-weight:800;margin-bottom:4px}.eyebrow svg{width:15px;height:15px}.hero h1{font-size:clamp(23px,1.8vw,31px);font-weight:900;line-height:1.28;letter-spacing:-.025em;margin:0}.hero-period{margin:8px 0 0;color:var(--secondary);font-size:15px;font-weight:600}.hero-period strong{color:var(--ink)}.source-mark{margin-left:auto;padding:9px 13px;background:#F9F5F6;border:1px solid #EFE3E7;color:var(--maroon);font-size:12px;font-weight:800;border-radius:11px;white-space:nowrap}
+/* KPI cards: neutral surfaces, controlled semantic accents. */
+.top-grid{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.stat{position:relative;min-width:0;overflow:hidden;display:flex;flex-direction:column;gap:9px;padding:19px 22px 17px;min-height:176px}.stat::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}.stat.maroon{--accent:var(--maroon);--soft:#F7EEF0}.stat.sky{--accent:var(--sky);--soft:#EEF5FC}.stat.rose{--accent:var(--rose);--soft:#FBF1F4}.stat-top{display:flex;gap:13px;align-items:center}.icon-box{width:47px;height:47px;display:grid;place-items:center;background:var(--soft);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 25%,white);border-radius:13px;box-shadow:0 2px 5px rgba(40,56,75,.04)}.icon-box .lucide{width:23px;height:23px}.stat-label{font-weight:800;font-size:16px}.stat-number{margin-top:2px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.stat-value{font-size:clamp(34px,3vw,48px);line-height:1.02;letter-spacing:-.035em;font-weight:900;font-variant-numeric:tabular-nums}.stat-unit{font-size:16px;font-weight:800;color:var(--secondary)}.stat-sub{font-size:13px;color:var(--secondary);line-height:1.6;min-height:24px}.stat-sub b{color:var(--ink);font-weight:800}
+/* Progress */
+.aid-banner{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.9fr);gap:26px;align-items:center;margin-top:16px;padding:18px 22px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.aid-title{display:flex;align-items:center;gap:11px}.aid-icon{background:#EAF5F0;color:#448F75;border-color:#D7EDE3;width:42px;height:42px;border-radius:12px}.aid-icon svg{width:22px;height:22px}.aid-left h2{font-size:18px;font-weight:850;margin:0}.aid-left p{font-size:13px;margin:4px 0 0 53px;color:var(--secondary)}.aid-right{display:flex;flex-direction:column;gap:7px}.aid-percent{display:flex;align-items:baseline;justify-content:space-between;gap:10px;color:var(--secondary);font-size:13px;font-weight:700}.aid-percent strong{font-size:28px;line-height:1;color:#387f69;font-weight:900;font-variant-numeric:tabular-nums}.progress{height:15px;border-radius:100px;overflow:hidden;background:#E9EFF0}.progress span{display:block;background:var(--green);border-radius:100px;width:8.81%;height:100%;min-width:0}.aid-legend{font-size:11px;color:var(--secondary);text-align:right}
+/* Balance panels horizontally. */
+.main{display:grid;grid-template-columns:minmax(0,43%) minmax(0,57%);gap:16px;margin-top:16px;align-items:start}.panel{min-width:0;overflow:hidden}.panel-head,.table-band{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 19px;border-bottom:1px solid var(--line);min-height:74px}.section-title{margin:0;font-size:19px;font-weight:900;line-height:1.3;display:flex;align-items:center;gap:10px}.section-title .lucide{width:22px;height:22px;color:var(--maroon)}.panel-sub{font-size:12px;color:var(--secondary);margin-top:3px}.tag{background:#F6F1F3;color:var(--maroon);font-size:12px;font-weight:800;padding:6px 10px;border-radius:10px;white-space:nowrap}.map-wrap{padding:14px 16px 14px;display:flex;flex-direction:column;min-height:100%}
+/* No map tiles: genuine provincial polygons displayed over white SVG canvas. */
+.map-stage{position:relative;height:586px;border-radius:13px;border:1px solid #E5EAF0;background:#fff;overflow:hidden;touch-action:none}.map-stage::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(#E9EDF2 0.65px,transparent 0.65px);background-size:19px 19px;opacity:.38}.map-canvas{display:block;position:relative;width:100%;height:100%;cursor:grab;touch-action:none}.map-canvas.dragging{cursor:grabbing}.map-shape{stroke:#d9dfe5;stroke-width:1.1;vector-effect:non-scaling-stroke;fill:#EDF0F3;cursor:default;transition:fill .12s ease}.map-shape.active{stroke:#FFFFFF;stroke-width:1.2;cursor:pointer}.map-shape.active:hover{filter:brightness(.93);stroke:#7f6e74;stroke-width:2}.map-shape.selected{stroke:var(--maroon);stroke-width:3.8;filter:drop-shadow(0 2px 2px rgba(58,38,46,.18))}.map-label{pointer-events:none}.map-label rect{fill:rgba(255,255,255,.96);stroke:#dfe3e8;stroke-width:.9}.map-label text{font-family:'Sarabun','Noto Sans Thai',Tahoma,sans-serif;font-size:14px;font-weight:800;fill:#303947}.map-label line{stroke:#97a0ac;stroke-width:1.15;fill:none;stroke-dasharray:2 2}.map-label.selected rect{stroke:var(--maroon);stroke-width:1.8}.map-html-labels{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden}.map-html-label{display:block;position:absolute;left:0;top:0;transform:translate(-50%,-50%);padding:3px 8px 3px 7px;background:rgba(255,255,255,.96);border:1px solid #dfe4e9;border-left:3px solid var(--region);border-radius:6px;box-shadow:0 2px 7px rgba(33,49,64,.07);font-size:12px;font-weight:850;color:var(--ink);white-space:nowrap;line-height:1.5}.map-html-label.selected{border-color:var(--maroon);background:#FFF7F9;box-shadow:0 2px 11px rgba(145,61,80,.13)}.map-toolbar{display:none}.map-control{width:36px;height:36px;border-radius:9px;border:1px solid #DDE3E8;background:white;box-shadow:0 3px 10px rgba(25,35,48,.05);color:#4a5969;display:grid;place-items:center}.map-control:hover{background:#f9f0f2;color:var(--maroon)}.map-control svg{width:18px;height:18px}.map-action-row{display:none}.map-action{border:1px solid #dce2e8;border-radius:9px;padding:7px 11px;background:rgba(255,255,255,.96);color:var(--ink);font-size:12px;font-weight:800;box-shadow:0 3px 12px rgba(32,47,61,.06)}.map-action:hover,.map-action.primary{color:var(--maroon);border-color:#E7C8D0;background:#fbf6f8}.map-tooltip{position:absolute;z-index:6;pointer-events:none;max-width:290px;min-width:215px;padding:12px 14px;border:1px solid #E4E8EE;border-radius:12px;background:white;box-shadow:0 12px 28px rgba(33,44,64,.17);display:none;color:var(--ink);font-size:12px}.map-tooltip h4{margin:0 0 6px;font-size:15px}.map-tooltip .tooltip-sub{color:var(--secondary);margin-bottom:8px}.map-tooltip .tool-row{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-top:1px solid #EDF1F5}.map-tooltip .tool-row strong{white-space:nowrap}.map-tooltip .tool-row span{color:var(--secondary)}.map-message{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:4;background:rgba(255,255,255,.96);text-align:center;padding:22px}.map-message-inner{max-width:360px}.map-message svg{color:var(--maroon);width:28px;height:28px}.map-message h3{font-size:17px;margin:8px 0 4px}.map-message p{margin:0;font-size:13px;color:var(--secondary)}.map-message button{margin-top:14px;padding:8px 12px;border:1px solid #DCC1C8;border-radius:9px;background:#FAF3F5;color:var(--maroon);font-weight:800}.map-message[hidden]{display:none}
+.map-footer{display:none}.map-selection{min-width:0}.map-selection strong{display:block;color:var(--ink);font-size:14px}.map-selection small{display:block;color:var(--secondary);font-size:12px}.selection-chip{font-size:12px;font-weight:800;color:var(--maroon);background:#F8F0F2;border-radius:999px;padding:5px 10px;white-space:nowrap}.legend{margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.legend-item{display:flex;align-items:flex-start;gap:9px;min-width:0;padding:10px 12px;background:#FBFCFD;border:1px solid var(--line);border-radius:11px;min-height:64px;height:100%}.legend-dot{display:block;flex:0 0 12px;width:12px;height:12px;border-radius:4px;margin-top:4px}.legend-copy{display:block;min-width:0}.legend-copy strong{display:block;font-size:13px;line-height:1.35}.legend-copy small{display:block;color:var(--secondary);font-size:11px;line-height:1.45;margin-top:2px}.attribution{font-size:10px;color:#83909E;margin-top:8px;line-height:1.35}.attribution a{color:#6a7183;text-decoration:underline;text-underline-offset:2px}
+/* Table */
+.table-band .badge{padding:5px 10px;background:#F7F0F2;border-radius:999px;font-weight:800;color:var(--maroon);font-size:12px;white-space:nowrap}.table-wrap{padding:12px 12px 14px}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:12px;scrollbar-color:#CCD2DD #F7F8FA}.data-table{width:100%;min-width:820px;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:13px;line-height:1.4;background:#fff}.data-table th,.data-table td{padding:13px 10px;border-bottom:1px solid #DDE7EF;vertical-align:middle}.data-table thead th{position:sticky;top:0;color:#516173;font-size:12px;font-weight:900;text-align:center;line-height:1.35;white-space:normal;z-index:1}.data-table thead th:nth-child(1),.data-table thead th:nth-child(2){background:#E9F5FC;color:#175D97}.data-table thead th:nth-child(3){background:#FBF1ED;color:#D03444}.data-table thead th:nth-child(4){background:#F5EFFA;color:#7C4AC6}.data-table thead th:nth-child(5){background:#EAF6FC;color:#1B71B1}.data-table thead th:nth-child(6){background:#EEF7EE;color:#2D8A5F}.data-table thead th:nth-child(7){background:#FBEFF7;color:#D74E97}.data-table thead th:first-child,.data-table thead th:last-child{border-top-left-radius:12px;border-top-right-radius:12px}.data-table tbody tr{background:#fff;cursor:pointer;transition:background .16s ease}.data-table tbody tr:hover,.data-table tbody tr:focus-visible{background:#FAF7F8}.data-table tbody tr.selected-row{background:#F9F0F3;box-shadow:inset 3px 0 var(--maroon)}.data-table tbody tr:last-child td{border-bottom:0}.data-table td{color:var(--ink);font-size:14px}.data-table .order{color:#7F8B99;font-weight:700;text-align:center}.data-table .province-name{font-size:14px;font-weight:800;white-space:nowrap;color:#185D99}.data-table .request-compact{text-align:center;font-variant-numeric:tabular-nums;font-size:16px;font-weight:900;color:#D62E3D;letter-spacing:.01em}.data-table .affected-num{text-align:center;font-variant-numeric:tabular-nums;font-size:15px;font-weight:800;color:#7C3FB8;white-space:nowrap}.data-table .help-num{text-align:center;font-variant-numeric:tabular-nums;font-size:15px;font-weight:800;color:#1167AB;white-space:nowrap}.data-table .percent-num{text-align:center;font-variant-numeric:tabular-nums;font-size:15px;font-weight:900;color:#0D9D52;white-space:nowrap}.data-table .vulnerable-num{text-align:center;font-variant-numeric:tabular-nums;font-size:15px;font-weight:800;color:#C24DB5;white-space:nowrap}.data-table .dash{color:#A4AEBB}.data-table tfoot td{background:#F8FBFE;color:#334255;border-bottom:0;border-top:2px solid #CFE0EE;font-weight:850;font-size:14px}.data-table tfoot td:first-child{border-bottom-left-radius:12px}.data-table tfoot td:last-child{border-bottom-right-radius:12px}.data-table tfoot .request-compact,.data-table tfoot .affected-num,.data-table tfoot .help-num,.data-table tfoot .percent-num,.data-table tfoot .vulnerable-num{font-size:15px}.table-note{display:none}.table-foot{display:none}.status-note{margin-top:8px;color:#697688;font-size:11px;display:none}.bottom-note{text-align:right;font-size:11px;color:var(--secondary);margin:13px 0 0}
+@media (max-width:1480px){.page{padding:16px}.main{grid-template-columns:minmax(0,42%) minmax(0,58%)}.map-stage{height:500px}.data-table{min-width:900px}.hero h1{font-size:27px}}@media(max-width:1180px){.main{grid-template-columns:1fr}.map-stage{height:550px}.hero{flex-wrap:wrap}.source-mark{display:none}.data-table{min-width:890px}.top-grid{gap:12px}}@media(max-width:730px){.page{padding:10px}.hero{padding:14px 15px;gap:11px;min-height:0}.logo-frame{flex-basis:70px;width:70px;height:70px}.hero h1{font-size:20px}.hero-period{font-size:12px}.eyebrow{font-size:10px}.top-grid{grid-template-columns:1fr;gap:10px;margin-top:10px}.stat{min-height:135px;padding:14px 17px}.stat-value{font-size:37px}.stat-sub{font-size:12px}.aid-banner{grid-template-columns:1fr;gap:13px;padding:15px}.aid-left h2{font-size:16px}.aid-left p{margin-left:0}.main{gap:10px;margin-top:10px}.panel-head,.table-band{padding:13px 14px;min-height:65px}.section-title{font-size:16px}.tag{font-size:10px}.map-wrap{padding:10px}.map-stage{height:430px}.legend{grid-template-columns:1fr 1fr;gap:6px}.legend-item{padding:8px}.map-label text{font-size:13px}.table-wrap{padding:9px}.bottom-note{text-align:left}}
+@media print{body{background:white}.page{max-width:none;padding:7mm}.card,.panel,.aid-banner{box-shadow:none;break-inside:avoid}.map-action-row,.map-toolbar{display:none}.main{grid-template-columns:41% 59%}.data-table{font-size:10px;min-width:0}.data-table td,.data-table th{padding:5px 4px}.map-stage{height:540px}}
+
+/* V5 refinement: proportional panels and consistent text scale, retaining V4 structure */
+:root{--shadow:0 3px 12px rgba(37,53,74,.045)}
+body{font-size:15px;line-height:1.50}
+.page{max-width:1820px;padding:18px 22px 24px}
+.hero{min-height:116px;padding:15px 21px;gap:18px}
+.logo-frame{width:92px;height:92px;flex-basis:92px}
+.hero h1{font-size:clamp(24px,1.56vw,29px);font-weight:800;line-height:1.34;letter-spacing:0}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:0}
+.hero-period{font-size:14px;margin-top:5px}
+.source-mark{font-size:13px;padding:8px 12px}
+.top-grid{gap:14px;margin-top:14px}
+.stat{min-height:152px;padding:15px 19px 14px;gap:7px}
+.stat-top{gap:11px}.icon-box{width:43px;height:43px}
+.stat-label{font-size:16px;font-weight:800}
+.stat-number{gap:9px;margin-top:0}.stat-value{font-size:clamp(30px,2.1vw,36px);font-weight:900;letter-spacing:-.014em}
+.stat-unit{font-size:14px}.stat-sub{font-size:12.5px;line-height:1.45;min-height:0}
+.aid-banner{margin-top:14px;padding:14px 19px;gap:18px;min-height:86px}
+.aid-left h2{font-size:18px;font-weight:800}.aid-left p{font-size:13px}
+.aid-percent strong{font-size:27px}.aid-legend{font-size:12px}
+.main{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:14px;margin-top:14px;align-items:stretch}
+.map-panel,.table-panel{display:flex;flex-direction:column;min-height:0;min-width:0}
+.panel-head,.table-band{min-height:69px;padding:13px 16px;flex:0 0 auto}
+.section-title{font-size:19px;font-weight:800;line-height:1.4}
+.panel-sub{font-size:13px;margin-top:2px}
+.map-wrap{display:flex;flex:1 1 auto;flex-direction:column;min-height:0;padding:11px 13px 12px}
+.map-stage{flex:1 1 405px;min-height:405px;height:auto;max-height:none;border-radius:12px}
+.map-footer{margin-top:9px;padding:9px 11px;gap:8px;min-height:54px}
+.map-selection strong{font-size:13.5px}.map-selection small{font-size:12px}
+.map-action{font-size:12.5px}
+.legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:9px}
+.legend-item{min-width:0;padding:7px 9px;gap:7px}
+.legend-copy strong{font-size:12.5px}.legend-copy small{font-size:11.5px;line-height:1.35}
+.legend-item.is-empty{opacity:.68}
+.legend-dot{width:11px;height:11px;flex-shrink:0}
+.attribution{font-size:11.5px;margin-top:7px}
+.table-wrap{display:flex;flex:1;flex-direction:column;min-height:0;padding:10px 11px 12px}
+.table-scroll-hint{display:none;display:none;font-size:12px;color:var(--secondary);margin:0 0 7px;font-weight:600}
+.table-scroll{overflow-x:auto;overflow-y:visible;border-radius:11px;max-width:100%;flex:0 0 auto}
+.data-table{width:100%;min-width:1037px;table-layout:fixed;font-size:13.5px;line-height:1.35}
+.data-table th,.data-table td{padding:10px 9px}
+.data-table thead th{font-size:12.5px;line-height:1.3;vertical-align:middle;white-space:normal;height:71px;font-weight:800}
+.data-table thead th:nth-child(2){text-align:left}
+.data-table thead th:nth-child(9){text-align:left}
+.data-table thead th small{display:block;font-size:12px;margin-top:2px;color:#758091}
+.data-table .order{font-size:12.5px}
+.data-table .province-name{font-size:13.5px}
+.data-table .strong-num{font-size:14px}
+.data-table .numeric{text-align:right}
+.request-detail{min-width:0;gap:2px}
+.request-detail small{font-size:12px}.request-detail b{font-size:13.5px}
+.region-chip{font-size:12px;padding:5px 7px}
+.data-table tfoot td{font-size:13px}
+.data-table tfoot .summary-split{font-size:12px;line-height:1.4}
+.table-foot{margin-top:auto;padding-top:11px;gap:9px}
+.table-insight{padding:11px 12px}.table-insight small{font-size:12px}.table-insight strong{font-size:15px}
+.table-insight span{font-size:12px}
+.table-note{padding:9px 4px 1px;font-size:12px;line-height:1.55}
+.status-note{font-size:12px;margin-top:7px}
+.bottom-note{font-size:12px;margin-top:9px}
+.map-html-label{font-size:12.5px;line-height:1.45}
+@media (max-width:1550px){
+ .main{grid-template-columns:minmax(0,43fr) minmax(0,57fr)}
+ .data-table{min-width:1037px}
+ .legend{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:1180px){
+ .main{grid-template-columns:minmax(0,1fr);align-items:start}
+ .panel{height:auto}
+ .map-stage{flex:0 0 545px;min-height:545px}
+ .legend{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .table-foot{margin-top:12px}
+ .table-scroll-hint{display:none;display:block}
+ .table-scroll{overflow-x:auto}
+}
+@media (max-width:730px){
+ .page{padding:10px}
+ .hero{min-height:0;padding:13px 12px;gap:11px}
+ .logo-frame{width:68px;height:68px;flex-basis:68px}
+ .hero h1{font-size:20px;line-height:1.38}
+ .eyebrow{font-size:12px}
+ .hero-period{font-size:12.5px}
+ .top-grid{grid-template-columns:1fr;gap:9px;margin-top:10px}
+ .stat{min-height:135px}
+ .stat-value{font-size:35px}
+ .main{gap:10px;margin-top:10px}
+ .panel-head,.table-band{min-height:60px;padding:12px}
+ .section-title{font-size:17px}
+ .map-wrap{padding:9px}
+ .map-stage{flex-basis:430px;min-height:430px}
+ .map-action{padding:7px 9px}
+ .legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .legend-copy strong{font-size:12px}
+ .table-wrap{padding:9px}
+ .table-foot{grid-template-columns:1fr}
+ .aid-left h2{font-size:17px}
+ .bottom-note{font-size:11.5px}
+}
+@media print{
+ .main{grid-template-columns:minmax(0,2fr) minmax(0,3fr)}
+ .data-table{min-width:0;font-size:10px}
+ .data-table th,.data-table td{padding:4px 3px}
+ .map-stage{flex:0 0 460px;min-height:460px}
+ .map-action-row,.map-toolbar{display:none}
+}
+
+
+/* V8 refinement: compact, legible 7-column table with no horizontal scrollbar. */
+.main{
+  grid-template-columns:minmax(0,38%) minmax(0,62%);
+  align-items:stretch;
+}
+.table-panel{min-width:0}
+.table-wrap{
+  display:flex;flex-direction:column;flex:1 1 auto;
+  padding:10px 12px 12px;gap:12px;
+}
+.table-scroll{
+  flex:0 0 auto;min-width:0;max-width:100%;
+  width:100%;overflow:visible;border:1px solid #E0E7EF;
+  border-radius:11px;
+}
+.data-table{
+  min-width:0 !important;width:100%;table-layout:fixed;
+  font-size:13.5px;line-height:1.40;border-spacing:0;
+}
+.data-table th,.data-table td{
+  padding:11px 7px;
+  box-sizing:border-box;
+  border-bottom:1px solid #E7ECF1;
+}
+.data-table thead th{
+  height:92px;min-height:92px;padding:10px 7px;
+  font-size:13px;font-weight:800;line-height:1.42;
+  text-align:center!important;vertical-align:middle;
+  border-right:1px solid #D8E2EC;
+  border-bottom:2px solid #C5D2DD;
+  word-break:normal;overflow-wrap:break-word;
+  white-space:normal;
+}
+.data-table thead th:last-child{border-right:0}
+.data-table thead th:first-child{
+  border-radius:10px 0 0 0;
+}
+.data-table thead th:last-child{
+  border-radius:0 10px 0 0;
+}
+.data-table thead th small{display:block;margin-top:3px;font-size:12px;line-height:1.35}
+.data-table tbody td{font-size:13.5px}
+.data-table .order{font-size:13px}
+.data-table .province-name{
+  color:#25577F;font-size:13.5px;font-weight:800;
+  white-space:nowrap;text-align:left;
+}
+.data-table .request-compact{
+  color:#C93E4B;font-size:15px;font-weight:850;text-align:center;
+  white-space:nowrap;
+}
+.data-table .affected-num,.data-table .help-num,
+.data-table .percent-num,.data-table .vulnerable-num{
+  font-size:14px;font-weight:800;white-space:nowrap;text-align:center;
+}
+.data-table .dash{text-align:center}
+.data-table tfoot td{
+  padding:11px 7px;font-size:13px;line-height:1.4;
+}
+.data-table tfoot .request-compact,
+.data-table tfoot .affected-num,.data-table tfoot .help-num,
+.data-table tfoot .percent-num,.data-table tfoot .vulnerable-num{
+  font-size:14px;
+}
+.table-foot{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;padding:0;margin:0;
+  margin-top:auto;
+}
+.table-insight{
+  display:flex;flex-direction:column;
+  padding:12px 14px;border:1px solid #E5EAF0;
+  background:#FBFCFE;border-radius:12px;
+  min-width:0;min-height:112px;
+  justify-content:center;
+}
+.table-insight small{color:var(--secondary);font-size:12.5px;line-height:1.35}
+.table-insight strong{
+  color:var(--ink);display:block;font-size:16px;
+  font-weight:850;line-height:1.35;margin-top:4px;
+}
+.table-insight span{display:block;color:var(--secondary);font-size:12px;line-height:1.4;margin-top:3px}
+.table-scroll-hint{display:none!important}
+.map-stage{flex:1 1 420px;min-height:420px;height:auto}
+.map-wrap{flex:1 1 auto}
+@media (max-width:1550px){
+  .main{grid-template-columns:minmax(0,35%) minmax(0,65%)}
+  .data-table{min-width:0!important}
+  .legend{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .data-table thead th{font-size:12px;padding:8px 5px;line-height:1.38}
+  .data-table tbody td{padding:11px 5px}
+  .data-table .province-name{font-size:13px}
+  .data-table .request-compact{font-size:14px}
+  .data-table .affected-num,.data-table .help-num,
+  .data-table .percent-num,.data-table .vulnerable-num{font-size:13.5px}
+}
+@media (max-width:1270px){
+  .main{grid-template-columns:minmax(0,1fr)}
+  .panel{height:auto}
+  .map-stage{flex:0 0 515px;min-height:515px}
+  .legend{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .data-table thead th{font-size:13px}
+}
+@media (max-width:800px){
+  .map-stage{flex-basis:440px;min-height:440px}
+  .legend{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .table-wrap{padding:10px;gap:10px}
+  .table-scroll{overflow:visible;border:0;border-radius:0}
+  .data-table,.data-table tbody,.data-table tfoot{
+    display:block;width:100%;min-width:0!important;
+  }
+  .data-table colgroup,.data-table thead{display:none}
+  .data-table tbody tr{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:5px 10px;padding:12px;margin-bottom:10px;
+    border:1px solid #E2E8EF;border-radius:12px;
+  }
+  .data-table tbody tr:last-child{border-bottom:1px solid #E2E8EF}
+  .data-table tbody td{
+    border:0;padding:3px 0;min-width:0;
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+    gap:4px 8px;text-align:right;font-size:13px;
+  }
+  .data-table tbody td::before{
+    content:attr(data-label);display:block;
+    color:var(--secondary);font-size:11px;
+    font-weight:650;line-height:1.35;text-align:left;
+  }
+  .data-table tbody td:nth-child(1){grid-column:1;justify-content:flex-start;gap:6px}
+  .data-table tbody td:nth-child(2){grid-column:2;justify-content:flex-end}
+  .data-table tbody td:nth-child(3){grid-column:1 / -1;padding:7px 0;border-top:1px solid #E8EDF1;border-bottom:1px solid #E8EDF1}
+  .data-table tbody td:nth-child(7){grid-column:1 / -1}
+  .data-table tfoot tr{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px 10px;background:#F8FBFE;padding:12px;
+    border:1px solid #DCE5ED;border-radius:12px;
+  }
+  .data-table tfoot td{
+    display:flex;flex-direction:column;align-items:flex-start;
+    gap:4px;padding:4px 0;border:0!important;
+    text-align:left!important;
+  }
+  .data-table tfoot td::before{
+    content:attr(data-label);font-size:11px;color:var(--secondary);font-weight:650
+  }
+  .data-table tfoot td:first-child{grid-column:1/-1;font-size:15px}
+  .data-table tfoot td:first-child::before{content:none}
+  .data-table tfoot td:last-child{grid-column:1/-1}
+  .table-foot{grid-template-columns:1fr}
+  .table-insight{min-height:0}
+}
+@media print{
+ .main{grid-template-columns:37% 63%}
+ .data-table{display:table;min-width:0!important}
+ .data-table thead{display:table-header-group}
+ .data-table tbody{display:table-row-group}
+ .data-table tfoot{display:table-footer-group}
+ .data-table tbody tr,.data-table tfoot tr{display:table-row}
+ .data-table tbody td,.data-table tfoot td{display:table-cell}
+ .data-table tbody td::before,.data-table tfoot td::before{display:none}
+ .data-table thead th{font-size:9px;padding:4px 3px;height:auto}
+ .data-table tbody td,.data-table tfoot td{font-size:10px;padding:4px 3px}
+}
+
+/* V9: footer contact, table edge contrast, and immediate summary placement */
+.table-panel{display:flex;flex-direction:column;overflow:hidden}
+.table-wrap{flex:1 1 auto;min-height:0;gap:0;padding:10px 12px 13px}
+.table-scroll{
+  display:block; width:100%; max-width:100%; min-width:0;
+  border:1.5px solid #C9D5E1;
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:inset 0 0 0 1px rgba(215,224,234,.55);
+}
+.data-table{border-collapse:separate;border-spacing:0;width:100%;border:0!important;background:#fff}
+.data-table thead th{
+  border-right:1px solid #CBD7E4!important;
+  border-bottom:2px solid #BCCBD9!important;
+  box-shadow:none!important;
+  background-clip:padding-box;
+}
+.data-table thead th:last-child{border-right:0!important}
+.data-table tbody td{
+  border-bottom:1px solid #DCE5ED!important;
+  background:transparent;
+}
+.data-table tbody tr:nth-child(even){background:#F8FAFC}
+.data-table tbody tr:nth-child(odd){background:#FFFFFF}
+.data-table tbody tr:last-child td{border-bottom:1px solid #CDD9E4!important}
+.data-table tfoot td{
+  background:#F1F5F9!important;
+  border-top:1px solid #C4D2DE!important;
+  border-bottom:0!important;
+}
+.table-foot{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:12px 0 0!important;
+  padding:0!important;
+  flex:0 0 auto;
+  align-items:stretch;
+}
+.table-insight{
+  display:flex;align-items:center;flex-direction:row;
+  gap:11px;
+  margin:0;
+  padding:13px 12px;
+  min-height:100px;
+  border:1px solid #DCE5ED;
+  border-radius:11px;
+  background:#FAFBFC;
+}
+.insight-icon{
+  flex:0 0 38px;
+  display:grid;place-items:center;
+  width:38px;height:38px;
+  border-radius:11px;
+  background:#F6EBEE;
+  color:var(--maroon,#913D50);
+  border:1px solid #EDDCE1;
+}
+.table-insight:nth-child(2) .insight-icon{
+  color:#4E81B7;background:#EDF4FB;border-color:#DCE8F5;
+}
+.insight-icon svg{width:19px;height:19px}
+.insight-copy{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.insight-copy small{font-size:12px;line-height:1.4}
+.insight-copy strong{font-size:15px;line-height:1.45;margin:0;overflow-wrap:anywhere}
+.insight-copy span{font-size:12px;line-height:1.4}
+.relief-contact{
+  display:flex;align-items:center;gap:28px;
+  padding:18px 24px;
+  margin-top:14px;
+  border:1px solid #E3D9DD;
+  border-left:5px solid var(--maroon,#913D50);
+  border-radius:17px;
+  background:#FFFFFF;
+  box-shadow:0 5px 22px rgba(37,48,64,.045);
+}
+.contact-identity{flex:1 1 50%;display:flex;align-items:center;gap:15px;min-width:0}
+.contact-lead-icon{
+  width:54px;height:54px;flex:0 0 54px;
+  display:grid;place-items:center;
+  background:#F7EAEE;color:#913D50;
+  border-radius:15px;border:1px solid #EAD2DB;
+}
+.contact-lead-icon svg{height:26px;width:26px}
+.contact-identity-copy{min-width:0}
+.contact-eyebrow{color:#913D50;font-size:11px;font-weight:800;letter-spacing:.045em}
+.contact-identity h2{font-size:18px;line-height:1.35;margin:4px 0 4px;font-weight:850;color:#303947}
+.contact-identity p{margin:0;color:#758091;font-size:13px;line-height:1.45}
+.contact-divider{width:1px;height:65px;flex:0 0 1px;background:#E5EAF0}
+.contact-numbers{flex:1 1 50%;min-width:0}
+.contact-number-heading{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:#758091}
+.contact-number-heading svg{height:16px;width:16px;color:#913D50}
+.contact-primary{font-size:22px;line-height:1.3;font-weight:850;color:#913D50;margin:5px 0 3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.contact-primary small{font-size:15px;font-weight:700;color:#455365}
+.contact-mobile{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:13px;line-height:1.5;font-weight:700;font-variant-numeric:tabular-nums}
+.contact-mobile a{color:#3D536A;text-decoration:none;white-space:nowrap}
+.contact-mobile a:hover{color:#913D50;text-decoration:underline}
+.contact-mobile span{color:#9AA7B3}
+.bottom-note{
+  display:block!important;
+  margin:9px 4px 3px!important;
+  padding:0;
+  width:auto!important;
+  text-align:left!important;
+  font-size:11.5px;
+  color:#84909D;
+}
+@media (max-width:1490px){
+  .relief-contact{gap:18px;padding:15px 18px}
+  .contact-identity h2{font-size:17px}
+  .contact-primary{font-size:20px}
+  .insight-icon{display:none}
+  .table-insight{padding:12px}
+}
+@media (max-width:1270px){
+  .table-foot{margin-top:12px!important}
+  .relief-contact{flex-direction:row}
+  .insight-icon{display:grid}
+}
+@media (max-width:780px){
+  .table-scroll{overflow:visible;border:0;box-shadow:none}
+  .table-foot{grid-template-columns:1fr}
+  .insight-icon{display:grid}
+  .relief-contact{flex-direction:column;align-items:stretch;gap:12px;padding:15px}
+  .contact-identity{flex:0 0 auto}
+  .contact-divider{height:1px;width:100%;flex:0 0 1px}
+  .contact-numbers{flex:0 0 auto}
+  .contact-primary{font-size:21px}
+}
+@media print{
+  .relief-contact{border-color:#CED6DD;box-shadow:none;margin-top:10px}
+  .table-scroll{overflow:visible}
+}
+
+/* V10: move the existing Call Center strip inside the table panel, directly
+   below the two source-data insight cards. No additional cards or fields. */
+.table-panel .table-wrap { display:flex; flex-direction:column; min-height:0; }
+.table-panel .table-foot { margin-top:12px!important; flex:0 0 auto; }
+.table-panel .relief-contact {
+  box-sizing:border-box;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;gap:10px;
+  padding:0!important; margin:10px 0 0!important;
+  border:0!important;border-radius:0!important;
+  background:transparent!important;box-shadow:none!important;
+  flex:0 0 auto;min-width:0;
+}
+.table-panel .relief-contact .contact-identity,
+.table-panel .relief-contact .contact-numbers {
+  display:flex;align-items:center;gap:11px;
+  width:100%;min-width:0;min-height:110px;
+  flex:1 1 auto!important;
+  border:1px solid #DCE5ED;
+  background:#FAFBFC;
+  border-radius:11px;
+  padding:14px;
+}
+.table-panel .relief-contact .contact-identity { border-left:3px solid #913D50; }
+.table-panel .relief-contact .contact-numbers {
+  display:flex;flex-direction:column;align-items:flex-start;
+  justify-content:center;gap:3px;
+}
+.table-panel .relief-contact .contact-identity-copy{min-width:0;}
+.table-panel .relief-contact .contact-identity-copy h2 {
+  font-size:15px;line-height:1.35;margin:3px 0;
+}
+.table-panel .relief-contact .contact-identity-copy p{
+  font-size:12px;line-height:1.45;margin:0;
+}
+.table-panel .relief-contact .contact-lead-icon{
+  flex:0 0 43px;width:43px;height:43px;border-radius:12px;
+}
+.table-panel .relief-contact .contact-lead-icon svg{width:22px;height:22px;}
+.table-panel .relief-contact .contact-number-heading { font-size:12px; }
+.table-panel .relief-contact .contact-number-heading svg { width:17px;height:17px; }
+.table-panel .relief-contact .contact-primary {
+  font-size:17px!important;line-height:1.3;
+  white-space:normal;margin:2px 0 1px;
+}
+.table-panel .relief-contact .contact-primary small { font-size:12px;white-space:nowrap; }
+.table-panel .relief-contact .contact-mobile {
+  font-size:11.5px;line-height:1.45;gap:3px 6px;
+  flex-wrap:wrap;
+}
+.table-panel .relief-contact .contact-mobile a { white-space:nowrap; }
+.table-panel .relief-contact .contact-divider{display:none!important;}
+@media (min-width:1181px) {
+  .table-panel .table-wrap{padding-bottom:12px;}
+}
+@media (max-width:1600px) and (min-width:1181px){
+  .table-panel .relief-contact .contact-identity,
+  .table-panel .relief-contact .contact-numbers{padding:11px;gap:9px;}
+  .table-panel .relief-contact .contact-identity-copy h2{font-size:14px;}
+  .table-panel .relief-contact .contact-primary{font-size:16px!important;}
+  .table-panel .relief-contact .contact-mobile{font-size:11px;}
+}
+@media (max-width:670px) {
+  .table-panel .relief-contact{grid-template-columns:1fr!important;gap:8px;}
+  .table-panel .relief-contact .contact-identity,
+  .table-panel .relief-contact .contact-numbers{min-height:94px;padding:12px;}
+  .table-panel .relief-contact .contact-primary{font-size:18px!important;}
+}
+@media print{
+  .table-panel .relief-contact{grid-template-columns:1fr 1fr!important;}
+}
+
+/* V11 — fill the available right-panel height and establish a soft column color grid.
+   Presentation changes only: no edits to dataset, totals, or map event logic. */
+@media (min-width:1181px) {
+  .main{align-items:stretch;}
+  .table-panel{display:flex;flex-direction:column;align-self:stretch;}
+  .table-panel .table-wrap{
+    flex:1 1 auto;min-height:0;display:flex;flex-direction:column;
+    padding-bottom:12px;gap:0;
+  }
+  .table-panel .table-scroll{flex:0 0 auto;}
+  .table-panel .table-foot{
+    flex:1 1 124px;min-height:124px;
+    margin:12px 0 0!important;
+    align-items:stretch;
+  }
+  .table-panel .relief-contact{
+    flex:1 1 142px;min-height:142px;
+    margin:12px 0 0!important;
+    align-items:stretch;
+  }
+  .table-panel .table-insight,
+  .table-panel .relief-contact .contact-identity,
+  .table-panel .relief-contact .contact-numbers{
+    height:100%;min-height:0;
+  }
+}
+
+/* Small, balanced accent cards below the total row. */
+.table-panel .table-insight{
+  background:linear-gradient(135deg,#FFFFFF 0%,#FDF9FA 100%);
+  border:1px solid #E2DDE3;
+  border-radius:13px;
+  padding:16px 17px;
+  gap:14px;
+  box-shadow:0 3px 9px rgba(48,57,71,.025);
+  text-align:left;
+  justify-content:flex-start;
+}
+.table-panel .table-insight:nth-child(2){
+  background:linear-gradient(135deg,#FFFFFF 0%,#F8FBFE 100%);
+  border-color:#DAE5F1;
+}
+.table-panel .insight-icon{
+  display:grid!important;
+  flex:0 0 63px;width:63px;height:63px;
+  border-radius:18px;
+  border:1px solid #E7CFD8;
+  background:linear-gradient(150deg,#FFF7F9,#F5E1E9);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 5px 12px rgba(145,61,80,.09);
+  color:#913D50;
+}
+.table-panel .table-insight:nth-child(2) .insight-icon{
+  color:#4E81B7;
+  background:linear-gradient(145deg,#F5FAFF,#E3EFFB);
+  border-color:#CBDEF0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 5px 12px rgba(78,129,183,.09);
+}
+.table-panel .insight-icon svg{width:31px;height:31px;stroke-width:1.9}
+.table-panel .insight-copy{gap:3px}
+.table-panel .insight-copy small{font-size:13px;line-height:1.4;color:#708094}
+.table-panel .insight-copy strong{font-size:17px;line-height:1.4;color:#2D3848}
+.table-panel .insight-copy span{font-size:12.5px;line-height:1.4;color:#758091}
+
+/* Call center occupies the lower row without leaving a blank band below it. */
+.table-panel .relief-contact .contact-identity,
+.table-panel .relief-contact .contact-numbers{
+  padding:16px 18px;
+  background:linear-gradient(145deg,#FFFFFF,#FCF9FA);
+  border:1px solid #E4DCE2;
+  border-radius:13px;
+  box-shadow:0 3px 9px rgba(48,57,71,.025);
+}
+.table-panel .relief-contact .contact-identity{
+  border-left:4px solid #913D50;
+  gap:15px;
+}
+.table-panel .relief-contact .contact-numbers{
+  align-items:flex-start;
+  justify-content:center;
+  background:linear-gradient(145deg,#FFFFFF,#F8FBFE);
+  border-color:#DAE5F1;
+  gap:5px;
+}
+.table-panel .relief-contact .contact-lead-icon{
+  flex:0 0 66px;width:66px;height:66px;
+  border-radius:20px;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,#FFF7F9,#F2DFE6);
+  border:1px solid #E4C8D2;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 6px 12px rgba(145,61,80,.075);
+}
+.table-panel .relief-contact .contact-lead-icon svg{width:34px;height:34px;stroke-width:1.9}
+.table-panel .relief-contact .contact-identity-copy h2{font-size:16px;line-height:1.35}
+.table-panel .relief-contact .contact-identity-copy p{font-size:12.5px;line-height:1.5}
+.table-panel .relief-contact .contact-eyebrow{font-size:12px}
+.table-panel .relief-contact .contact-number-heading{gap:9px;font-size:13px}
+.table-panel .relief-contact .contact-number-heading svg{
+  width:27px;height:27px;box-sizing:content-box;padding:9px;
+  color:#4F83AE;
+  background:linear-gradient(135deg,#F3F9FE,#E4EFF9);
+  border:1px solid #D2E2F1;border-radius:14px;
+  box-shadow:0 4px 10px rgba(60,120,176,.07);
+}
+.table-panel .relief-contact .contact-primary{font-size:19px!important;margin:1px 0}
+.table-panel .relief-contact .contact-primary small{font-size:12.5px}
+.table-panel .relief-contact .contact-mobile{font-size:12px;gap:4px 7px}
+
+/* Seven subtle column tones, coordinated with the seven headers. */
+.table-scroll{
+  border:1.5px solid #C6D6E4!important;
+  box-shadow:none!important;
+  background:#fff;
+}
+.data-table{background:#fff!important;border-spacing:0!important}
+.data-table thead th{
+  border-right:1px solid #BFCFDC!important;
+  border-bottom:2px solid #B7C9D7!important;
+  box-shadow:none!important;
+  background-clip:padding-box;
+}
+.data-table thead th:last-child{border-right:0!important}
+.data-table tbody tr{background:transparent!important}
+.data-table tbody td{
+  background:var(--column-bg,#fff)!important;
+  border-right:1px solid #D8E4ED!important;
+  border-bottom:1px solid #D8E4ED!important;
+  transition:background-color .12s ease;
+}
+.data-table tbody td:nth-child(1){--column-bg:#F1F8FD}
+.data-table tbody td:nth-child(2){--column-bg:#F4FAFE}
+.data-table tbody td:nth-child(3){--column-bg:#FFF5F3}
+.data-table tbody td:nth-child(4){--column-bg:#F8F3FC}
+.data-table tbody td:nth-child(5){--column-bg:#F1F8FE}
+.data-table tbody td:nth-child(6){--column-bg:#F0F9F3}
+.data-table tbody td:nth-child(7){--column-bg:#FDF3F9}
+.data-table tbody td:last-child{border-right:0!important}
+.data-table tbody tr:nth-child(even) td{
+  background:color-mix(in srgb,var(--column-bg) 93%,#CCDDEC 7%)!important;
+}
+.data-table tbody tr:hover td{
+  background:color-mix(in srgb,var(--column-bg) 77%,#EBCDD7 23%)!important;
+}
+.data-table tbody tr.selected-row td{
+  background:color-mix(in srgb,var(--column-bg) 70%,#E9C1CF 30%)!important;
+}
+.data-table tbody tr:last-child td{border-bottom:1px solid #C6D6E4!important}
+.data-table tfoot td{
+  border-top:2px solid #BFCFDE!important;
+  border-right:1px solid #D4E0EA!important;
+  border-bottom:0!important;
+  background:#F5FAFC!important;
+}
+.data-table tfoot td:nth-child(1){background:#EDF6FD!important}
+.data-table tfoot td:nth-child(2){background:#FCECE9!important}
+.data-table tfoot td:nth-child(3){background:#F3EDFA!important}
+.data-table tfoot td:nth-child(4){background:#EAF4FD!important}
+.data-table tfoot td:nth-child(5){background:#E7F6EC!important}
+.data-table tfoot td:nth-child(6){background:#FAEAF4!important}
+.data-table tfoot td:last-child{border-right:0!important}
+
+@media (min-width:1181px) and (max-width:1600px){
+  .table-panel .table-insight{padding:11px;gap:10px}
+  .table-panel .insight-icon{flex-basis:48px;width:48px;height:48px;border-radius:15px}
+  .table-panel .insight-icon svg{width:26px;height:26px}
+  .table-panel .insight-copy strong{font-size:14.5px}
+  .table-panel .insight-copy small{font-size:11.5px}
+  .table-panel .insight-copy span{font-size:11px}
+  .table-panel .relief-contact .contact-identity,
+  .table-panel .relief-contact .contact-numbers{padding:12px 10px}
+  .table-panel .relief-contact .contact-identity{gap:9px}
+  .table-panel .relief-contact .contact-lead-icon{flex-basis:50px;width:50px;height:50px;border-radius:16px}
+  .table-panel .relief-contact .contact-lead-icon svg{height:27px;width:27px}
+  .table-panel .relief-contact .contact-identity-copy h2{font-size:14px}
+  .table-panel .relief-contact .contact-number-heading svg{height:20px;width:20px;padding:6px;border-radius:10px}
+  .table-panel .relief-contact .contact-primary{font-size:16px!important}
+  .table-panel .relief-contact .contact-mobile{font-size:10.8px}
+}
+@media (max-width:1180px){
+  .table-panel .table-foot,
+  .table-panel .relief-contact{flex:0 0 auto;min-height:0}
+  .table-panel .table-insight,.table-panel .relief-contact .contact-identity,
+  .table-panel .relief-contact .contact-numbers{height:auto;min-height:108px}
+  .table-panel .insight-icon{flex-basis:54px;width:54px;height:54px}
+  .table-panel .relief-contact .contact-lead-icon{flex-basis:56px;width:56px;height:56px}
+}
+@media (max-width:800px){
+  .data-table tbody tr{background:#FFFFFF!important}
+  .data-table tbody td{border:0!important;background:transparent!important}
+  .data-table tbody tr:nth-child(even) td,
+  .data-table tbody tr:hover td,
+  .data-table tbody tr.selected-row td{background:transparent!important}
+  .data-table tfoot td{background:transparent!important;border:0!important}
+  .table-panel .table-insight{padding:14px 12px}
+  .table-panel .relief-contact .contact-identity,
+  .table-panel .relief-contact .contact-numbers{padding:14px}
+  .table-panel .relief-contact .contact-primary{font-size:18px!important}
+}
+
+
+/* V12 responsive extension — preserves V11 desktop palette, rows, KPIs and data. */
+.view-picker{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:14px 0 0;padding:10px 13px 10px 16px;border:1px solid #E5EAF0;border-radius:15px;background:#fff;box-shadow:0 3px 12px rgba(48,57,71,.03)}
+.view-picker-copy{display:flex;align-items:center;gap:10px;min-width:0}
+.view-picker-copy .picker-icon{color:#913D50;width:22px;height:22px;flex:none}
+.view-picker-copy strong{display:block;font-size:14px;color:var(--ink);line-height:1.3;font-weight:800}
+.view-picker-copy small{display:block;font-size:12px;color:var(--secondary);line-height:1.35}
+.view-buttons{display:flex;gap:4px;padding:4px;border-radius:12px;background:#F4F6F8;border:1px solid #E5EAF0;flex:none}
+.view-choice{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:9px;border:1px solid transparent;background:transparent;font-size:13px;color:#758091;font-weight:800;min-height:42px}
+.view-choice svg{width:18px;height:18px}
+.view-choice[aria-pressed="true"]{background:white;color:#913D50;border-color:#E7D1D8;box-shadow:0 2px 6px rgba(48,57,71,.08)}
+.mobile-map-picker,.mobile-province-detail{display:none}
+.mobile-picker-title{display:flex;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:8px}
+.mobile-picker-title strong{font-size:14px;color:#303947}
+.mobile-picker-title span{font-size:12px;color:#758091}
+.mobile-province-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.province-chip-btn{min-height:46px;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 8px;border:1px solid #DCE4EC;border-radius:11px;background:#FFFFFF;font-size:13px;font-weight:750;color:#3B4655;touch-action:manipulation;white-space:nowrap}
+.province-chip-btn[aria-pressed="true"]{border-color:#913D50;background:#FBF2F5;color:#913D50;box-shadow:0 0 0 1px rgba(145,61,80,.10)}
+.province-chip-dot{width:9px;height:9px;border-radius:3px;flex:none;background:var(--dot)}
+.mobile-province-detail{margin-top:11px;padding:13px;border:1px solid #E2D5DA;border-radius:13px;background:#FFF9FA}
+.mobile-province-detail h3{margin:0;color:#913D50;font-size:18px;line-height:1.35}
+.mobile-province-detail .detail-sub{font-size:12px;color:#758091;margin:3px 0 12px}
+.mobile-detail-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mobile-detail-stat{padding:10px 11px;border-radius:10px;background:white;border:1px solid #E9E4E7}
+.mobile-detail-stat small{font-size:11.5px;line-height:1.3;color:#758091;display:block}
+.mobile-detail-stat strong{display:block;color:#303947;font-size:18px;line-height:1.2;font-variant-numeric:tabular-nums;margin-top:3px}
+.mobile-detail-stat strong.empty{color:#8994A1}
+.map-html-label{pointer-events:auto;cursor:pointer;touch-action:manipulation}
+/* Desktop layout keeps the original V11 design. Mobile mode can be forced on wider screens. */
+html.view-mobile .page{max-width:570px;padding:12px;margin:auto}
+html.view-mobile .top-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px;margin-top:10px}
+html.view-mobile .top-grid .stat:first-child{grid-column:1 / -1}
+html.view-mobile .stat{min-height:134px;padding:14px 14px 13px}
+html.view-mobile .stat-value{font-size:32px;white-space:nowrap}
+html.view-mobile .stat-sub{font-size:12px}
+html.view-mobile .stat-title{font-size:14px}
+html.view-mobile .main{display:grid;grid-template-columns:minmax(0,1fr)!important;gap:12px;margin-top:12px}
+html.view-mobile .map-panel,html.view-mobile .table-panel{height:auto;min-height:0}
+html.view-mobile .map-wrap{padding:10px 12px 12px}
+html.view-mobile .map-stage{height:470px!important;min-height:470px;max-height:none;flex:0 0 470px}
+html.view-mobile .map-html-label{font-size:12px;padding:4px 7px;max-width:112px}
+html.view-mobile .legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+html.view-mobile .legend-item{padding:9px;min-height:56px}
+html.view-mobile .panel-head,html.view-mobile .table-band{padding:14px}
+html.view-mobile .section-title{font-size:17px}
+html.view-mobile .mobile-map-picker{display:block;margin-bottom:10px}
+html.view-mobile .mobile-province-detail:not([hidden]){display:block}
+html.view-mobile .map-toolbar{display:flex;top:8px;right:8px}
+html.view-mobile .map-control{height:42px;width:42px;touch-action:manipulation}
+html.view-mobile .map-action-row{display:flex;left:8px;bottom:8px;right:8px;gap:5px}
+html.view-mobile .map-action{flex:1;min-height:40px;padding:8px 5px;font-size:12px}
+html.view-mobile .table-wrap{display:flex;flex-direction:column;padding:11px;gap:10px}
+html.view-mobile .table-scroll{overflow:visible;border:0;border-radius:0}
+html.view-mobile .data-table,html.view-mobile .data-table tbody,html.view-mobile .data-table tfoot{display:block;width:100%;min-width:0!important}
+html.view-mobile .data-table colgroup,html.view-mobile .data-table thead{display:none}
+html.view-mobile .data-table tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 9px;padding:13px;border:1px solid #DFE6EE;border-radius:13px;margin:0 0 9px;min-height:0;background:#fff!important;box-shadow:0 1px 3px rgba(41,52,67,.04)}
+html.view-mobile .data-table tbody tr.selected-row{border-color:#913D50;box-shadow:0 0 0 1px #913D50;background:#FFFAFB!important}
+html.view-mobile .data-table tbody td{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;min-width:0;gap:3px 7px;padding:4px 0;border:none!important;background:transparent!important;text-align:right;font-size:14px}
+html.view-mobile .data-table tbody td:before{content:attr(data-label);display:block;color:#758091;font-size:11.5px;line-height:1.3;text-align:left;font-weight:650}
+html.view-mobile .data-table tbody td:nth-child(1){grid-column:1;justify-content:flex-start}
+html.view-mobile .data-table tbody td:nth-child(2){grid-column:2;justify-content:flex-end;text-align:right}
+html.view-mobile .data-table tbody td:nth-child(3){grid-column:1 / -1;padding:8px 0;border-top:1px solid #E6EDF2!important;border-bottom:1px solid #E6EDF2!important}
+html.view-mobile .data-table tbody td:nth-child(7){grid-column:1 / -1}
+html.view-mobile .data-table tbody td:nth-child(3),html.view-mobile .data-table tbody td:nth-child(7){font-size:16px}
+html.view-mobile .data-table tbody td:nth-child(1):before,html.view-mobile .data-table tbody td:nth-child(2):before{display:none}
+html.view-mobile .data-table tfoot tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;background:#F8FBFE;border:1px solid #D5E0E9;border-radius:13px;padding:12px}
+html.view-mobile .data-table tfoot td{display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left!important;padding:4px 0;border:none!important;background:transparent!important}
+html.view-mobile .data-table tfoot td:before{content:attr(data-label);display:block;font-size:11px;color:#758091}
+html.view-mobile .data-table tfoot td:first-child{grid-column:1/-1;font-size:16px}
+html.view-mobile .data-table tfoot td:first-child:before{display:none}
+html.view-mobile .data-table tfoot td:last-child{grid-column:1/-1}
+html.view-mobile .table-foot,html.view-mobile .relief-contact{display:grid;grid-template-columns:1fr!important;gap:9px;min-height:0!important;flex:none!important}
+html.view-mobile .table-insight,html.view-mobile .relief-contact .contact-identity,html.view-mobile .relief-contact .contact-numbers{height:auto!important;min-height:110px!important;padding:12px!important}
+html.view-mobile .contact-mobile{flex-wrap:wrap}
+html.view-mobile .table-wrap .table-foot{margin-top:7px!important}
+html.view-mobile .hero{gap:11px;padding:15px}
+html.view-mobile .hero h1{font-size:21px;line-height:1.35}
+html.view-mobile .logo-frame{width:70px;height:70px;flex-basis:70px}
+html.view-mobile .source-mark{display:none}
+html.view-mobile .aid-banner{display:grid;grid-template-columns:1fr;gap:12px}
+html.view-mobile .bottom-note{text-align:left}
+/* On a narrow phone, an explicitly chosen Web mode shows the dense desktop table
+   in its own scroll area, not a sideways-scrolling page. */
+@media(max-width:800px){
+  html.view-web .page{max-width:100%;padding:10px}
+  html.view-web .main{grid-template-columns:1fr!important}
+  html.view-web .table-scroll{overflow-x:auto;overflow-y:visible;max-width:100%;display:block;border:1px solid #D6E0E9}
+  html.view-web .data-table{display:table;width:100%;min-width:880px!important;table-layout:fixed}
+  html.view-web .data-table colgroup{display:table-column-group}
+  html.view-web .data-table thead{display:table-header-group}
+  html.view-web .data-table tbody{display:table-row-group}
+  html.view-web .data-table tfoot{display:table-footer-group}
+  html.view-web .data-table tbody tr,html.view-web .data-table tfoot tr{display:table-row;border:0;padding:0;margin:0;box-shadow:none}
+  html.view-web .data-table tbody td,html.view-web .data-table tfoot td{display:table-cell;border-right:1px solid #DCE5ED!important;padding:11px 6px;text-align:center!important;font-size:13px}
+  html.view-web .data-table tbody td:before,html.view-web .data-table tfoot td:before{display:none}
+  html.view-web .data-table thead th{display:table-cell;font-size:12px}
+  html.view-web .table-foot,html.view-web .relief-contact{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html.view-web .table-insight{min-width:0}
+  html.view-web .map-stage{min-height:430px;height:430px;flex-basis:430px}
+}
+@media(max-width:520px){
+  .view-picker{padding:9px;gap:7px}
+  .view-picker-copy small{display:none}
+  .view-picker-copy strong{font-size:12px}
+  .view-picker-copy .picker-icon{width:19px}
+  .view-choice{font-size:12.5px;padding:8px 10px}
+  html.view-mobile .page{padding:10px}
+  html.view-mobile .map-stage{height:412px!important;min-height:412px;flex-basis:412px}
+  html.view-mobile .map-tooltip{max-width:230px;min-width:200px;font-size:11px}
+  html.view-mobile .map-html-label{font-size:10.5px;padding:3px 5px;max-width:105px}
+  html.view-mobile .map-stage .map-action{font-size:11px}
+  html.view-mobile .hero h1{font-size:19px}
+  html.view-mobile .hero-period{font-size:12px}
+  html.view-mobile .stat-value{font-size:29px}
+}
+@media print{.view-picker,.mobile-map-picker,.mobile-province-detail{display:none!important}}
+
+.contact-primary a{color:inherit;text-decoration:none;border-bottom:1px dotted #C796A4;text-underline-offset:3px}
+.contact-primary a:focus-visible{outline:2px solid #913D50;outline-offset:3px;border-radius:3px}
+
+/* V13 Mobile presentation refinement.
+   Explicitly scoped to .view-mobile; the approved desktop/Web view is unchanged. */
+html.view-mobile .table-panel {
+  min-width:0!important;display:block!important;
+  height:auto!important;min-height:0!important;
+}
+html.view-mobile .table-panel .table-wrap {
+  display:flex!important;flex-direction:column!important;
+  flex:none!important;height:auto!important;min-height:0!important;
+  padding:12px!important;gap:12px!important;
+}
+html.view-mobile .table-panel .table-scroll {
+  overflow:visible!important;max-width:100%!important;
+  border:0!important;box-shadow:none!important;
+  border-radius:0!important;background:transparent!important;
+}
+html.view-mobile .data-table,
+html.view-mobile .data-table tbody,
+html.view-mobile .data-table tfoot {
+  display:block!important;width:100%!important;
+  min-width:0!important;max-width:100%!important;
+}
+html.view-mobile .data-table tbody tr.province-row {
+  box-sizing:border-box;display:grid!important;
+  grid-template-columns:42px minmax(0,1fr)!important;
+  grid-auto-rows:auto;column-gap:8px;row-gap:0!important;
+  background:#fff!important;
+  border:1px solid #DDE5ED!important;
+  border-radius:14px!important;
+  padding:12px 14px 7px!important;
+  margin:0 0 11px!important;
+  box-shadow:0 2px 8px rgba(48,57,71,.035)!important;
+  cursor:pointer;min-height:0!important;
+  overflow:hidden;
+}
+html.view-mobile .data-table tbody tr.province-row:last-child {
+  margin-bottom:0!important;
+}
+html.view-mobile .data-table tbody tr.province-row.selected-row {
+  background:#FFFBFC!important;
+  border-color:#913D50!important;
+  box-shadow:0 0 0 1px rgba(145,61,80,.18),0 4px 12px rgba(48,57,71,.06)!important;
+}
+/* Each card has a single header line: number (left), province name (right). */
+html.view-mobile .data-table tbody tr.province-row td:nth-child(1),
+html.view-mobile .data-table tbody tr.province-row td:nth-child(2) {
+  display:flex!important;min-width:0!important;
+  padding:3px 0 12px!important;
+  margin:0!important;
+  height:auto!important;min-height:36px!important;
+  border:0!important;
+  border-bottom:1px solid #E4EAF0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  align-items:center!important;
+  line-height:1.35!important;
+}
+html.view-mobile .data-table tbody tr.province-row td:nth-child(1) {
+  grid-column:1!important;
+  justify-content:flex-start!important;
+  color:#8995A4!important;font-size:13px!important;font-weight:800!important;
+}
+html.view-mobile .data-table tbody tr.province-row td:nth-child(2) {
+  grid-column:2!important;
+  justify-content:flex-end!important;
+  text-align:right!important;
+  color:#283F60!important;font-size:16px!important;
+  font-weight:850!important;white-space:normal!important;
+  overflow-wrap:break-word;word-break:normal;
+}
+html.view-mobile .data-table tbody td:nth-child(1)::before,
+html.view-mobile .data-table tbody td:nth-child(2)::before {display:none!important;}
+/* One measure per full-width row; data label left / value right. */
+html.view-mobile .data-table tbody tr.province-row td:nth-child(n+3) {
+  grid-column:1 / -1!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(60px,auto)!important;
+  align-items:center!important;
+  justify-content:stretch!important;
+  gap:8px!important;
+  min-height:43px!important;
+  height:auto!important;
+  margin:0!important;padding:9px 0!important;
+  background:transparent!important;
+  border:0!important;
+  border-bottom:1px solid #EDF0F4!important;
+  border-radius:0!important;
+  text-align:right!important;
+  font-size:15px!important;line-height:1.35!important;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap!important;
+}
+html.view-mobile .data-table tbody tr.province-row td:nth-child(7) {
+  border-bottom:0!important;
+}
+html.view-mobile .data-table tbody tr.province-row td:nth-child(n+3)::before {
+  content:attr(data-label)!important;
+  display:block!important;
+  grid-column:1;grid-row:1;
+  min-width:0!important;
+  color:#68778B!important;
+  font-size:13px!important;font-weight:650!important;
+  line-height:1.42!important;text-align:left!important;
+  white-space:normal!important;word-break:normal;
+  overflow-wrap:break-word;
+}
+html.view-mobile .data-table tbody tr.province-row td.request-compact {color:#B84150!important;}
+html.view-mobile .data-table tbody tr.province-row td.affected-num {color:#7550B5!important;}
+html.view-mobile .data-table tbody tr.province-row td.help-num {color:#366EAF!important;}
+html.view-mobile .data-table tbody tr.province-row td.percent-num {color:#3C9468!important;}
+html.view-mobile .data-table tbody tr.province-row td.vulnerable-num {color:#B84E9A!important;}
+html.view-mobile .data-table tbody tr.province-row td.dash {color:#9DA8B5!important;}
+/* Summary uses the exact same horizontal label/value rhythm as province cards. */
+html.view-mobile .data-table tfoot tr {
+  display:flex!important;flex-direction:column!important;
+  box-sizing:border-box;width:100%!important;
+  gap:0!important;
+  padding:10px 14px 7px!important;
+  margin-top:4px!important;
+  background:#F8FAFC!important;
+  border:1px solid #D0DFEA!important;
+  border-radius:14px!important;
+}
+html.view-mobile .data-table tfoot tr td {
+  box-sizing:border-box;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(62px,auto)!important;
+  align-items:center!important;justify-content:stretch!important;
+  min-height:43px!important;
+  gap:8px!important;margin:0!important;padding:9px 0!important;
+  color:#303947;white-space:nowrap;
+  font-size:15px!important;line-height:1.35!important;
+  font-weight:850;
+  background:transparent!important;
+  border:0!important;border-bottom:1px solid #E1E8EF!important;
+  text-align:right!important;
+}
+html.view-mobile .data-table tfoot tr td:first-child {
+  display:flex!important;
+  justify-content:flex-start!important;
+  min-height:42px!important;
+  padding:4px 0 10px!important;
+  font-size:16px!important;
+  font-weight:900!important;
+  text-align:left!important;
+}
+html.view-mobile .data-table tfoot tr td:last-child {border-bottom:0!important;}
+html.view-mobile .data-table tfoot tr td:first-child::before {display:none!important;}
+html.view-mobile .data-table tfoot tr td:not(:first-child)::before {
+  content:attr(data-label)!important;
+  display:block!important;
+  grid-column:1;grid-row:1;
+  font-size:13px!important;font-weight:650!important;
+  color:#68778B!important;text-align:left!important;
+  white-space:normal!important;line-height:1.4!important;
+}
+/* Province selector: equal-size, readable, finger-friendly touch targets. */
+html.view-mobile .mobile-map-picker {margin:0 0 13px!important;}
+html.view-mobile .mobile-picker-title {align-items:flex-start!important;gap:7px!important;}
+html.view-mobile .mobile-picker-title strong {font-size:15px!important;line-height:1.4!important;}
+html.view-mobile .mobile-picker-title span {font-size:12px!important;line-height:1.5!important;text-align:right;}
+html.view-mobile .mobile-province-chips {
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:9px!important;
+}
+html.view-mobile .province-chip-btn {
+  display:flex!important;justify-content:center!important;align-items:center!important;
+  min-width:0!important;min-height:55px!important;height:100%!important;
+  padding:9px 8px!important;gap:7px!important;
+  line-height:1.32!important;font-size:13.5px!important;
+  border-color:#DCE4EC!important;
+  white-space:normal!important;text-align:center!important;
+}
+html.view-mobile .province-chip-btn > span:last-child {
+  display:block!important;min-width:0!important;max-width:100%!important;
+  white-space:normal!important;text-align:center!important;word-break:normal;
+  overflow-wrap:break-word;
+}
+html.view-mobile .province-chip-btn[aria-pressed="true"] {border-color:#913D50!important;}
+/* Tapped province: same two-column typography, not uneven metric tiles. */
+html.view-mobile .mobile-province-detail:not([hidden]) {display:block!important;}
+html.view-mobile .mobile-province-detail {
+  margin:11px 0 0!important;padding:15px 14px 8px!important;
+  border:1px solid #E7CBD5!important;border-radius:14px!important;
+  background:#FFFBFC!important;
+}
+html.view-mobile .mobile-province-detail h3 {font-size:17px!important;line-height:1.35!important;}
+html.view-mobile .mobile-province-detail .detail-sub {font-size:12px!important;line-height:1.45!important;margin:5px 0 9px!important;}
+html.view-mobile .mobile-detail-stats {
+  display:flex!important;flex-direction:column!important;
+  gap:0!important;width:100%!important;
+}
+html.view-mobile .mobile-detail-stat {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:center!important;justify-content:stretch!important;
+  gap:8px!important;padding:10px 0!important;
+  border:0!important;border-bottom:1px solid #EFE3E8!important;
+  border-radius:0!important;background:transparent!important;
+  min-height:43px!important;
+}
+html.view-mobile .mobile-detail-stat:last-child {border-bottom:0!important;}
+html.view-mobile .mobile-detail-stat small {
+  display:block!important;margin:0!important;min-width:0!important;
+  color:#68778B!important;font-size:13px!important;font-weight:650!important;
+  white-space:normal!important;line-height:1.4!important;
+}
+html.view-mobile .mobile-detail-stat strong {
+  margin:0!important;color:#303947!important;
+  font-size:15px!important;line-height:1.35!important;
+  font-weight:850!important;white-space:nowrap!important;
+  text-align:right!important;font-variant-numeric:tabular-nums;
+}
+html.view-mobile .mobile-detail-stat strong.empty {color:#98A3B1!important;}
+/* Remove inherited excess minimum heights without changing approved Web CSS. */
+html.view-mobile .table-panel .table-foot,
+html.view-mobile .table-panel .relief-contact {
+  flex:0 0 auto!important;min-height:0!important;
+  height:auto!important;margin-top:0!important;
+  gap:9px!important;
+}
+html.view-mobile .table-panel .table-insight,
+html.view-mobile .table-panel .relief-contact .contact-identity,
+html.view-mobile .table-panel .relief-contact .contact-numbers {
+  min-height:0!important;height:auto!important;
+}
+html.view-mobile .table-band{gap:8px!important;}
+html.view-mobile .table-band .badge{flex-shrink:0;}
+html.view-mobile .panel-sub{font-size:12px!important;line-height:1.45!important;}
+html.view-mobile .table-scroll-hint{display:none!important;}
+@media(max-width:350px){
+  html.view-mobile .data-table tbody tr.province-row{padding:10px 11px 6px!important;}
+  html.view-mobile .data-table tbody tr.province-row td:nth-child(n+3)::before,
+  html.view-mobile .data-table tfoot tr td:not(:first-child)::before{font-size:12.5px!important;}
+  html.view-mobile .mobile-province-chips{gap:6px!important;}
+  html.view-mobile .province-chip-btn{font-size:12px!important;padding:8px 5px!important;}
+}
+
+
+/* V14 MOBILE: province selection alignment and clearer touch behavior.
+   Desktop Web layout intentionally unchanged. */
+html.view-mobile .mobile-map-picker {
+  margin:0 0 0!important;
+  padding:0 0 6px!important;
+  width:100%;
+  min-width:0;
+}
+html.view-mobile .mobile-picker-title {
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  column-gap:14px!important;
+  row-gap:3px!important;
+  margin:0 0 12px!important;
+}
+html.view-mobile .mobile-picker-title strong {
+  min-width:0;
+  font-size:15px!important;
+  line-height:1.4!important;
+  font-weight:850;
+  text-align:left;
+}
+html.view-mobile .mobile-picker-title span {
+  flex:none;
+  font-size:12px!important;
+  line-height:1.4!important;
+  text-align:right;
+}
+html.view-mobile .mobile-province-chips {
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(66px,auto)!important;
+  align-items:stretch!important;
+  gap:10px!important;
+  width:100%!important;
+  padding:0!important;
+}
+html.view-mobile .province-chip-btn {
+  width:100%!important;
+  min-width:0!important;
+  min-height:66px!important;
+  height:100%!important;
+  display:grid!important;
+  grid-template-columns:12px minmax(0,1fr)!important;
+  align-items:center!important;
+  justify-items:start!important;
+  column-gap:10px!important;
+  padding:12px 13px!important;
+  border:1px solid #DCE4EC!important;
+  border-radius:14px!important;
+  background:#FFFFFF!important;
+  box-shadow:none!important;
+  color:#303947!important;
+  font-size:14px!important;
+  font-weight:750!important;
+  line-height:1.35!important;
+  text-align:left!important;
+  white-space:normal!important;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+html.view-mobile .province-chip-dot {
+  grid-column:1;
+  grid-row:1;
+  width:12px!important;
+  height:12px!important;
+  margin:0!important;
+  border-radius:4px!important;
+  align-self:center!important;
+  justify-self:center!important;
+  flex:none!important;
+}
+html.view-mobile .province-chip-btn > span:last-child {
+  grid-column:2;
+  grid-row:1;
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  color:inherit!important;
+  font-size:inherit!important;
+  line-height:1.35!important;
+  font-weight:750!important;
+  text-align:left!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+}
+html.view-mobile .province-chip-btn[aria-pressed="true"] {
+  background:#FFF7F9!important;
+  border-color:#913D50!important;
+  box-shadow:inset 0 0 0 1px rgba(145,61,80,.14)!important;
+  color:#913D50!important;
+}
+html.view-mobile .province-chip-btn:focus-visible {
+  outline:3px solid rgba(145,61,80,.32)!important;
+  outline-offset:2px!important;
+}
+html.view-mobile .mobile-province-detail:not([hidden]) {
+  display:block!important;
+  margin:12px 0 14px!important;
+}
+html.view-mobile .mobile-province-detail[hidden] {
+  display:none!important;
+}
+html.view-mobile .mobile-province-detail + .map-stage {
+  margin-top:12px!important;
+}
+html.view-mobile .mobile-map-picker:has(+ .mobile-province-detail:not([hidden])) {
+  padding-bottom:0!important;
+}
+@media(max-width:410px) {
+  html.view-mobile .mobile-province-chips {
+    gap:8px!important;
+    grid-auto-rows:minmax(64px,auto)!important;
+  }
+  html.view-mobile .province-chip-btn {
+    min-height:64px!important;
+    column-gap:8px!important;
+    padding:10px 9px!important;
+    font-size:13px!important;
+  }
+  html.view-mobile .mobile-picker-title {
+    align-items:flex-start!important;
+    gap:4px!important;
+  }
+  html.view-mobile .mobile-picker-title strong {font-size:14px!important}
+  html.view-mobile .mobile-picker-title span {font-size:11.5px!important}
+}
+@media(max-width:340px) {
+  html.view-mobile .province-chip-btn {font-size:12px!important;padding:10px 7px!important}
+  html.view-mobile .mobile-picker-title {flex-direction:column!important}
+}
+
+/* V15 – Static, fully fitted Thailand map; only province selection remains interactive. */
+.map-stage,html.view-mobile .map-stage,html.view-web .map-stage{
+  touch-action:pan-y!important;
+  -webkit-user-select:none;
+  user-select:none;
+}
+.map-canvas,.map-canvas.dragging{
+  cursor:default!important;
+  touch-action:pan-y!important;
+}
+.map-shape.active,.map-html-label{
+  cursor:pointer!important;
+  touch-action:manipulation!important;
+}
+.map-toolbar,.map-action-row{display:none!important}
+
+/* V16 mobile information architecture: three focused panels. Web unchanged. */
+.mobile-tabs,.mobile-overview-shortcuts,.mobile-map-actions,.mobile-province-explorer{display:none}
+html.view-mobile .page{max-width:600px;margin-inline:auto;padding:10px 12px 24px;overflow:visible}
+html.view-mobile .hero{padding:13px 14px;gap:12px;min-height:0;align-items:center}
+html.view-mobile .logo-frame{width:56px;height:56px;flex-basis:56px}
+html.view-mobile .hero h1{font-size:18px;line-height:1.3;letter-spacing:0}
+html.view-mobile .hero-period{font-size:12px;margin-top:4px;line-height:1.35}
+html.view-mobile .eyebrow{display:none}
+html.view-mobile .view-picker{padding:7px 10px;margin-top:9px;min-height:0;border-radius:13px}
+html.view-mobile .view-picker-copy small{display:none}
+html.view-mobile .view-picker-copy strong{font-size:12px}
+html.view-mobile .view-buttons{gap:5px}
+html.view-mobile .view-choice{min-height:38px;padding:6px 9px;font-size:12px}
+html.view-mobile .mobile-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;position:sticky;top:6px;z-index:60;margin:10px 0 9px;padding:5px;background:rgba(255,255,255,.97);border:1px solid #E1E6ED;border-radius:16px;box-shadow:0 6px 16px rgba(42,49,60,.09)}
+html.view-mobile .mobile-tab{display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;min-height:44px;padding:7px 6px;border-radius:12px;border:1px solid transparent;background:transparent;color:#6D7787;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer;touch-action:manipulation;white-space:nowrap}
+html.view-mobile .mobile-tab svg{width:18px;height:18px;flex:none}
+html.view-mobile .mobile-tab[aria-selected=true]{background:#913D50;color:white;box-shadow:0 3px 10px rgba(145,61,80,.19)}
+html.view-mobile .mobile-tab:focus-visible{outline:3px solid #CE8296;outline-offset:1px}
+html.view-mobile[data-mobile-tab="overview"] .top-grid{display:grid!important}
+html.view-mobile[data-mobile-tab="overview"] .aid-banner{display:grid!important}
+html.view-mobile[data-mobile-tab="overview"] .mobile-overview-shortcuts{display:grid}
+html.view-mobile[data-mobile-tab="overview"] .main{display:none!important}
+html.view-mobile[data-mobile-tab="map"] .top-grid,
+html.view-mobile[data-mobile-tab="map"] .aid-banner,
+html.view-mobile[data-mobile-tab="map"] .mobile-overview-shortcuts{display:none!important}
+html.view-mobile[data-mobile-tab="map"] .main{display:block!important;margin-top:0!important}
+html.view-mobile[data-mobile-tab="map"] .map-panel{display:block!important}
+html.view-mobile[data-mobile-tab="map"] .table-panel{display:none!important}
+html.view-mobile[data-mobile-tab="province"] .top-grid,
+html.view-mobile[data-mobile-tab="province"] .aid-banner,
+html.view-mobile[data-mobile-tab="province"] .mobile-overview-shortcuts{display:none!important}
+html.view-mobile[data-mobile-tab="province"] .main{display:block!important;margin-top:0!important}
+html.view-mobile[data-mobile-tab="province"] .map-panel{display:none!important}
+html.view-mobile[data-mobile-tab="province"] .table-panel{display:block!important}
+html.view-mobile .top-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px;margin-top:0}
+html.view-mobile .top-grid .stat:first-child{grid-column:1/-1}
+html.view-mobile .stat{padding:12px;min-height:112px;border-radius:16px;display:flex;flex-direction:column;justify-content:space-between}
+html.view-mobile .stat-value{font-size:clamp(23px,7.5vw,31px)!important}
+html.view-mobile .stat-sub{font-size:11px;line-height:1.4;margin-top:4px}
+html.view-mobile .stat-label{font-size:12px}
+html.view-mobile .stat .icon-box{width:36px;height:36px;min-width:36px}
+html.view-mobile .stat .icon-box svg{width:19px;height:19px}
+html.view-mobile .stat-unit{font-size:12px}
+html.view-mobile .aid-banner{margin-top:10px;padding:12px;gap:8px}
+html.view-mobile .aid-left h2{font-size:15px}
+html.view-mobile .aid-left p{font-size:12px;margin:4px 0}
+html.view-mobile .aid-percent{align-items:center}
+html.view-mobile .aid-percent strong{font-size:24px}
+html.view-mobile .aid-legend{font-size:11px}
+html.view-mobile .mobile-overview-shortcuts{gap:9px;margin-top:12px}
+html.view-mobile .mobile-overview-shortcuts button{display:grid;grid-template-columns:42px minmax(0,1fr) 16px;align-items:center;gap:11px;width:100%;min-height:74px;padding:13px;border:1px solid #DDE5EE;border-radius:16px;background:white;color:var(--ink);text-align:left;font-family:inherit;cursor:pointer;touch-action:manipulation}
+html.view-mobile .mobile-overview-shortcuts .shortcut-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#F6EAED;color:#913D50}
+html.view-mobile .mobile-overview-shortcuts svg{height:22px;width:22px}
+html.view-mobile .mobile-overview-shortcuts button:nth-child(2) .shortcut-icon{background:#EAF2FC;color:#6499D0}
+html.view-mobile .mobile-overview-shortcuts button strong{display:block;font-size:14px;line-height:1.4}
+html.view-mobile .mobile-overview-shortcuts button small{display:block;font-size:12px;color:#758091;margin-top:2px}
+html.view-mobile .mobile-overview-shortcuts .shortcut-chevron{width:16px;color:#94A0AE}
+html.view-mobile .bottom-note{margin-top:12px;font-size:10px;text-align:left}
+html.view-mobile .map-panel,.view-mobile .table-panel{margin:0}
+html.view-mobile .map-panel .panel-head,html.view-mobile .table-band{padding:13px 15px;min-height:62px}
+html.view-mobile .map-wrap{padding:10px 12px 14px;min-height:0!important;display:block!important}
+html.view-mobile #mobile-map-picker{display:none!important}
+html.view-mobile .map-stage{height:clamp(300px,58vh,485px)!important;min-height:300px!important;flex:none!important;border-radius:12px;touch-action:pan-y}
+html.view-mobile .map-canvas{touch-action:pan-y!important;cursor:pointer}
+html.view-mobile .map-html-label{font-size:clamp(10px,2.7vw,13px)}
+html.view-mobile .map-footer{display:none!important}
+html.view-mobile .map-wrap > .legend,html.view-mobile .map-wrap > .attribution{display:none!important}
+html.view-mobile .mobile-map-actions{display:block;margin-top:10px}
+html.view-mobile .mobile-map-province-detail{width:100%;padding:11px 14px;border:1px solid #E3D0D6;background:#FFF5F8;border-radius:12px;text-align:center;font-size:13px;font-weight:800;color:#913D50;font-family:inherit;cursor:pointer}
+html.view-mobile .mobile-map-province-detail[hidden]{display:none!important}
+html.view-mobile .mobile-regions{margin-top:10px;border:1px solid #E3EAF0;border-radius:12px;background:#FAFBFD}
+html.view-mobile .mobile-regions summary{list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:46px;padding:11px 13px;font-weight:750;font-size:13px;cursor:pointer;color:#4D5969}
+html.view-mobile .mobile-regions summary::-webkit-details-marker{display:none}
+html.view-mobile .mobile-regions-note{padding:0 13px 8px;font-size:11px;color:#758091;line-height:1.45}
+html.view-mobile .mobile-regions .legend{display:grid!important;grid-template-columns:1fr 1fr!important;padding:0 10px 10px;gap:7px}
+html.view-mobile .mobile-regions .legend-item{padding:8px;min-height:58px}
+html.view-mobile .mobile-regions .legend-copy small{font-size:10px;line-height:1.35}
+html.view-mobile .mobile-regions .legend-copy strong{font-size:12px}
+html.view-mobile #mobile-province-detail:not([hidden]){display:block!important;margin:10px 0 0!important;padding:11px;border:1px solid #EADDE1;border-radius:12px;background:#FBF7F9}
+html.view-mobile #mobile-province-detail .mobile-detail-stats{grid-template-columns:1fr 1fr!important}
+html.view-mobile .table-panel .table-wrap{display:block!important;padding:12px}
+html.view-mobile .table-panel .table-scroll,
+html.view-mobile .table-panel .table-foot,
+html.view-mobile .table-panel .relief-contact,
+html.view-mobile .table-panel #data-audit{display:none!important}
+html.view-mobile .mobile-province-explorer{display:block!important}
+html.view-mobile .mobile-province-explorer > label{display:block;font-size:14px;font-weight:800;margin-bottom:8px;color:#303947}
+html.view-mobile .mobile-select-shell{position:relative}
+html.view-mobile .mobile-select-shell select{display:block;appearance:none;-webkit-appearance:none;width:100%;height:48px;padding:11px 46px 11px 14px;border:1px solid #C8D3DD;border-radius:13px;background:#fff;color:#303947;font-size:15px;font-family:inherit;font-weight:750;outline-offset:2px}
+html.view-mobile .mobile-select-shell svg{position:absolute;width:18px;height:18px;right:15px;top:15px;color:#913D50;pointer-events:none}
+html.view-mobile .mobile-explorer-detail{margin-top:12px;border:1px solid #E2E9F0;background:white;border-radius:14px;overflow:hidden}
+html.view-mobile .explorer-prov-heading{padding:12px 14px;background:#FAF5F7;border-bottom:1px solid #E9E0E4;display:flex;justify-content:space-between;align-items:center;gap:10px}
+html.view-mobile .explorer-prov-heading strong{font-size:16px;color:#303947;line-height:1.35}
+html.view-mobile .explorer-prov-heading small{font-size:11px;color:#913D50;font-weight:700;white-space:nowrap}
+html.view-mobile .explorer-rows{padding:1px 14px}
+html.view-mobile .explorer-row{min-height:44px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;border-bottom:1px solid #EDF0F4;padding:9px 0}
+html.view-mobile .explorer-row:last-child{border-bottom:0}
+html.view-mobile .explorer-row span{font-size:12.8px;line-height:1.35;color:#5C6878;min-width:0}
+html.view-mobile .explorer-row strong{font-size:14px;font-weight:850;color:#303947;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+html.view-mobile .explorer-row strong.r{color:#B84450}
+html.view-mobile .explorer-row strong.b{color:#3977B3}
+html.view-mobile .explorer-row strong.g{color:#39876C}
+html.view-mobile .explorer-row strong.p{color:#AB5191}
+html.view-mobile .explorer-row strong.na{color:#929CA9}
+html.view-mobile .mobile-totals,html.view-mobile .mobile-extras{display:block;margin-top:10px;border:1px solid #DEE6EE;border-radius:13px;background:#FBFCFE;overflow:hidden}
+html.view-mobile .mobile-totals summary,html.view-mobile .mobile-extras summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:49px;padding:11px 14px;color:#364254;font-size:13px;cursor:pointer}
+html.view-mobile .mobile-totals summary::-webkit-details-marker,html.view-mobile .mobile-extras summary::-webkit-details-marker{display:none}
+html.view-mobile .mobile-totals summary span,html.view-mobile .mobile-extras summary span{font-size:12px;font-weight:650;color:#913D50;white-space:nowrap}
+html.view-mobile .mobile-totals-content{padding:0 14px 7px;background:white}
+html.view-mobile .mobile-extras-content{padding:10px;background:white;display:grid;gap:10px}
+html.view-mobile .mobile-extras-content .table-foot{display:grid!important;grid-template-columns:1fr!important;gap:8px;margin:0}
+html.view-mobile .mobile-extras-content .relief-contact{display:flex!important;flex-direction:column;gap:10px;margin:0;padding:12px;border-radius:12px;min-height:0}
+html.view-mobile .mobile-extras-content .contact-identity{width:100%;flex:auto}
+html.view-mobile .mobile-extras-content .contact-divider{display:none}
+html.view-mobile .mobile-extras-content .contact-numbers{width:100%;flex:auto}
+@media(max-width:380px){
+ html.view-mobile .mobile-tab{font-size:12px;gap:4px;padding-inline:3px}
+ html.view-mobile .mobile-tab svg{width:16px;height:16px}
+ html.view-mobile .hero h1{font-size:16px}
+ html.view-mobile .stat-value{font-size:23px!important}
+ html.view-mobile .explorer-row span{font-size:12px}
+}
+
+/* V17 Compact Mobile – UI-only changes; desktop Web styles stay as approved. */
+.mobile-stat-help,.mobile-brief{display:none}
+html.view-mobile .page{padding:8px 10px 18px!important;max-width:600px}
+html.view-mobile .hero{padding:10px 12px!important;gap:10px!important;border-radius:15px!important;min-height:0!important}
+html.view-mobile .logo-frame{width:45px!important;height:45px!important;flex:0 0 45px!important}
+html.view-mobile .hero h1{font-size:clamp(14px,4vw,17px)!important;line-height:1.28!important;letter-spacing:0!important}
+html.view-mobile .hero-period{font-size:11px!important;margin-top:2px!important;line-height:1.25!important}
+html.view-mobile .view-picker{padding:5px 9px!important;margin-top:7px!important;border-radius:12px!important;gap:8px!important;min-height:0!important}
+html.view-mobile .view-picker-copy strong{font-size:11.5px!important}
+html.view-mobile .view-choice{min-height:33px!important;padding:5px 8px!important;font-size:12px!important}
+html.view-mobile .view-choice svg{width:16px!important;height:16px!important}
+html.view-mobile .mobile-tabs{margin:8px 0!important;padding:4px!important;gap:4px!important;border-radius:13px!important;top:4px!important}
+html.view-mobile .mobile-tab{min-height:38px!important;padding:5px 3px!important;font-size:12px!important;gap:5px!important;border-radius:10px!important}
+html.view-mobile .mobile-tab svg{width:16px!important;height:16px!important}
+
+/* Four equal-density KPI cards, 2×2, instead of a full-width first card. */
+html.view-mobile .top-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin:0!important;align-items:stretch}
+html.view-mobile .top-grid .stat:first-child{grid-column:auto!important}
+html.view-mobile .top-grid .mobile-stat-help{display:flex!important}
+html.view-mobile .stat{
+  min-width:0!important;min-height:100px!important;height:auto!important;
+  padding:10px 11px!important;border-radius:14px!important;
+  gap:5px!important;justify-content:space-between!important;
+  box-shadow:0 3px 11px rgba(37,54,71,.045)!important
+}
+html.view-mobile .stat-top{gap:7px!important;align-items:center!important}
+html.view-mobile .stat .icon-box{width:29px!important;height:29px!important;min-width:29px!important;border-radius:9px!important;box-shadow:none!important}
+html.view-mobile .stat .icon-box svg{width:16px!important;height:16px!important}
+html.view-mobile .stat-label{font-size:12.2px!important;line-height:1.3!important;font-weight:800!important}
+html.view-mobile .stat-number{margin-top:2px!important;gap:5px!important;flex-wrap:nowrap!important;align-items:baseline!important}
+html.view-mobile .stat-value{font-size:clamp(23px,6.8vw,31px)!important;font-weight:900!important;letter-spacing:-.04em!important;white-space:nowrap}
+html.view-mobile .stat-unit{font-size:11px!important;line-height:1.2!important;white-space:nowrap!important}
+html.view-mobile .stat-sub{display:none!important}
+html.view-mobile .stat.maroon{border-left:3px solid #913D50!important}
+html.view-mobile .stat.sky{border-left:3px solid #6499D0!important}
+html.view-mobile .stat.rose{border-left:3px solid #CE8296!important}
+html.view-mobile .mobile-stat-help{border-left:3px solid #61A58B!important}
+html.view-mobile .mobile-stat-help .icon-box{background:#e9f5ef!important;color:#40876b!important;border-color:#d5e9de!important}
+
+/* Progress becomes a slim status indicator, with all original figures available above. */
+html.view-mobile .aid-banner{
+  display:flex!important;flex-direction:column!important;gap:7px!important;
+  margin-top:8px!important;padding:10px 12px!important;min-height:0!important;
+  border-radius:14px!important;box-shadow:0 3px 11px rgba(37,54,71,.045)!important
+}
+html.view-mobile .aid-left{width:100%!important}
+html.view-mobile .aid-title{gap:7px!important;align-items:center!important}
+html.view-mobile .aid-title .aid-icon{width:26px!important;height:26px!important;min-width:26px!important;border-radius:7px!important}
+html.view-mobile .aid-title .aid-icon svg{width:16px!important;height:16px!important}
+html.view-mobile .aid-left h2{font-size:12.5px!important;font-weight:800!important;line-height:1.35!important}
+html.view-mobile .aid-left h2 strong{white-space:nowrap}
+html.view-mobile .aid-left p{display:none!important}
+html.view-mobile .aid-right{width:100%!important;gap:5px!important}
+html.view-mobile .aid-percent{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:6px!important}
+html.view-mobile .aid-percent span{font-size:11px!important;line-height:1.2!important}
+html.view-mobile .aid-percent strong{font-size:20px!important;line-height:1.15!important}
+html.view-mobile .progress{height:8px!important;min-height:8px!important;border-radius:999px!important}
+html.view-mobile .progress>span{height:100%!important}
+html.view-mobile .aid-legend{display:none!important}
+
+html.view-mobile .mobile-brief{display:block!important;margin:8px 0 0!important;border:1px solid #E3E8EF;background:#fff;border-radius:12px;overflow:hidden}
+html.view-mobile .mobile-brief summary{list-style:none;display:flex;gap:8px;align-items:center;justify-content:space-between;min-height:40px;padding:9px 11px;color:#354255;cursor:pointer;touch-action:manipulation}
+html.view-mobile .mobile-brief summary::-webkit-details-marker{display:none}
+html.view-mobile .brief-heading{display:flex;gap:7px;align-items:center;font-size:12.5px;font-weight:800}
+html.view-mobile .brief-heading svg{width:16px;height:16px;flex:none;color:#913D50}
+html.view-mobile .brief-more{display:flex;gap:4px;align-items:center;color:#913D50;font-size:11px;font-weight:700;white-space:nowrap}
+html.view-mobile .brief-more svg{height:14px;width:14px;transition:transform .2s}
+html.view-mobile .mobile-brief[open] .brief-more svg{transform:rotate(180deg)}
+html.view-mobile .brief-data{padding:0 11px 8px}
+html.view-mobile .brief-data>div{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:31px;border-top:1px solid #EEF1F5;padding:6px 0}
+html.view-mobile .brief-data span{font-size:11.5px;color:#6B7688;min-width:0}
+html.view-mobile .brief-data strong{font-size:11.5px;color:#303947;text-align:right;font-weight:850;white-space:normal}
+
+/* Navigation on one row instead of two large link cards. */
+html.view-mobile .mobile-overview-shortcuts{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin-top:8px!important}
+html.view-mobile .mobile-overview-shortcuts button{min-width:0!important;min-height:43px!important;padding:8px 10px!important;gap:7px!important;display:grid!important;grid-template-columns:23px minmax(0,1fr) 12px!important;border-radius:12px!important;box-shadow:none!important}
+html.view-mobile .mobile-overview-shortcuts .shortcut-icon{width:23px!important;height:23px!important;border-radius:7px!important}
+html.view-mobile .mobile-overview-shortcuts .shortcut-icon svg{width:15px!important;height:15px!important}
+html.view-mobile .mobile-overview-shortcuts button strong{font-size:12px!important;line-height:1.3!important;white-space:nowrap!important}
+html.view-mobile .mobile-overview-shortcuts button small{display:none!important}
+html.view-mobile .mobile-overview-shortcuts .shortcut-chevron{width:12px!important;height:12px!important}
+html.view-mobile .bottom-note{font-size:10px!important;line-height:1.3!important;margin-top:8px!important}
+
+/* The map stays a separate interactive TAB, but is less tall on phone. */
+html.view-mobile .map-panel .panel-head,html.view-mobile .table-band{min-height:0!important;padding:10px 12px!important}
+html.view-mobile .section-title{font-size:16px!important;line-height:1.3!important}
+html.view-mobile .panel-sub{font-size:11.5px!important}
+html.view-mobile .map-wrap{padding:8px 10px 12px!important}
+html.view-mobile .map-stage{height:clamp(310px,94vw,405px)!important;min-height:0!important;max-height:405px!important;flex:0 0 auto!important;border-radius:11px!important}
+html.view-mobile .mobile-map-actions{margin-top:6px!important}
+html.view-mobile .mobile-regions{margin-top:7px!important}
+html.view-mobile .mobile-regions summary{min-height:38px!important;padding:8px 11px!important;font-size:12px!important}
+html.view-mobile .table-panel .table-wrap{padding:10px!important}
+html.view-mobile .mobile-province-explorer>label{font-size:13px!important}
+html.view-mobile .mobile-select-shell select{height:42px!important;font-size:13px!important}
+html.view-mobile .mobile-select-shell svg{top:12px!important}
+html.view-mobile .explorer-prov-heading{padding:10px 12px!important}
+html.view-mobile .explorer-row{min-height:39px!important;padding:7px 0!important}
+
+/* The supplementary report is exclusive to the Overview tab. */
+html.view-mobile[data-mobile-tab="map"] .mobile-brief,
+html.view-mobile[data-mobile-tab="province"] .mobile-brief{display:none!important}
+
+/* Even a 320-pixel phone has two readable columns. */
+@media(max-width:359px){
+ html.view-mobile .stat{padding:9px 8px!important;min-height:97px!important}
+ html.view-mobile .stat-label{font-size:11px!important}
+ html.view-mobile .stat-unit{font-size:10px!important}
+ html.view-mobile .stat-value{font-size:clamp(21px,6.6vw,25px)!important}
+ html.view-mobile .mobile-overview-shortcuts button{padding:7px!important;gap:5px!important}
+ html.view-mobile .mobile-overview-shortcuts button strong{font-size:11px!important}
+ html.view-mobile .hero h1{font-size:14px!important}
+}
+
+
+/* V18 mobile one-page summary refinement */
+html.view-mobile .mobile-tabs,
+html.view-mobile .mobile-overview-shortcuts,
+html.view-mobile .aid-banner,
+html.view-mobile .table-panel{display:none !important}
+html.view-mobile .top-grid{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:10px !important;margin-top:0 !important}
+html.view-mobile .top-grid .stat:first-child{grid-column:auto !important}
+html.view-mobile .top-grid .stat{min-height:104px !important;padding:12px 12px 11px !important;border-radius:18px !important}
+html.view-mobile .top-grid .stat-top{gap:9px !important}
+html.view-mobile .top-grid .stat-value{font-size:clamp(20px,9vw,31px) !important;line-height:1.05 !important}
+html.view-mobile .top-grid .stat-unit{font-size:11px !important}
+html.view-mobile .top-grid .stat-sub{display:none !important}
+html.view-mobile .mobile-brief{margin-top:12px !important}
+html.view-mobile .main{display:block !important;margin-top:12px !important}
+html.view-mobile .map-panel{display:block !important}
+html.view-mobile .map-wrap{padding:10px 12px 12px !important}
+html.view-mobile .mobile-map-picker,
+html.view-mobile .map-footer,
+html.view-mobile #mobile-map-province-detail{display:none !important}
+html.view-mobile .map-stage{height:360px !important;min-height:360px !important;max-height:360px !important;flex:0 0 360px !important}
+html.view-mobile .mobile-map-actions{margin-top:8px !important}
+html.view-mobile .mobile-regions{margin-top:2px !important}
+html.view-mobile .mobile-regions > summary{padding:10px 12px !important;font-size:13px !important}
+html.view-mobile .mobile-regions-note{font-size:12px !important}
+html.view-mobile .legend{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:8px !important}
+html.view-mobile .legend-item{min-height:52px !important;padding:8px !important}
+html.view-mobile .legend-copy strong{font-size:12.5px !important}
+html.view-mobile .legend-copy small{font-size:10.8px !important;line-height:1.35 !important}
+html.view-mobile .mobile-onepage-summary{display:block !important;margin-top:12px}
+html.view-mobile .mobile-onepage-summary .table-band{padding:14px !important}
+html.view-mobile .mobile-onepage-summary .panel-sub{font-size:13px !important}
+html.view-mobile .mobile-summary-body{padding:12px !important;display:grid;gap:12px}
+html.view-mobile .summary-total-card{border:1px solid #E3E8EF;background:#FBFCFD;border-radius:18px;padding:12px 14px}
+html.view-mobile .summary-total-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+html.view-mobile .summary-total-head strong{font-size:18px;color:#303947}
+html.view-mobile .summary-total-head span{font-size:13px;color:#913D50;font-weight:800}
+html.view-mobile .summary-total-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
+html.view-mobile .summary-kv{min-width:0}
+html.view-mobile .summary-kv small{display:block;font-size:12px;line-height:1.35;color:#758091;margin-bottom:3px}
+html.view-mobile .summary-kv strong{display:block;font-size:17px;line-height:1.15;color:#303947}
+html.view-mobile .summary-kv strong.maroon{color:#B24B44}
+html.view-mobile .summary-kv strong.sky{color:#4D74B8}
+html.view-mobile .summary-kv strong.green{color:#5C956E}
+html.view-mobile .summary-kv strong.rose{color:#AC5DAE}
+html.view-mobile .province-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+html.view-mobile .province-summary-card{border:1px solid #E2E7EE;border-radius:18px;background:#fff;padding:12px 12px 11px;box-shadow:0 1px 4px rgba(35,47,63,.04)}
+html.view-mobile .province-summary-card .province-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+html.view-mobile .province-summary-card .dot{width:10px;height:10px;border-radius:50%;flex:none}
+html.view-mobile .province-summary-card .province-name{font-size:16px;font-weight:800;color:#303947;line-height:1.2}
+html.view-mobile .province-summary-card .mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px}
+html.view-mobile .province-summary-card .mini-grid div{min-width:0}
+html.view-mobile .province-summary-card .mini-grid small{display:block;font-size:11px;line-height:1.3;color:#758091;margin-bottom:2px}
+html.view-mobile .province-summary-card .mini-grid strong{display:block;font-size:15px;line-height:1.15;color:#303947;white-space:nowrap}
+html.view-mobile .province-summary-card .mini-grid strong.maroon{color:#B24B44}
+html.view-mobile .province-summary-card .mini-grid strong.sky{color:#4D74B8}
+html.view-mobile .province-summary-card .mini-grid strong.green{color:#5C956E}
+html.view-mobile .province-summary-card .mini-grid strong.rose{color:#AC5DAE}
+html.view-mobile .province-summary-card .mini-grid .span-2{grid-column:1/-1}
+html.view-mobile .extras-compact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+html.view-mobile .extras-compact-card{border:1px solid #E2E7EE;border-radius:18px;background:#fff;padding:12px}
+html.view-mobile .extras-compact-card .extra-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;margin-bottom:10px}
+html.view-mobile .extras-compact-card .extra-icon svg{width:22px;height:22px}
+html.view-mobile .extras-compact-card small{display:block;font-size:12px;color:#758091;line-height:1.35;margin-bottom:4px}
+html.view-mobile .extras-compact-card strong{display:block;font-size:15px;line-height:1.28;color:#303947}
+html.view-mobile .extras-compact-card p{margin:5px 0 0;font-size:12.5px;color:#758091;line-height:1.42}
+html.view-mobile .extras-compact-card.contact-call .extra-icon{background:#F7ECEF;color:#913D50;border:1px solid #EBD7DE}
+html.view-mobile .extras-compact-card.contact-phone .extra-icon{background:#EDF4FD;color:#5A7FB8;border:1px solid #D8E4F3}
+html.view-mobile .extras-compact-card.insight-a .extra-icon{background:#F7ECEF;color:#913D50;border:1px solid #EBD7DE}
+html.view-mobile .extras-compact-card.insight-b .extra-icon{background:#EDF4FD;color:#6D8CC0;border:1px solid #D8E4F3}
+html.view-mobile .extras-compact-card.contact-phone strong{font-size:14px;color:#913D50}
+html.view-mobile .extras-compact-card.contact-phone p{font-size:12px;line-height:1.55}
+html.view-mobile .map-panel .panel-sub{padding-right:0 !important}
+html.view-mobile .mobile-source-note{font-size:11px;color:#758091;line-height:1.5;padding:2px 2px 0}
+@media (max-width:380px){
+  html.view-mobile .province-summary-grid,html.view-mobile .extras-compact-grid{grid-template-columns:1fr}
+  html.view-mobile .summary-total-grid{grid-template-columns:1fr 1fr}
+  html.view-mobile .map-stage{height:330px !important;min-height:330px !important;max-height:330px !important;flex-basis:330px !important}
+}
+html:not(.view-mobile) .mobile-onepage-summary{display:none !important}
+
+
+/* V19: single-page mobile, static full-country map, reporting summary, contact at bottom. */
+html.view-mobile .mobile-tabs,
+html.view-mobile .mobile-overview-shortcuts,
+html.view-mobile .mobile-map-picker,
+html.view-mobile .mobile-province-detail,
+html.view-mobile #mobile-map-province-detail,
+html.view-mobile .map-footer,
+html.view-mobile .aid-banner,
+html.view-mobile .table-panel{display:none!important}
+/* These are more specific than the legacy V16 tab selectors. */
+html.view-mobile[data-mobile-tab="overview"] .main,
+html.view-mobile[data-mobile-tab="map"] .main,
+html.view-mobile[data-mobile-tab="province"] .main,
+html.view-mobile .main {display:flex!important;flex-direction:column!important;gap:12px!important;margin-top:12px!important}
+html.view-mobile[data-mobile-tab="overview"] .map-panel,
+html.view-mobile[data-mobile-tab="map"] .map-panel,
+html.view-mobile[data-mobile-tab="province"] .map-panel,
+html.view-mobile .map-panel{display:block!important;height:auto!important;min-height:0!important;order:1}
+html.view-mobile .mobile-onepage-summary{display:block!important;order:2;margin-top:0!important}
+html.view-mobile .mobile-contact-bottom{display:block!important;order:3}
+html.view-mobile .mobile-brief{display:block!important;margin-top:10px!important;border-radius:15px!important;padding:0!important}
+html.view-mobile .mobile-brief .brief-static-head{display:flex!important;align-items:center;min-height:42px;padding:9px 12px!important;font-size:14px;font-weight:800;color:#303947;border-bottom:1px solid #E8EDF1}
+html.view-mobile .mobile-brief .brief-heading{display:flex;align-items:center;gap:8px}
+html.view-mobile .mobile-brief .brief-heading svg{width:18px;height:18px;color:#913D50}
+html.view-mobile .mobile-brief .brief-data{display:grid!important;padding:0 12px 5px!important}
+html.view-mobile .mobile-brief .brief-data>div{min-height:36px!important;padding:7px 0!important;font-size:12.5px!important;gap:12px!important}
+html.view-mobile .mobile-brief .brief-data>div:last-child{border-bottom:0!important}
+html.view-mobile .mobile-brief .brief-data strong{font-size:12.5px!important;text-align:right}
+html.view-mobile .top-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin-top:0!important}
+html.view-mobile .top-grid .stat:first-child{grid-column:auto!important}
+html.view-mobile .map-wrap{padding:10px 12px 12px!important;display:block!important;min-height:0!important}
+html.view-mobile .map-stage{display:block!important;position:relative!important;width:100%!important;height:365px!important;min-height:365px!important;max-height:365px!important;flex:0 0 365px!important;overflow:hidden!important;background:#fff!important}
+html.view-mobile .map-canvas{display:block!important;width:100%!important;height:100%!important;touch-action:manipulation!important;cursor:default!important}
+html.view-mobile .map-toolbar,html.view-mobile .map-action-row{display:none!important}
+html.view-mobile .mobile-map-actions{display:block!important;margin:8px 0 0!important}
+html.view-mobile .mobile-regions{display:block!important;border:1px solid #E5EAF0!important;border-radius:12px!important;padding:8px 10px!important;background:#FBFCFD!important}
+html.view-mobile .mobile-regions-heading{display:block!important;margin:0 0 7px!important;font-size:12.5px!important;font-weight:800!important;color:#516070!important}
+html.view-mobile .mobile-regions-note{display:none!important}
+html.view-mobile .mobile-regions .legend{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;padding:0!important;margin:0!important}
+html.view-mobile .mobile-regions .legend-item{min-height:48px!important;padding:7px!important;background:white!important}
+html.view-mobile .mobile-regions .legend-copy strong{font-size:11.5px!important;line-height:1.2!important}
+html.view-mobile .mobile-regions .legend-copy small{font-size:10px!important;line-height:1.22!important}
+html.view-mobile .mobile-onepage-summary .table-band{padding:12px!important;min-height:0!important}
+html.view-mobile .mobile-summary-body{padding:11px!important;gap:10px!important}
+html.view-mobile .province-summary-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+html.view-mobile .province-summary-card{padding:10px!important;border-radius:14px!important;min-width:0!important}
+html.view-mobile .province-summary-card .province-name{font-size:14px!important;overflow-wrap:anywhere}
+html.view-mobile .province-summary-card .mini-grid{gap:6px 7px!important}
+html.view-mobile .province-summary-card .mini-grid small{font-size:10.6px!important}
+html.view-mobile .province-summary-card .mini-grid strong{font-size:14px!important}
+html.view-mobile .extras-compact-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+html.view-mobile .extras-compact-card{padding:10px!important;min-width:0!important;border-radius:14px!important}
+html.view-mobile .extras-compact-card .extra-icon{width:34px!important;height:34px!important;margin-bottom:6px!important}
+html.view-mobile .extras-compact-card .extra-icon svg{width:18px!important;height:18px!important}
+html.view-mobile .extras-compact-card small{font-size:11.3px!important}
+html.view-mobile .extras-compact-card strong{font-size:13.5px!important}
+html.view-mobile .extras-compact-card p{font-size:11.5px!important}
+html.view-mobile .mobile-contact-bottom{margin:0!important;overflow:hidden}
+html.view-mobile .contact-bottom-head{padding:11px 13px;font-size:15px;font-weight:850;border-bottom:1px solid #E9EDF2;color:#303947}
+html.view-mobile .mobile-contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:11px}
+html.view-mobile .mobile-contact-grid .extras-compact-card{background:#FBFCFE!important}
+html.view-mobile .mobile-contact-grid .contact-phone strong{font-size:13px!important;overflow-wrap:anywhere;white-space:normal}
+html.view-mobile .mobile-contact-grid .contact-phone p{font-size:11.5px!important;line-height:1.65;overflow-wrap:anywhere}
+html:not(.view-mobile) .mobile-contact-bottom{display:none!important}
+@media(max-width:380px){
+ html.view-mobile .province-summary-grid,html.view-mobile .extras-compact-grid,html.view-mobile .mobile-contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html.view-mobile .map-stage{height:330px!important;min-height:330px!important;max-height:330px!important;flex-basis:330px!important}
+ html.view-mobile .mobile-brief .brief-data>div{font-size:11.5px!important}
+ html.view-mobile .mobile-brief .brief-data strong{font-size:11.5px!important}
+ html.view-mobile .extras-compact-card strong{font-size:12.6px!important}
+}
+
+
+/* V20: Mobile summary uses original column headings and the true table totals. */
+html.view-mobile .mobile-onepage-summary .mobile-summary-body{
+  padding:11px 12px 12px!important;
+  gap:11px!important;
+}
+html.view-mobile .mobile-totals-list{
+  display:block;
+  border:1px solid #E2E8EF;
+  border-radius:15px;
+  background:#fff;
+  padding:2px 13px;
+  width:100%;
+  min-width:0;
+}
+html.view-mobile .mobile-totals-row{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) max-content;
+  align-items:center;
+  column-gap:12px;
+  min-width:0;
+  padding:12px 1px;
+  border-bottom:1px dashed #DCE3EB;
+}
+html.view-mobile .mobile-totals-row:last-child{border-bottom:0}
+html.view-mobile .mobile-totals-label{
+  color:#516073;
+  font-size:13.5px;
+  font-weight:600;
+  line-height:1.42;
+  min-width:0;
+  overflow-wrap:normal;
+  word-break:normal;
+  text-align:left;
+}
+html.view-mobile .mobile-totals-value{
+  color:#253447;
+  font-size:17px;
+  font-weight:850;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+  text-align:right;
+  letter-spacing:0;
+  line-height:1.25;
+  padding-left:0;
+}
+html.view-mobile .mobile-totals-value.request{color:#913D50}
+html.view-mobile .mobile-totals-value.help{color:#527AB1}
+html.view-mobile .mobile-totals-value.percentage{color:#508C70}
+html.view-mobile .mobile-totals-value.vulnerable{color:#B35E9A}
+html.view-mobile .mobile-onepage-summary .table-band{
+  padding:12px 13px!important;
+}
+html.view-mobile .mobile-onepage-summary .section-title{
+  font-size:16px!important;
+}
+html.view-mobile .mobile-onepage-summary .panel-sub{font-size:12px!important;margin-top:3px}
+html.view-mobile .mobile-onepage-summary .badge{font-size:12px!important}
+@media(max-width:380px){
+  html.view-mobile .mobile-totals-list{padding:2px 10px}
+  html.view-mobile .mobile-totals-row{column-gap:8px;padding:11px 0}
+  html.view-mobile .mobile-totals-label{font-size:12.5px}
+  html.view-mobile .mobile-totals-value{font-size:16px}
+}
+html:not(.view-mobile) .mobile-totals-list{display:none!important}
+.picker-actions{display:flex;align-items:center;gap:8px;flex:none}
+.csv-upload{cursor:pointer}
+/* A CSV can list many provinces: scroll rows inside the table so the panels keep their original height */
+html.view-web .table-scroll{max-height:460px;overflow-y:auto!important}
+html.view-web .data-table thead th{position:sticky;top:0;z-index:2}
+html.view-web .data-table tfoot td{position:sticky;bottom:0;z-index:2}
+</style></head>
+<body><main class="page">
+<header class="hero card">
+<div class="logo-frame"><img alt="ตราสภากาชาดไทย สำนักงานบรรเทาทุกข์และประชานามัยพิทักษ์" class="org-logo" src="data:image/webp;base64,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"/></div>
+<div class="hero-copy">
+<div class="eyebrow"><svg aria-hidden="true" class="lucide" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle><path d="M5.6 5.6l4.3 4.3m4.2 4.2 4.3 4.3m0-12.8-4.3 4.3m-4.2 4.2-4.3 4.3"></path></svg> รายงานการช่วยเหลือผู้ประสบอุทกภัย · รายจังหวัด</div>
+<h1>สรุปการให้ความช่วยเหลือผู้ประสบอุทกภัยผ่านแอปพลิเคชันพ้นภัย</h1>
+<p class="hero-period">ข้อมูล ณ ช่วงวันที่ <strong data-bind="periodFull">-</strong></p>
+</div>
+<div class="source-mark">ประเภทภัย: อุทกภัย</div>
+</header><nav aria-label="ไฟล์ข้อมูลรายงาน" class="view-picker">
+<div class="view-picker-copy"><svg aria-hidden="true" class="picker-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path></svg><div><strong>ข้อมูลรายงาน</strong><small id="csv-file-name">ยังไม่ได้อัปโหลดไฟล์ · กด “อัปโหลด CSV” (เลือกได้หลายไฟล์)</small></div></div>
+<div class="picker-actions"><div class="view-buttons"><label aria-label="อัปโหลด CSV" class="view-choice csv-upload" title="อัปโหลดไฟล์ .csv รายงานจำนวนคำร้องและความเสียหาย (เลือกได้หลายไฟล์)"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 15V3m0 0-4 4m4-4 4 4"></path><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"></path></svg><span class="csv-upload-text"> อัปโหลด CSV</span><input accept=".csv,text/csv" hidden id="csv-file" multiple type="file"/></label></div></div>
+</nav><nav aria-label="เลือกเนื้อหาบนมือถือ" class="mobile-tabs" role="tablist">
+<button aria-controls="mobile-overview-shortcuts" aria-selected="true" class="mobile-tab" data-tab="overview" id="mobile-tab-overview" role="tab" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="8" rx="2" width="8" x="3" y="3"></rect><rect height="8" rx="2" width="8" x="13" y="3"></rect><rect height="8" rx="2" width="8" x="3" y="13"></rect><rect height="8" rx="2" width="8" x="13" y="13"></rect></svg><span>ภาพรวม</span></button>
+<button aria-controls="mobile-map-actions" aria-selected="false" class="mobile-tab" data-tab="map" id="mobile-tab-map" role="tab" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z"></path><path d="M9 3v15m6-12v15"></path></svg><span>แผนที่</span></button>
+<button aria-controls="mobile-province-explorer" aria-selected="false" class="mobile-tab" data-tab="province" id="mobile-tab-province" role="tab" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 4h16v16H4z"></path><path d="M8 9h8M8 13h8M8 17h5"></path></svg><span>รายจังหวัด</span></button>
+</nav>
+<section aria-label="ตัวชี้วัดภาพรวม" class="top-grid">
+<article class="stat card maroon"><div class="stat-top"><span class="icon-box"><svg aria-hidden="true" class="lucide" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="17" rx="2" width="14" x="5" y="4"></rect><rect height="4" rx="1" width="6" x="9" y="2"></rect><path d="M9 11h6m-6 4h6"></path></svg></span><span class="stat-label">ขอความช่วยเหลือ</span></div><div class="stat-number"><strong class="stat-value" data-bind="totalRequests">-</strong><span class="stat-unit">คำร้อง</span></div><div class="stat-sub">แจ้งภัย <b data-bind="totalWarning">-</b> + ร้องขอความช่วยเหลือ <b data-bind="totalNeed">-</b> คำร้อง</div></article>
+<article class="stat card sky"><div class="stat-top"><span class="icon-box"><svg aria-hidden="true" class="lucide" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path><path d="M9 21v-7h6v7M3 10l9-7 9 7"></path></svg></span><span class="stat-label">ผู้ได้รับผลกระทบ</span></div><div class="stat-number"><strong class="stat-value" data-bind="totalHouseholds">-</strong><span class="stat-unit">ครัวเรือน</span></div><div class="stat-sub">จำนวนครัวเรือนที่ได้รับผลกระทบจากอุทกภัย</div></article>
+<article class="stat card rose"><div class="stat-top"><span class="icon-box"><svg aria-hidden="true" class="lucide" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 20v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><span class="stat-label">ผู้เปราะบาง</span></div><div class="stat-number"><strong class="stat-value" data-bind="totalVulnerable">-</strong><span class="stat-unit">ราย</span></div><div class="stat-sub">ยอดตามฟิลด์ผู้เปราะบางรายจังหวัด ไม่ใช่หน่วยครัวเรือน</div></article>
+<article aria-label="ให้ความช่วยเหลือแล้ว" class="stat card mobile-stat-help" id="stat-help-card">
+<div class="stat-top"><span aria-hidden="true" class="icon-box"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m20 6-11 11-5-5"></path></svg></span><span class="stat-label">ช่วยเหลือแล้ว</span></div>
+<div class="stat-number"><strong class="stat-value" data-bind="totalHelped">-</strong><span class="stat-unit">ครัวเรือน</span></div>
+<div class="stat-sub">จากผู้ได้รับผลกระทบ <span data-bind="totalHouseholds">-</span> ครัวเรือน</div>
+</article></section>
+<section aria-label="สรุปข้อมูลช่วงรายงาน" class="mobile-brief" id="mobile-brief">
+<div class="brief-static-head"><span class="brief-heading"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M8 3h8l4 4v14H4V3h4Z"></path><path d="M8 11h8M8 15h8M8 19h5"></path></svg> สรุปข้อมูลช่วงรายงาน</span></div>
+<div class="brief-data">
+<div><span>ช่วงข้อมูล</span><strong data-bind="periodShort">-</strong></div>
+<div><span>ประเภทภัย</span><strong>อุทกภัย</strong></div>
+<div><span>พื้นที่ได้รับผลกระทบ</span><strong><span data-bind="provCount">-</span> จังหวัด</strong></div>
+<div><span>แจ้งภัย / ร้องขอความช่วยเหลือ</span><strong><span data-bind="reqPair">-</span> คำร้อง</strong></div>
+</div>
+</section><section aria-label="ไปยังรายละเอียด" class="mobile-overview-shortcuts" id="mobile-overview-shortcuts">
+<button data-open-tab="map" type="button"><span class="shortcut-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z"></path><path d="M9 3v15m6-12v15"></path></svg></span><span><strong>ดูแผนที่</strong><small><span data-bind="provCount">-</span> จังหวัดที่ได้รับผลกระทบ</small></span><svg class="shortcut-chevron" fill="none" stroke="currentColor" stroke-width="1.9" viewbox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg></button>
+<button data-open-tab="province" type="button"><span class="shortcut-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="18" rx="2" width="16" x="4" y="3"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><span><strong>รายจังหวัด</strong><small>เลือกจาก <span data-bind="provCount">-</span> จังหวัด · ดูตัวเลขได้ทันที</small></span><svg class="shortcut-chevron" fill="none" stroke="currentColor" stroke-width="1.9" viewbox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg></button>
+</section>
+<section class="main">
+<section aria-label="แผนที่จังหวัดที่ได้รับผลกระทบ" class="panel map-panel">
+<div class="panel-head"><div><h2 class="section-title"><svg aria-hidden="true" class="lucide" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z"></path><path d="M9 3v15m6-12v15"></path></svg> พื้นที่ประสบอุทกภัย</h2><div class="panel-sub"><span data-bind="provCount">-</span> จังหวัดที่ได้รับผลกระทบ</div></div></div>
+<div class="map-wrap">
+<div aria-label="เลือกจังหวัด" class="mobile-map-picker" id="mobile-map-picker">
+<div class="mobile-picker-title"><strong>เลือกจังหวัดที่ได้รับผลกระทบ</strong><span>แตะเพื่อดูรายละเอียด</span></div>
+<div aria-label="จังหวัดที่ได้รับผลกระทบ" class="mobile-province-chips" id="mobile-province-chips" role="group"></div>
+</div><div class="map-stage">
+<svg aria-label="แผนที่ประเทศไทยขอบเขตระดับจังหวัด สีตามภาคเฉพาะจังหวัดที่ได้รับผลกระทบ" class="map-canvas" id="province-map" preserveaspectratio="xMidYMid meet" role="img" viewbox="0 0 1000 1000">
+<g id="province-shapes"></g><g id="province-labels"></g>
+</svg><div aria-hidden="true" class="map-html-labels" id="map-html-labels"></div>
+<div class="map-tooltip" id="map-tooltip" role="tooltip"></div>
+<div class="map-message" id="map-message"><div class="map-message-inner"><svg aria-hidden="true" class="lucide" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z"></path><path d="M9 3v15m6-12v15"></path></svg><h3 id="map-msg-title">กำลังโหลดขอบเขตจังหวัด</h3><p id="map-msg-copy">อ่านข้อมูลขอบเขตจังหวัดจริงจากแหล่งเผยแพร่ GeoJSON</p><button hidden="" id="retry-map" type="button">ลองโหลดแผนที่อีกครั้ง</button></div></div>
+</div><div class="mobile-map-actions" id="mobile-map-actions">
+<button class="mobile-map-province-detail" hidden="" id="mobile-map-province-detail" type="button">ดูข้อมูลรายจังหวัด <span aria-hidden="true">›</span></button>
+<div class="mobile-regions"><div class="mobile-regions-heading">คำอธิบายสีของภูมิภาค </div><div class="mobile-regions-note">แสดงสีเฉพาะจังหวัดที่ได้รับผลกระทบ ข้อมูลภูมิภาคทั้ง 6 ภาคยังครบถ้วนในรายงาน</div><div class="legend"></div></div>
+</div><section aria-live="polite" class="mobile-province-detail" hidden="" id="mobile-province-detail"></section>
+<div class="map-footer"><div class="map-selection"><strong id="selection-title">คลิกจังหวัดบนแผนที่ หรือเลือกจากตาราง</strong><small id="selection-sub">-</small></div><span class="selection-chip" id="selection-chip">-</span></div>
+<div class="legend"></div>
+<div class="attribution" id="map-source">ขอบเขตจังหวัด: GeoJSON ตามต้นฉบับผู้เผยแพร่ (แผนที่ไม่มีบริการภาพพื้นหลังที่อาจถูกปิดกั้น)</div>
+</div>
+</section><section aria-label="สรุปรายจังหวัดและข้อมูลเพิ่มเติม" class="panel mobile-onepage-summary">
+<div class="table-band"><div><h2 class="section-title"><svg aria-hidden="true" class="lucide" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6M8 13h8m-8 4h8"></path></svg> สรุปรายจังหวัดที่ได้รับผลกระทบ</h2><div class="panel-sub">ยอดรวมข้อมูลอุทกภัยตามหัวข้อตาราง</div></div><span class="badge"><span data-bind="provCount">-</span> จังหวัด</span></div>
+<div class="mobile-summary-body">
+<div aria-label="ยอดรวมข้อมูลรายจังหวัด" class="mobile-totals-list" role="group"><div class="mobile-totals-row"><div class="mobile-totals-label">จังหวัดที่ได้รับผลกระทบ</div><div class="mobile-totals-value plain"><span data-bind="provCount">-</span> จังหวัด</div></div><div class="mobile-totals-row"><div class="mobile-totals-label">จำนวนคำร้องแจ้งภัย / ร้องขอความช่วยเหลือ (คำร้อง)</div><div class="mobile-totals-value request" data-bind="reqPair">-</div></div><div class="mobile-totals-row"><div class="mobile-totals-label">จำนวนผู้ได้รับผลกระทบ (ครัวเรือน)</div><div class="mobile-totals-value household" data-bind="totalHouseholds">-</div></div><div class="mobile-totals-row"><div class="mobile-totals-label">ให้ความช่วยเหลือแล้ว (ครัวเรือน)</div><div class="mobile-totals-value help" data-bind="totalHelped">-</div></div><div class="mobile-totals-row"><div class="mobile-totals-label">ร้อยละให้ความช่วยเหลือแล้ว (ครัวเรือน)</div><div class="mobile-totals-value percentage" data-bind="totalPercent">-</div></div><div class="mobile-totals-row"><div class="mobile-totals-label">จำนวนผู้เปราะบาง (ราย)</div><div class="mobile-totals-value vulnerable" data-bind="totalVulnerable">-</div></div></div>
+<div class="extras-compact-grid">
+<article class="extras-compact-card insight-a"><div class="extra-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="4" rx="1" width="8" x="8" y="4"></rect><path d="M9 4.5H6a2 2 0 0 0-2 2V20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6.5a2 2 0 0 0-2-2h-3"></path><path d="M8 12h8M8 16h8"></path></svg></div><small>จังหวัดที่มีคำร้องมากที่สุด</small><strong data-bind="topRequest">-</strong><p>ข้อมูลเฉพาะอุทกภัยตามช่วงวันที่รายงาน</p></article>
+<article class="extras-compact-card insight-b"><div class="extra-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10Z"></path><path d="M9 21v-8h6v8"></path></svg></div><small>จังหวัดที่มีครัวเรือนได้รับผลกระทบมากที่สุด</small><strong data-bind="topHousehold">-</strong><p>ครัวเรือน</p></article>
+</div>
+<div class="mobile-source-note">แหล่งข้อมูล: รายงานจำนวนคำร้องและความเสียหาย · ข้อมูลวันที่ <span data-bind="periodShort">-</span> · ประเภทภัย “อุทกภัย”</div>
+</div>
+</section><section aria-label="ติดต่อสอบถามการใช้งาน" class="panel mobile-contact-bottom"><div class="contact-bottom-head">สอบถาม / แจ้งปัญหาการใช้งาน</div><div class="mobile-contact-grid"><article class="extras-compact-card contact-call"><div class="extra-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M8 3.5A8.5 8.5 0 0 0 3 11v4.5A2.5 2.5 0 0 0 5.5 18H7v-7H5.5M16 3.5A8.5 8.5 0 0 1 21 11v4.5a2.5 2.5 0 0 1-2.5 2.5H17v-7h1.5"></path><path d="M17 18a7 7 0 0 1-7 3H9"></path><rect height="7" rx="1" width="2.5" x="6" y="11"></rect><rect height="7" rx="1" width="2.5" x="15.5" y="11"></rect></svg></div><small>CALL CENTER · พ้นภัย</small><strong>สอบถาม / แจ้งปัญหาการใช้งาน</strong><p>สำนักงานบรรเทาทุกข์ฯ สภากาชาดไทย</p></article><article class="extras-compact-card contact-phone"><div class="extra-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.12.95.34 1.89.66 2.8a2 2 0 0 1-.45 2.11L8.03 9.9a16 16 0 0 0 6.07 6.07l1.28-1.28a2 2 0 0 1 2.11-.45c.91.32 1.85.54 2.8.66A2 2 0 0 1 22 16.9Z"></path></svg></div><small>โทรศัพท์ติดต่อ</small><strong>0-2251-7853-6 ต่อ 2207</strong><p>090-668-0506 · 084-507-6256 · 083-534-7304</p></article></div></section>
+<section aria-label="ตารางรายละเอียดจังหวัด" class="panel table-panel">
+<div class="table-band"><div><h2 class="section-title"><svg aria-hidden="true" class="lucide" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6M8 13h8m-8 4h8"></path></svg> รายชื่อจังหวัดที่ได้รับผลกระทบ</h2><div class="panel-sub">ข้อมูลอุทกภัยรายจังหวัด</div></div><span class="badge"><span data-bind="provCount">-</span> จังหวัด</span></div>
+<div class="table-wrap"><section aria-label="รายละเอียดจังหวัด" class="mobile-province-explorer" id="mobile-province-explorer">
+<label for="mobile-province-select">เลือกจังหวัดที่ได้รับผลกระทบ</label>
+<div class="mobile-select-shell"><select aria-label="เลือกจังหวัด" id="mobile-province-select"><option value="">กรุณาเลือกจังหวัด</option></select><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></div>
+<div aria-live="polite" class="mobile-explorer-detail" id="mobile-explorer-detail"></div>
+<details class="mobile-totals"><summary><strong>รวมทั้งหมด <span data-bind="provCount">-</span> จังหวัด</strong><span>ดูยอดรวม <span aria-hidden="true">⌄</span></span></summary><div class="mobile-totals-content" id="mobile-totals-content"></div></details>
+<details class="mobile-extras"><summary><strong>สรุปเพิ่มเติมและติดต่อสอบถาม</strong><span>ดูข้อมูล <span aria-hidden="true">⌄</span></span></summary><div class="mobile-extras-content"><div aria-label="สรุปจังหวัดที่มีจำนวนสูงสุด" class="table-foot"><div aria-label="จังหวัดที่มีคำร้องมากที่สุด" class="table-insight" role="group"><div aria-hidden="true" class="insight-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="4" rx="1" width="8" x="8" y="4"></rect><path d="M9 4.5H6a2 2 0 0 0-2 2V20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6.5a2 2 0 0 0-2-2h-3"></path><path d="M8 12h8M8 16h8"></path></svg></div><div class="insight-copy"><small>จังหวัดที่มีคำร้องมากที่สุด</small><strong data-bind="topRequest">-</strong><span>ข้อมูลเฉพาะอุทกภัยตามช่วงวันที่รายงาน</span></div></div><div aria-label="จังหวัดที่มีครัวเรือนได้รับผลกระทบมากที่สุด" class="table-insight" role="group"><div aria-hidden="true" class="insight-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10Z"></path><path d="M9 21v-8h6v8"></path></svg></div><div class="insight-copy"><small>จังหวัดที่มีครัวเรือนได้รับผลกระทบมากที่สุด</small><strong data-bind="topHousehold">-</strong><span>ครัวเรือน</span></div></div></div><section aria-label="ช่องทางติดต่อสอบถามและแจ้งปัญหาการใช้งาน" class="relief-contact">
+<div aria-label="หน่วยงานรับแจ้งปัญหา" class="contact-identity">
+<div aria-hidden="true" class="contact-lead-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M8 3.5A8.5 8.5 0 0 0 3 11v4.5A2.5 2.5 0 0 0 5.5 18H7v-7H5.5M16 3.5A8.5 8.5 0 0 1 21 11v4.5a2.5 2.5 0 0 1-2.5 2.5H17v-7h1.5"></path><path d="M17 18a7 7 0 0 1-7 3H9"></path><rect height="7" rx="1" width="2.5" x="6" y="11"></rect><rect height="7" rx="1" width="2.5" x="15.5" y="11"></rect></svg>
+</div>
+<div class="contact-identity-copy">
+<span class="contact-eyebrow">CALL CENTER · พ้นภัย</span>
+<h2>สอบถาม / แจ้งปัญหาการใช้งาน</h2>
+<p>สำนักงานบรรเทาทุกข์ฯ สภากาชาดไทย</p>
+</div>
+</div>
+<div aria-label="หมายเลขโทรศัพท์สำหรับติดต่อ" class="contact-numbers">
+<div class="contact-number-heading">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.12.95.34 1.89.66 2.8a2 2 0 0 1-.45 2.11L8.03 9.9a16 16 0 0 0 6.07 6.07l1.28-1.28a2 2 0 0 1 2.11-.45c.91.32 1.85.54 2.8.66A2 2 0 0 1 22 16.9Z"></path></svg>
+<span>โทรศัพท์ติดต่อ</span>
+</div>
+<p class="contact-primary"><a href="tel:022517853">0-2251-7853–6</a><small>ต่อ 2207</small></p>
+<div aria-label="หมายเลขโทรศัพท์เพิ่มเติม" class="contact-mobile">
+<a href="tel:0906680506">090-668-0506</a>
+<span aria-hidden="true">·</span>
+<a href="tel:0845076256">084-507-6256</a>
+<span aria-hidden="true">·</span>
+<a href="tel:0835347304">083-534-7304</a>
+</div>
+</div>
+</section></div></details>
+</section>
+<div class="table-scroll"><table aria-label="รายละเอียดจังหวัดที่ประสบอุทกภัย" class="data-table">
+<colgroup><col style="width:6%"/><col style="width:19%"/><col style="width:20%"/><col style="width:13.5%"/><col style="width:14%"/><col style="width:14%"/><col style="width:13.5%"/></colgroup>
+<thead>
+<tr>
+<th scope="col">ลำดับ</th>
+<th scope="col">จังหวัด</th>
+<th scope="col">จำนวนคำร้อง<br/>แจ้งภัย/ร้องขอ<br/>ความช่วยเหลือ<br/><small>(คำร้อง)</small></th>
+<th scope="col">จำนวนผู้ได้รับ<br/>ผลกระทบ<br/><small>(ครัวเรือน)</small></th>
+<th scope="col">ให้ความช่วยเหลือแล้ว<br/><small>(ครัวเรือน)</small></th>
+<th scope="col">ร้อยละให้ความช่วยเหลือแล้ว<br/><small>(ครัวเรือน)</small></th>
+<th scope="col">จำนวนผู้เปราะบาง<br/><small>(ราย)</small></th>
+</tr>
+</thead>
+<tbody id="province-tbody"></tbody>
+<tfoot id="province-tfoot"></tfoot>
+</table></div><div aria-label="สรุปจังหวัดที่มีจำนวนสูงสุด" class="table-foot"><div aria-label="จังหวัดที่มีคำร้องมากที่สุด" class="table-insight" role="group"><div aria-hidden="true" class="insight-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="4" rx="1" width="8" x="8" y="4"></rect><path d="M9 4.5H6a2 2 0 0 0-2 2V20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6.5a2 2 0 0 0-2-2h-3"></path><path d="M8 12h8M8 16h8"></path></svg></div><div class="insight-copy"><small>จังหวัดที่มีคำร้องมากที่สุด</small><strong data-bind="topRequest">-</strong><span>ข้อมูลเฉพาะอุทกภัยตามช่วงวันที่รายงาน</span></div></div><div aria-label="จังหวัดที่มีครัวเรือนได้รับผลกระทบมากที่สุด" class="table-insight" role="group"><div aria-hidden="true" class="insight-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10Z"></path><path d="M9 21v-8h6v8"></path></svg></div><div class="insight-copy"><small>จังหวัดที่มีครัวเรือนได้รับผลกระทบมากที่สุด</small><strong data-bind="topHousehold">-</strong><span>ครัวเรือน</span></div></div></div><section aria-label="ช่องทางติดต่อสอบถามและแจ้งปัญหาการใช้งาน" class="relief-contact">
+<div aria-label="หน่วยงานรับแจ้งปัญหา" class="contact-identity">
+<div aria-hidden="true" class="contact-lead-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M8 3.5A8.5 8.5 0 0 0 3 11v4.5A2.5 2.5 0 0 0 5.5 18H7v-7H5.5M16 3.5A8.5 8.5 0 0 1 21 11v4.5a2.5 2.5 0 0 1-2.5 2.5H17v-7h1.5"></path><path d="M17 18a7 7 0 0 1-7 3H9"></path><rect height="7" rx="1" width="2.5" x="6" y="11"></rect><rect height="7" rx="1" width="2.5" x="15.5" y="11"></rect></svg>
+</div>
+<div class="contact-identity-copy">
+<span class="contact-eyebrow">CALL CENTER · พ้นภัย</span>
+<h2>สอบถาม / แจ้งปัญหาการใช้งาน</h2>
+<p>สำนักงานบรรเทาทุกข์ฯ สภากาชาดไทย</p>
+</div>
+</div>
+<div aria-label="หมายเลขโทรศัพท์สำหรับติดต่อ" class="contact-numbers">
+<div class="contact-number-heading">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.12.95.34 1.89.66 2.8a2 2 0 0 1-.45 2.11L8.03 9.9a16 16 0 0 0 6.07 6.07l1.28-1.28a2 2 0 0 1 2.11-.45c.91.32 1.85.54 2.8.66A2 2 0 0 1 22 16.9Z"></path></svg>
+<span>โทรศัพท์ติดต่อ</span>
+</div>
+<p class="contact-primary"><a href="tel:022517853">0-2251-7853–6</a><small>ต่อ 2207</small></p>
+<div aria-label="หมายเลขโทรศัพท์เพิ่มเติม" class="contact-mobile">
+<a href="tel:0906680506">090-668-0506</a>
+<span aria-hidden="true">·</span>
+<a href="tel:0845076256">084-507-6256</a>
+<span aria-hidden="true">·</span>
+<a href="tel:0835347304">083-534-7304</a>
+</div>
+</div>
+</section>
+<div class="status-note" id="data-audit" role="status"></div>
+</div>
+</section>
+</section><footer class="bottom-note">แหล่งข้อมูล: รายงานจำนวนคำร้องและความเสียหาย · ข้อมูลวันที่ <span data-bind="periodShort">-</span> · ประเภทภัย “อุทกภัย”</footer></main>
+<script src="shared/csv.js"></script>
+<script>
+'use strict';
+// Data comes only from the CSV uploaded with the "อัปโหลด CSV" button; the page starts empty. See buildReport()/render().
+const DISASTER='อุทกภัย';
+let affectedData={}, stats=[], period={full:'-',short:'-'}, geoSource=null;
+let totalRequests=0,totalHouseholds=0,totalHelped=0,totalVulnerable=0,calculatedPercent=null;
+const regionColors = {"ภาคเหนือ": "#3975B9", "ภาคกลาง": "#D6AE62", "ภาคตะวันออก": "#DF9652", "ภาคตะวันตก": "#CE8296", "ภาคตะวันออกเฉียงเหนือ": "#6499D0", "ภาคใต้": "#913D50"};
+const escapeHTML = value => String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const number = value => value == null || !Number.isFinite(Number(value)) ? '-' : Number(value).toLocaleString('en-US');
+const formatPercent = val => val == null || !Number.isFinite(Number(val)) ? '-' : Number(val).toFixed(2) + '%';
+const aliases = {'กทม.':'กรุงเทพมหานคร','กรุงเทพฯ':'กรุงเทพมหานคร','จ.กรุงเทพมหานคร':'กรุงเทพมหานคร'};
+const fmtProv = v => { const clean=String(v||'').trim().replace(/^จ\./,''); return aliases[clean] || clean; };
+let provinceLayers=new Map();
+let currentView=null, initialCountryView=null, allProvinceBounds=null;
+let selectedProvince=null, mapReady=false, dragging=null;
+const mapStage=document.querySelector('.map-stage');
+const mapSVG=document.getElementById('province-map');
+const mapContent=document.getElementById('province-shapes');
+const mapLabels=document.getElementById('province-labels');
+const mapHtmlLabels=document.getElementById('map-html-labels');
+const labelAnchors=new Map();
+const mapTooltip=document.getElementById('map-tooltip');
+const mapMessage=document.getElementById('map-message');
+const credits=document.getElementById('map-source');
+const NS='http://www.w3.org/2000/svg';
+// Equirectangular projection with longitude scaled for latitude ~14 N, adequate for a province overview.
+const project = coord => [(coord[0]-96)*100*Math.cos(14*Math.PI/180), (22-coord[1])*100];
+const projectPath = geom => {
+  const rings = geom.type==='Polygon' ? geom.coordinates : geom.type==='MultiPolygon' ? geom.coordinates.flat() : [];
+  return rings.map(ring => ring.map((pt,i)=>{let q=project(pt);return (i===0?'M':'L')+q[0].toFixed(2)+' '+q[1].toFixed(2)}).join(' ')+' Z').join(' ');
+};
+const areaBounds = geom => {
+  const coords = geom.type==='Polygon'?geom.coordinates : geom.type==='MultiPolygon'?geom.coordinates.flat():[];
+  let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;
+  for(const ring of coords){ for(const p of ring){ const [x,y]=project(p);left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y); } }
+  return {left,top,right,bottom};
+};
+function makeView(bounds,pad=1.10){
+  const ratio = Math.max(.6,mapStage.clientWidth/mapStage.clientHeight);
+  const x=(bounds.left+bounds.right)/2,y=(bounds.top+bounds.bottom)/2;
+  const spanX=(bounds.right-bounds.left)*pad,spanY=(bounds.bottom-bounds.top)*pad;
+  const h=Math.max(spanY,spanX/ratio),w=h*ratio;
+  return {x:x-w/2,y:y-h/2,w,h};
+}
+function setView(next){ if(!next||!Number.isFinite(next.w)||!Number.isFinite(next.h))return; // NaN while the tab's iframe is hidden (size 0)
+ currentView=next;mapSVG.setAttribute('viewBox',`${next.x} ${next.y} ${next.w} ${next.h}`);positionLabels(); }
+function combineBounds(bounds){
+  if(!bounds.length)return null;
+  return {left:Math.min(...bounds.map(x=>x.left)),top:Math.min(...bounds.map(x=>x.top)),right:Math.max(...bounds.map(x=>x.right)),bottom:Math.max(...bounds.map(x=>x.bottom))};
+}
+function popup(info,province,ev){
+  const isAffected=!!info;
+  mapTooltip.innerHTML=`<h4>${escapeHTML(province)}</h4>
+    <div class="tooltip-sub">${isAffected?escapeHTML(info.region)+' • อุทกภัย':'ไม่พบข้อมูลอุทกภัยในช่วงที่รายงาน'}</div>
+    ${isAffected?`<div class="tool-row"><span>รวมคำร้อง</span><strong>${number(info.request_total)} คำร้อง</strong></div>
+    <div class="tool-row"><span>ได้รับผลกระทบ</span><strong>${number(info.all_household)} ครัวเรือน</strong></div>
+    <div class="tool-row"><span>ช่วยเหลือแล้ว</span><strong>${number(info.help_household)} ครัวเรือน</strong></div>
+    <div class="tool-row"><span>ร้อยละช่วยเหลือ</span><strong>${formatPercent(info.percent_help)}</strong></div>
+    <div class="tool-row"><span>ผู้เปราะบาง</span><strong>${number(info.vuner_count)} ราย</strong></div>`:''}`;
+  let rect=mapStage.getBoundingClientRect();let cx=ev?.clientX??(rect.left+rect.width*.5),cy=ev?.clientY??(rect.top+rect.height*.45);
+  const left=Math.max(10,Math.min(rect.width-300,cx-rect.left+15));
+  const top=Math.max(10,Math.min(rect.height-240,cy-rect.top-25));
+  mapTooltip.style.left=left+'px';mapTooltip.style.top=top+'px';mapTooltip.style.display='block';
+}
+function hideTooltip(){mapTooltip.style.display='none';}
+function updateSelection(province,{zoomTo=false,fromTable=false}={}){
+  selectedProvince=province;
+  for(const [name,layer] of provinceLayers){layer.el.classList.toggle('selected',name===province);}
+  document.querySelectorAll('.map-html-label').forEach(x=>x.classList.toggle('selected',x.dataset.province===province));
+  for(const row of document.querySelectorAll('.province-row')){const active=row.dataset.province===province;row.classList.toggle('selected-row',active);row.setAttribute('aria-selected',String(active));if(active&&!fromTable)row.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});}
+  let info=affectedData[province];
+  document.querySelector('#selection-title').textContent=info?province:'คลิกจังหวัดบนแผนที่ หรือเลือกจากตาราง';
+  document.querySelector('#selection-sub').textContent=info?`รวมคำร้อง ${number(info.request_total)} · ได้รับผลกระทบ ${number(info.all_household)} ครัวเรือน · ช่วยเหลือแล้ว ${number(info.help_household)} ครัวเรือน`:`ดูข้อมูล ${stats.length} จังหวัดที่พบ${DISASTER}`;
+  document.querySelector('#selection-chip').textContent=info?info.region:`${stats.length} จังหวัด`;
+  // Deliberately keep the national map viewport fixed when a province is selected.
+}
+function addMapLabel(name,point,dx,dy){
+  const el=document.createElement('span');el.className='map-html-label';el.textContent=name;el.dataset.province=name;
+  el.style.setProperty('--region',affectedData[name].color);
+  mapHtmlLabels.appendChild(el);labelAnchors.set(name,{point,dx,dy,el});
+}
+function positionLabels(){
+  if(!currentView || !labelAnchors.size)return;
+  const width=mapStage.clientWidth,height=mapStage.clientHeight,occupied=[];
+  for(const [name,item] of labelAnchors){
+    // getScreenCTM respects SVG preserveAspectRatio='xMidYMid meet'.
+    // Using canvas width/height directly caused label drift when panels resized.
+    const anchor=mapSVG.createSVGPoint();anchor.x=item.point.x;anchor.y=item.point.y;
+    const matrix=mapSVG.getScreenCTM();
+    if(!matrix)continue;
+    const position=anchor.matrixTransform(matrix);
+    const stageRect=mapStage.getBoundingClientRect();
+    const px=position.x-stageRect.left,py=position.y-stageRect.top;
+    let x=px+item.dx,y=py+item.dy;
+    const el=item.el;
+    el.style.display='block';
+    let w=el.offsetWidth||95,h=el.offsetHeight||25;
+    if(x<-w/2||x>width+w/2||y<-h/2||y>height+h/2){el.style.display='none';continue;}
+    const fit=(v,min,max)=>Math.max(min,Math.min(max,v));
+    const candidates=[
+      [x,y],[px-item.dx,py+item.dy],[px+item.dx,py-item.dy],
+      [px+item.dx,py+item.dy+h+10],[px+item.dx,py+item.dy-h-10],
+      [px,py-h-16],[px,py+h+16],[px-w/2-18,py],[px+w/2+18,py]
+    ];
+    const score=([a,b])=>{
+      const xx=fit(a,w/2+6,width-w/2-6),yy=fit(b,h/2+6,height-h/2-6);
+      const overlap=occupied.reduce((s,r)=>s+(Math.abs(r.x-xx)<(r.w+w)/2+9 && Math.abs(r.y-yy)<(r.h+h)/2+9?1:0),0);
+      return overlap*100000+Math.hypot(xx-x,yy-y)+Math.abs(xx-a)*2+Math.abs(yy-b)*2;
+    };
+    const best=candidates.sort((a,b)=>score(a)-score(b))[0];
+    x=fit(best[0],w/2+6,width-w/2-6);
+    y=fit(best[1],h/2+6,height-h/2-6);
+    el.style.left=x+'px';el.style.top=y+'px';occupied.push({x,y,w,h});
+  }
+}
+function drawMap(geo,sourceName){
+  if(!geo || !Array.isArray(geo.features) || geo.features.length<70) throw new Error('ข้อมูลขอบเขตจังหวัดไม่ครบ 77 จังหวัด');
+  mapContent.replaceChildren();mapLabels.replaceChildren();mapHtmlLabels.replaceChildren();labelAnchors.clear();provinceLayers.clear();
+  const allBounds=[];
+  for(const feature of geo.features){
+    const p=feature.properties||{};
+    const name=fmtProv(p.ADM1_TH||p.pro_th||p.PROV_NAM_T||p.name_th||p.name||p.province||p.PRO_TH);
+    if(!name||!feature.geometry)continue;
+    const info=affectedData[name];const bounds=areaBounds(feature.geometry);
+    if(!Number.isFinite(bounds.left))continue;
+    allBounds.push(bounds);
+    const el=document.createElementNS(NS,'path');el.setAttribute('d',projectPath(feature.geometry));el.classList.add('map-shape');el.setAttribute('fill-rule','evenodd');
+    if(info){el.classList.add('active');el.style.fill=info.color;el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',`จังหวัด${name}, ${info.request_total} คำร้อง`);}
+    el.dataset.province=name;
+    el.addEventListener('mouseenter',ev=>popup(info,name,ev));
+    el.addEventListener('mousemove',ev=>{if(!dragging)popup(info,name,ev);});
+    el.addEventListener('mouseleave',hideTooltip);
+    if(info){el.addEventListener('click',ev=>{updateSelection(name,{zoomTo:false,fromTable:true});popup(info,name,ev);});el.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();updateSelection(name,{zoomTo:true});}});}
+    mapContent.appendChild(el);provinceLayers.set(name,{el,bounds,info,feature});
+  }
+  const missing=Object.keys(affectedData).filter(name=>!provinceLayers.has(name));
+  if(missing.length) console.warn('ไม่พบขอบเขตจังหวัดบนแผนที่:',missing.join(', '));
+  allProvinceBounds=combineBounds(allBounds);
+  initialCountryView=makeView(allProvinceBounds,1.12);
+  setView(initialCountryView);
+  // Geographically anchored labels, nudged to avoid collision; province polygons are unchanged.
+  const offsets={'กรุงเทพมหานคร':[-85,-22],'ประจวบคีรีขันธ์':[-106,3],'ชุมพร':[65,-13],'กาฬสินธุ์':[70,-5],'สตูล':[-57,12],'สงขลา':[60,15]};
+  // ponytail: labels only the 6 provinces with most requests (more overlap in dense regions) (data is sorted); all provinces stay coloured/clickable.
+  for(const name of Object.keys(affectedData).filter(name=>provinceLayers.has(name)).slice(0,6)){
+    const layer=provinceLayers.get(name);const p=layer.feature.properties||{};
+    let point;
+    if(Number.isFinite(Number(p.lon))&&Number.isFinite(Number(p.lat))) {const [x,y]=project([Number(p.lon),Number(p.lat)]);point={x,y};}
+    else {point={x:(layer.bounds.left+layer.bounds.right)/2,y:(layer.bounds.top+layer.bounds.bottom)/2};}
+    const [dx,dy]=offsets[name]||[60,0];addMapLabel(name,point,dx,dy);
+  }
+  positionLabels();
+  mapReady=true;mapMessage.hidden=true;
+  const srcLink=sourceName.startsWith('Thailand Canonical') ? 'https://github.com/DevelopedbyWill/thailand-canonical-admin-names' : 'https://github.com/chingchai/OpenGISData-Thailand';
+  credits.innerHTML=`ขอบเขตจังหวัด: <a href="${srcLink}" target="_blank" rel="noopener noreferrer">${escapeHTML(sourceName)}</a> • แสดงข้อมูล ${stats.length} จังหวัดจากรายงาน`;updateSelection(null);
+}
+const GEOJSON_URLS=[
+  {url:'../thailand-provinces.geojson',name:'ไฟล์ GeoJSON ขอบเขตจังหวัด (ภายในเว็บไซต์)'},
+ {url:'https://cdn.jsdelivr.net/gh/DevelopedbyWill/thailand-canonical-admin-names@main/data/v1.0.0/thailand-adm1-polygons-v1.0.0.geojson',name:'Thailand Canonical Admin Names / OCHA CODs (CC BY 4.0)'},
+ {url:'https://raw.githubusercontent.com/DevelopedbyWill/thailand-canonical-admin-names/main/data/v1.0.0/thailand-adm1-polygons-v1.0.0.geojson',name:'Thailand Canonical Admin Names / OCHA CODs (CC BY 4.0)'},
+ {url:'https://cdn.jsdelivr.net/gh/chingchai/OpenGISData-Thailand@master/provinces.geojson',name:'OpenGISData Thailand'},
+ {url:'https://raw.githubusercontent.com/chingchai/OpenGISData-Thailand/master/provinces.geojson',name:'OpenGISData Thailand'}
+];
+async function requestGeo(src){
+  const abort=new AbortController();const timer=setTimeout(()=>abort.abort(),14000);
+  try{const res=await fetch(src.url,{mode:'cors',cache:'default',signal:abort.signal});if(!res.ok)throw new Error('HTTP '+res.status);const geo=await res.json();return {geo,name:src.name};}
+  finally{clearTimeout(timer);}
+}
+let loading=false;
+async function loadMap(){
+  if(loading)return;loading=true;mapReady=false;
+  mapMessage.hidden=false;
+  document.querySelector('#map-msg-title').textContent='กำลังโหลดขอบเขตจังหวัด';
+  document.querySelector('#map-msg-copy').textContent='อ่านข้อมูล GeoJSON ระดับจังหวัดจากแหล่งเผยแพร่ที่เปิดให้ใช้งาน';
+  document.querySelector('#retry-map').hidden=true;
+  let reasons=[];
+  // Fallback providers: no OpenStreetMap tile requests, no blocked basemap canvas.
+  for(const source of GEOJSON_URLS){
+    try{const result=await requestGeo(source);drawMap(result.geo,result.name);geoSource=result;loading=false;return;}
+    catch(err){reasons.push(source.url.split('/')[2]+': '+err.message);console.warn('GeoJSON provider not available:',err.message);}
+  }
+  document.querySelector('#map-msg-title').textContent='ยังไม่สามารถโหลดขอบเขตจังหวัดได้';
+  document.querySelector('#map-msg-copy').textContent='แผนที่ต้องใช้ข้อมูล GeoJSON จริง กรุณาตรวจสอบอินเทอร์เน็ตหรือเปิดไฟล์ผ่านเว็บเซิร์ฟเวอร์ แล้วลองโหลดอีกครั้ง (ไม่มีการสร้างแผนที่จำลองแทน)';
+  document.querySelector('#retry-map').hidden=false;
+  credits.textContent='ไม่สามารถดึงข้อมูลขอบเขตจังหวัดจากแหล่งเผยแพร่ได้';
+  loading=false;
+}
+if (typeof ResizeObserver !== 'undefined') new ResizeObserver(() => { if(mapReady && allProvinceBounds) setView(makeView(allProvinceBounds,1.12)); }).observe(mapStage);
+// Full-country map is static: no dragging, wheel zoom, or manual viewport controls.
+document.querySelector('#retry-map').addEventListener('click',loadMap);
+const provinceTbody=document.getElementById('province-tbody');
+const provinceTfoot=document.getElementById('province-tfoot');
+provinceTbody.addEventListener('click',ev=>{const row=ev.target.closest('.province-row');if(row)updateSelection(row.dataset.province,{zoomTo:false,fromTable:true});});
+provinceTbody.addEventListener('keydown',ev=>{const row=ev.target.closest('.province-row');if(row&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();updateSelection(row.dataset.province,{zoomTo:false,fromTable:true});}});
+loadMap();
+
+
+// V12: view switcher, touch selection and mobile data details. No data changes.
+const viewModes = ['web','mobile'];
+const mobileQuery = window.matchMedia('(max-width: 800px)');
+// Layout follows screen width (no manual Web/Mobile switch).
+function setDisplayMode(mode){
+  if(!viewModes.includes(mode)) return;
+  document.documentElement.classList.remove('view-web','view-mobile');
+  document.documentElement.classList.add('view-'+mode);
+  window.requestAnimationFrame(()=>{if(mapReady && allProvinceBounds){setView(makeView(allProvinceBounds,1.12));}});
+}
+setDisplayMode(mobileQuery.matches?'mobile':'web');
+mobileQuery.addEventListener('change',e=>setDisplayMode(e.matches?'mobile':'web'));
+const mobileChips = document.getElementById('mobile-province-chips');
+const mobileDetails = document.getElementById('mobile-province-detail');
+function showMobileSelection(name){
+  const info=affectedData[name];
+  mobileChips.querySelectorAll('button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.province===name)));
+  if(!info){mobileDetails.hidden=true;mobileDetails.replaceChildren();return;}
+  const item=(label,value,unit='')=>`<div class="mobile-detail-stat"><small>${escapeHTML(label)}</small><strong class="${value==null?'empty':''}">${number(value)}${unit?' '+escapeHTML(unit):''}</strong></div>`;
+  mobileDetails.innerHTML=`<h3>จังหวัด${escapeHTML(name)}</h3><p class="detail-sub">${escapeHTML(info.region)} · ${DISASTER} · ${escapeHTML(period.short)}</p>
+  <div class="mobile-detail-stats">
+  ${item('แจ้งภัย',info.all_issue_warning??0,'คำร้อง')}
+  ${item('ร้องขอความช่วยเหลือ',info.all_issue_need_help??0,'คำร้อง')}
+  ${item('ผู้ได้รับผลกระทบ',info.all_household,'ครัวเรือน')}
+  ${item('ช่วยเหลือแล้ว',info.help_household,'ครัวเรือน')}
+  ${item('ผู้เปราะบาง',info.vuner_count,'ราย')}
+  <div class="mobile-detail-stat"><small>ร้อยละให้ความช่วยเหลือ</small><strong>${formatPercent(info.percent_help)}</strong></div>
+  </div>`;
+  mobileDetails.hidden=false;
+}
+// Keep mobile details synchronized with selecting a row, path or province label.
+const originalUpdateSelection=updateSelection;
+updateSelection=function(province,opts={}){
+  originalUpdateSelection(province,opts);
+  showMobileSelection(province);
+};
+// Labels are button-like targets on mobile, even where provincial shapes are small.
+const originalAddMapLabel=addMapLabel;
+addMapLabel=function(name,point,dx,dy){
+  originalAddMapLabel(name,point,dx,dy);
+  const el=labelAnchors.get(name)?.el;
+  if(el){el.setAttribute('role','button');el.setAttribute('tabindex','0');el.setAttribute('aria-label','ดูข้อมูลจังหวัด'+name);
+    el.addEventListener('click',ev=>{updateSelection(name,{zoomTo:false,fromTable:true});popup(affectedData[name],name,ev);});
+    el.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();updateSelection(name,{zoomTo:true});}});
+  }
+};
+// Native click/tap on SVG province paths and on province labels is supported.
+// Gestures on the map scroll the page normally; they do not pan or zoom the map.
+mapStage.addEventListener('click',ev=>{
+  if(ev.target===mapStage || ev.target===mapSVG) hideTooltip();
+});
+
+
+// V16 mobile tabs: one focused task at a time. Desktop display untouched.
+const v16tabButtons=[...document.querySelectorAll('.mobile-tab')];
+const v16select=document.getElementById('mobile-province-select');
+const v16explorer=document.getElementById('mobile-explorer-detail');
+const v16totals=document.getElementById('mobile-totals-content');
+const v16MapDetail=document.getElementById('mobile-map-province-detail');
+const v16fmt=(value)=>value===null||value===undefined?'-':number(value);
+function v16row(label,value,color=''){
+  return `<div class="explorer-row"><span>${escapeHTML(label)}</span><strong class="${color}">${escapeHTML(String(value))}</strong></div>`;
+}
+function v16renderProvince(province){
+  const info=affectedData[province];
+  v16select.value=info?province:'';
+  if(!info){v16explorer.innerHTML='<div class="explorer-prov-heading"><strong>เลือกจังหวัดเพื่อดูรายละเอียด</strong></div>';return;}
+  const w=info.all_issue_warning??0, n=info.all_issue_need_help??0;
+  v16explorer.innerHTML=`<div class="explorer-prov-heading"><strong>${escapeHTML(province)}</strong><small>${escapeHTML(info.region)}</small></div>
+   <div class="explorer-rows">
+   ${v16row('จำนวนคำร้องแจ้งภัย / ร้องขอความช่วยเหลือ',number(w)+' / '+number(n),'r')}
+   ${v16row('จำนวนผู้ได้รับผลกระทบ (ครัวเรือน)',v16fmt(info.all_household),'')}
+   ${v16row('ให้ความช่วยเหลือแล้ว (ครัวเรือน)',v16fmt(info.help_household),'b')}
+   ${v16row('ร้อยละให้ความช่วยเหลือแล้ว',formatPercent(info.percent_help),'g')}
+   ${v16row('จำนวนผู้เปราะบาง (ราย)',v16fmt(info.vuner_count),'p')}
+   </div>`;
+}
+function v16setTab(tab,{scroll=true}={}){
+ if(!['overview','map','province'].includes(tab))return;
+ document.documentElement.dataset.mobileTab=tab;
+ v16tabButtons.forEach(btn=>{const selected=btn.dataset.tab===tab;btn.setAttribute('aria-selected',String(selected));btn.tabIndex=selected?0:-1;});
+ if(tab==='map'){
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{if(mapReady && allProvinceBounds){setView(makeView(allProvinceBounds,1.12));positionLabels();}}));
+ }
+ if(scroll && document.documentElement.classList.contains('view-mobile')){
+   const tabs=document.querySelector('.mobile-tabs');
+   const target=Math.max(0,tabs.getBoundingClientRect().top+window.scrollY-7);
+   window.scrollTo({top:target,behavior:'instant'});
+ }
+}
+v16tabButtons.forEach((button,index)=>{
+ button.addEventListener('click',()=>v16setTab(button.dataset.tab));
+ button.addEventListener('keydown',(event)=>{
+  if(!['ArrowRight','ArrowLeft','Home','End'].includes(event.key))return;
+  event.preventDefault();
+  const target=event.key==='Home'?0:event.key==='End'?2:(index+(event.key==='ArrowRight'?1:2))%3;
+  v16tabButtons[target].focus();v16setTab(v16tabButtons[target].dataset.tab,{scroll:false});
+ });
+});
+document.querySelectorAll('[data-open-tab]').forEach(btn=>btn.addEventListener('click',()=>v16setTab(btn.dataset.openTab)));
+v16select.addEventListener('change',()=>{
+ const name=v16select.value;
+ updateSelection(name||null,{zoomTo:false,fromTable:true});
+ v16renderProvince(name);
+});
+v16MapDetail.addEventListener('click',()=>v16setTab('province'));
+const v16OldUpdateSelection=updateSelection;
+updateSelection=function(name,opts={}){
+ v16OldUpdateSelection(name,opts);
+ v16renderProvince(name);
+ v16MapDetail.hidden=!Boolean(affectedData[name]);
+};
+// Initial selection is deliberately unset: users opt into a province from dropdown/map.
+v16renderProvince(null);
+v16setTab('overview',{scroll:false});
+const v16OldSetDisplayMode=setDisplayMode;
+setDisplayMode=function(mode){
+ v16OldSetDisplayMode(mode);
+ if(mode==='mobile')v16setTab(document.documentElement.dataset.mobileTab||'overview',{scroll:false});
+};
+
+// ---------- CSV -> dashboard ----------
+const REQUIRED_COLS=['province','disaster','region','all_issue_warning','all_issue_need_help','all_household','help_household','vuner_count'];
+// One CSV file -> {records, periodLine}. Errors name the file so a bad file in a multi-upload is easy to find.
+function readReportFile(text,fileName){
+  const rows=parseCSV(text.replace(/^﻿/,''));
+  const head=rows.findIndex(r=>String(r[0]).trim()==='province');
+  if(head<0) throw new Error(`${fileName}: ไม่พบแถวหัวคอลัมน์ที่ขึ้นต้นด้วย "province"`);
+  const cols=rows[head].map(c=>c.trim());
+  const missing=REQUIRED_COLS.filter(c=>!cols.includes(c));
+  if(missing.length) throw new Error(`${fileName}: ไม่พบคอลัมน์ ${missing.join(', ')}`);
+  const periodLine=rows.slice(0,head).map(r=>r.join('').trim()).find(t=>/\d{4}/.test(t))||'';
+  const records=rows.slice(head+1).map(r=>Object.fromEntries(cols.map((c,i)=>[c,String(r[i]??'').trim()])));
+  return {records,periodLine};
+}
+// files: [{name,text}]. Rows from all files are combined; the same province in several files is summed.
+function buildReport(files){
+  const data={},periodLines=[];
+  for(const file of files){
+    const {records,periodLine}=readReportFile(file.text,file.name);
+    if(periodLine) periodLines.push(periodLine);
+    for(const o of records){
+      if(o.disaster!==DISASTER) continue;
+      const name=fmtProv(o.province);if(!name) continue;
+      const d=data[name]??={province:name,region:o.region,color:regionColors[o.region]||'#9AA3AF',all_issue_warning:null,all_issue_need_help:null,all_household:null,help_household:null,vuner_count:null};
+      for(const k of ['all_issue_warning','all_issue_need_help','all_household','help_household']){const v=toNum(o[k]);if(v!=null)d[k]=(d[k]||0)+v;}
+      const vc=toNum(o.vuner_count);if(vc!=null)d.vuner_count=Math.max(d.vuner_count||0,vc); // per-province figure, not additive
+    }
+  }
+  const list=Object.values(data);
+  if(!list.length) throw new Error(`ไม่พบแถวที่ disaster = "${DISASTER}" ในไฟล์ที่เลือก`);
+  for(const d of list){
+    d.request_total=(d.all_issue_warning||0)+(d.all_issue_need_help||0);
+    d.percent_help=d.all_household&&d.help_household!=null?100*d.help_household/d.all_household:null;
+  }
+  list.sort((a,b)=>b.request_total-a.request_total||(b.all_household??-1)-(a.all_household??-1));
+  return {data:Object.fromEntries(list.map(d=>[d.province,d])),period:mergePeriods(periodLines)};
+}
+function render(fileLabel){
+  stats=Object.values(affectedData);
+  const sum=k=>stats.reduce((s,r)=>s+(r[k]||0),0);
+  const totalWarning=sum('all_issue_warning'),totalNeed=sum('all_issue_need_help');
+  totalRequests=sum('request_total');totalHouseholds=sum('all_household');totalHelped=sum('help_household');totalVulnerable=sum('vuner_count');
+  calculatedPercent=totalHouseholds?100*totalHelped/totalHouseholds:null;
+  const top=k=>stats.reduce((best,r)=>(r[k]||0)>(best?.[k]||0)?r:best,null);
+  const topReq=top('request_total'),topHh=top('all_household');
+  const vals={periodFull:period.full,periodShort:period.short,provCount:number(stats.length),
+    totalRequests:number(totalRequests),totalWarning:number(totalWarning),totalNeed:number(totalNeed),reqPair:number(totalWarning)+' / '+number(totalNeed),
+    totalHouseholds:number(totalHouseholds),totalHelped:number(totalHelped),totalVulnerable:number(totalVulnerable),totalPercent:formatPercent(calculatedPercent),
+    topRequest:topReq?`${topReq.province} · ${number(topReq.request_total)} คำร้อง`:'-',
+    topHousehold:topHh?`${topHh.province} · ${number(topHh.all_household)}`:'-'};
+  if(!stats.length) for(const k in vals) vals[k]='-'; // empty until a CSV is uploaded
+  document.querySelectorAll('[data-bind]').forEach(el=>{el.textContent=vals[el.dataset.bind]??'-';});
+  document.getElementById('stat-help-card').setAttribute('aria-label',`ให้ความช่วยเหลือแล้ว ${number(totalHelped)} ครัวเรือน`);
+  const regions=Object.entries(regionColors).map(([region,color])=>({region,color,names:stats.filter(r=>r.region===region).map(r=>r.province)}));
+  regions.sort((a,b)=>!a.names.length-!b.names.length);
+  const legendHTML=regions.map(({region,color,names})=>`<div class="legend-item${names.length?'':' is-empty'}"><span class="legend-dot" style="background:${color}"></span><span class="legend-copy"><strong>${escapeHTML(region)}</strong><small>${names.length?`${names.length} จังหวัด · ${escapeHTML(names.join(', '))}`:'ไม่พบจังหวัดที่ได้รับผลกระทบ'}</small></span></div>`).join('');
+  document.querySelectorAll('.legend').forEach(el=>{el.innerHTML=legendHTML;});
+  const cell=(cls,label,v,text)=>`<td class="${v==null?'dash':cls}" data-label="${label}">${v==null?'-':text}</td>`;
+  provinceTbody.innerHTML=stats.map((r,i)=>`<tr class="province-row" data-province="${escapeHTML(r.province)}" role="button" tabindex="0" title="คลิกเพื่อดูจังหวัดบนแผนที่">
+<td class="order" data-label="ลำดับ">${String(i+1).padStart(2,'0')}</td>
+<td class="province-name" data-label="จังหวัด">${escapeHTML(r.province)}</td>
+<td class="request-compact" data-label="แจ้งภัย / ร้องขอความช่วยเหลือ">${number(r.all_issue_warning||0)}/${number(r.all_issue_need_help||0)}</td>
+${cell('affected-num','ผู้ได้รับผลกระทบ (ครัวเรือน)',r.all_household,number(r.all_household))}
+${cell('help-num','ให้ความช่วยเหลือแล้ว (ครัวเรือน)',r.help_household,number(r.help_household))}
+${cell('percent-num','ร้อยละให้ความช่วยเหลือแล้ว',r.percent_help,+Number(r.percent_help).toFixed(2))}
+${cell('vulnerable-num','จำนวนผู้เปราะบาง (ราย)',r.vuner_count,number(r.vuner_count))}
+</tr>`).join('')||'<tr><td colspan="7" class="dash" style="text-align:center;padding:28px 12px">ยังไม่มีข้อมูล · กด “อัปโหลด CSV” เพื่อแสดงข้อมูล</td></tr>';
+  provinceTfoot.innerHTML=!stats.length?'':`<tr><td colspan="2" data-label="รวมทั้งหมด">รวมทั้งหมด</td><td class="request-compact" data-label="แจ้งภัย / ร้องขอความช่วยเหลือ">${number(totalWarning)}/${number(totalNeed)}</td><td class="affected-num" data-label="ผู้ได้รับผลกระทบ">${number(totalHouseholds)}</td><td class="help-num" data-label="ให้ความช่วยเหลือแล้ว">${number(totalHelped)}</td><td class="percent-num" data-label="ร้อยละช่วยเหลือ">${calculatedPercent==null?'-':calculatedPercent.toFixed(2)}</td><td class="vulnerable-num" data-label="ผู้เปราะบาง">${number(totalVulnerable)}</td></tr>`;
+  mobileChips.replaceChildren();
+  v16select.length=1;
+  for(const [name,info] of Object.entries(affectedData)){
+    const chip=document.createElement('button');chip.type='button';chip.className='province-chip-btn';
+    chip.dataset.province=name;chip.setAttribute('aria-pressed','false');
+    const dot=document.createElement('span');dot.className='province-chip-dot';dot.style.setProperty('--dot',info.color);
+    const label=document.createElement('span');label.textContent=name;
+    chip.append(dot,label);
+    chip.addEventListener('click',()=>updateSelection(name,{zoomTo:mapReady,fromTable:true}));
+    mobileChips.appendChild(chip);
+    v16select.add(new Option(name,name));
+  }
+  v16totals.innerHTML=[
+   v16row('จำนวนคำร้องแจ้งภัย / ร้องขอความช่วยเหลือ',number(totalWarning)+' / '+number(totalNeed),'r'),
+   v16row('จำนวนผู้ได้รับผลกระทบ (ครัวเรือน)',number(totalHouseholds)),
+   v16row('ให้ความช่วยเหลือแล้ว (ครัวเรือน)',number(totalHelped),'b'),
+   v16row('ร้อยละให้ความช่วยเหลือแล้ว',formatPercent(calculatedPercent),'g'),
+   v16row('จำนวนผู้เปราะบาง (ราย)',number(totalVulnerable),'p')
+  ].join('');
+  document.querySelector('#data-audit').textContent=stats.length?`ข้อมูลจาก ${fileLabel} · ${stats.length} จังหวัด (${DISASTER})`:'ยังไม่มีข้อมูล กรุณากด “อัปโหลด CSV”';
+  hideTooltip();
+  if(geoSource) drawMap(geoSource.geo,geoSource.name); else updateSelection(null);
+}
+// Each upload replaces what is shown with the files picked in that upload (one or many).
+document.getElementById('csv-file').addEventListener('change',async ev=>{
+  const picked=[...ev.target.files];ev.target.value='';
+  if(!picked.length)return;
+  try{
+    const files=await readCSVFiles(picked);
+    const report=buildReport(files);
+    const label=picked.length===1?picked[0].name:`${picked.length} ไฟล์: ${picked.map(f=>f.name).join(', ')}`;
+    affectedData=report.data;period=report.period;render(label);
+    document.getElementById('csv-file-name').textContent=label;
+  }catch(err){console.error(err);alert('อ่านไฟล์ CSV ไม่สำเร็จ: '+err.message);}
+});
+render('-');
+</script>
+<script>
+(function(){
+  function applyV18OnePage(){
+    var root=document.documentElement;
+    if(!root.classList.contains('view-mobile')) return;
+    var mapPicker=document.getElementById('mobile-map-picker');
+    if(mapPicker) mapPicker.hidden=true;
+    var mapDetail=document.getElementById('mobile-province-detail');
+    if(mapDetail) mapDetail.hidden=true;
+    var tabs=document.getElementById('mobile-tabs');
+    if(tabs) tabs.setAttribute('hidden','hidden');
+    root.dataset.mobileTab='overview';
+  }
+  window.addEventListener('load',applyV18OnePage);
+  window.addEventListener('resize',applyV18OnePage);
+})();
+</script></body></html>

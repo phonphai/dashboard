@@ -1,0 +1,68 @@
+<!doctype html>
+<!--
+  แม่แบบ dashboard ใหม่
+  1. copy ไฟล์นี้เป็นชื่อใหม่ในโฟลเดอร์ dashboards/ เช่น dashboards/region.html
+  2. แก้ค่าในส่วน renderDashboard({...}) ด้านล่าง
+  3. เพิ่ม 1 บรรทัดในรายการ DASHBOARDS ที่ index.html เพื่อให้มีแท็บ
+  ไฟล์นี้ใช้ได้เลยกับ source/md_flood_report.csv (สรุปคำร้องรายภาค) ลองเปิดไฟล์นี้ตรงๆ แล้วอัปโหลดดูได้
+-->
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="shared/simple-dashboard.css" rel="stylesheet">
+</head>
+<body>
+<script src="shared/csv.js"></script>
+<script src="shared/simple-dashboard.js"></script>
+<script>
+renderDashboard({
+  // ---------- หัวหน้า ----------
+  title: 'สรุปคำร้องรายภาค',                       // ชื่อ dashboard (หัวข้อใหญ่)
+  eyebrow: 'รายงานจำนวนคำร้องและความเสียหาย · รายภาค', // ข้อความเล็กเหนือหัวข้อ
+
+  // ---------- การอ่านไฟล์ ----------
+  // ช่องแรกของแถวหัวคอลัมน์ในไฟล์ CSV (แถวที่อยู่ก่อนหน้าถือเป็นหัวรายงาน และใช้หาช่วงวันที่)
+  // ถ้าไม่ใส่ จะเลือกแถวที่มีข้อมูลครบที่สุดเป็นหัวคอลัมน์
+  headerFirstColumn: 'province',
+
+  // เลือกเฉพาะแถวที่ต้องการ (ลบบรรทัดนี้ถ้าต้องการทุกแถว)
+  // ตัวอย่าง: row => row.disaster === 'อุทกภัย'
+  filter: row => row.disaster === 'อุทกภัย',
+
+  // รวมแถวที่ค่าในคอลัมน์นี้เหมือนกันเป็นแถวเดียว (คอลัมน์ตัวเลขจะถูกบวกรวม) ลบบรรทัดนี้ถ้าไม่ต้องการรวม
+  groupBy: 'region',
+
+  // เรียงตารางจากมากไปน้อยตามคอลัมน์นี้ (ลบบรรทัดนี้ถ้าต้องการลำดับตามไฟล์)
+  sortBy: 'all_issue',
+
+  // ---------- การ์ดตัวเลขด้านบน ----------
+  //   { label, column, unit }   ผลรวมของคอลัมน์นั้น
+  //   { label, count: true }    จำนวนแถวในตาราง
+  kpis: [
+    { label: 'คำร้องทั้งหมด', column: 'all_issue', unit: 'คำร้อง' },
+    { label: 'ครัวเรือนได้รับผลกระทบ', column: 'all_household', unit: 'ครัวเรือน' },
+    { label: 'ช่วยเหลือแล้ว', column: 'help_household', unit: 'ครัวเรือน' },
+    { label: 'จำนวนภาค', count: true, unit: 'ภาค' },
+  ],
+
+  // ---------- ตาราง ----------
+  //   { label, column }                 ข้อความ
+  //   { label, column, number: true }   ตัวเลข (บวกรวมเมื่อมี groupBy และแสดงผลรวมแถวล่าง)
+  //   { label, distinct: 'คอลัมน์' }     นับจำนวนค่าที่ไม่ซ้ำ เช่น จำนวนจังหวัดในแต่ละภาค
+  tableTitle: 'คำร้องแยกตามภาค',
+  columns: [
+    { label: 'ภาค', column: 'region' },
+    { label: 'จังหวัด', distinct: 'province' },
+    { label: 'แจ้งภัย', column: 'all_issue_warning', number: true },
+    { label: 'ร้องขอความช่วยเหลือ', column: 'all_issue_need_help', number: true },
+    { label: 'คำร้องทั้งหมด', column: 'all_issue', number: true },
+    { label: 'ครัวเรือนได้รับผลกระทบ', column: 'all_household', number: true },
+    { label: 'ช่วยเหลือแล้ว', column: 'help_household', number: true },
+  ],
+});
+</script>
+</body>
+</html>

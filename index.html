@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard พ้นภัย</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--maroon:#913D50;--secondary:#758091;--line:#E5EAF0;--bg:#F5F7FA}
+html,body{height:100%;margin:0}
+body{display:flex;flex-direction:column;background:var(--bg);font-family:'Sarabun','Noto Sans Thai','Segoe UI',Tahoma,sans-serif}
+.tabs{flex:none;display:flex;gap:6px;padding:8px 16px;background:#fff;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{flex:none;padding:8px 16px;border:1px solid transparent;border-radius:10px;background:transparent;font:inherit;font-size:14px;font-weight:800;color:var(--secondary);cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--maroon)}
+.tab[aria-selected="true"]{background:#F7EEF0;border-color:#E7D1D8;color:var(--maroon)}
+.tab:focus-visible{outline:3px solid #6499D0;outline-offset:2px}
+.frames{flex:1;position:relative;min-height:0}
+.frames iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+</style>
+</head>
+<body>
+<nav class="tabs" id="tabs" role="tablist" aria-label="เลือก Dashboard"></nav>
+<div class="frames" id="frames"></div>
+<script>
+'use strict';
+// ===== รายการ dashboard (ลำดับ = ลำดับแท็บ) =====
+// เพิ่ม dashboard ใหม่: copy dashboards/_template.html เป็นไฟล์ใหม่ แก้ค่าในไฟล์นั้น แล้วเพิ่ม 1 บรรทัดตรงนี้
+//   id    ชื่อสั้นภาษาอังกฤษ ใช้ในลิงก์ เช่น index.html#flood
+//   title ข้อความบนแท็บ
+//   file  ไฟล์ dashboard
+const DASHBOARDS = [
+  { id: 'flood',     title: 'อุทกภัยรายจังหวัด', file: 'dashboards/flood.html' },
+  { id: 'disasters', title: 'สรุปคำร้องทุกประเภทภัย',  file: 'dashboards/disasters.html' },
+];
+
+const tabs = document.getElementById('tabs');
+const frames = document.getElementById('frames');
+const loaded = new Map(); // id -> iframe; each tab is loaded once and kept, so uploaded data survives tab switches
+
+function show(id) {
+  const dash = DASHBOARDS.find(d => d.id === id) || DASHBOARDS[0];
+  if (!loaded.has(dash.id)) {
+    const frame = document.createElement('iframe');
+    frame.src = dash.file;
+    frame.title = dash.title;
+    frames.appendChild(frame);
+    loaded.set(dash.id, frame);
+  }
+  for (const [key, frame] of loaded) frame.hidden = key !== dash.id;
+  for (const btn of tabs.children) btn.setAttribute('aria-selected', String(btn.dataset.id === dash.id));
+  if (location.hash.slice(1) !== dash.id) history.replaceState(null, '', '#' + dash.id);
+  document.title = dash.title + ' · Dashboard พ้นภัย';
+}
+
+for (const dash of DASHBOARDS) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'tab';
+  btn.setAttribute('role', 'tab');
+  btn.dataset.id = dash.id;
+  btn.textContent = dash.title;
+  btn.addEventListener('click', () => show(dash.id));
+  tabs.appendChild(btn);
+}
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+show(location.hash.slice(1));
+</script>
+</body>
+</html>

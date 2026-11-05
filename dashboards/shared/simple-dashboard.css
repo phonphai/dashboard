@@ -1,0 +1,45 @@
+/* หน้าตาของ dashboard ที่สร้างจาก simple-dashboard.js — สีและฟอนต์ชุดเดียวกับ flood.html */
+:root{--maroon:#913D50;--sky:#6499D0;--bg:#F5F7FA;--paper:#FFFFFF;--ink:#303947;--secondary:#758091;--line:#E5EAF0;--shadow:0 3px 16px rgba(37,53,74,.045);--radius:18px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Sarabun','Noto Sans Thai','Segoe UI',Tahoma,sans-serif;font-size:15px;line-height:1.54}
+.sd-page{max-width:1820px;margin:auto;padding:22px 24px 26px;display:grid;gap:16px}
+.sd-card,.sd-hero,.sd-bar{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.sd-hero{padding:19px 23px;border-left:5px solid var(--maroon)}
+.sd-eyebrow{color:var(--maroon);font-size:12px;letter-spacing:.04em;font-weight:800}
+.sd-hero h1{margin:2px 0 4px;font-size:30px;line-height:1.25;font-weight:800}
+.sd-hero p{margin:0;color:var(--secondary)}
+.sd-hero strong{color:var(--ink)}
+.sd-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 13px 10px 16px}
+.sd-bar strong{display:block;font-size:14px;font-weight:800}
+.sd-bar small{display:block;font-size:12px;color:var(--secondary);overflow-wrap:anywhere}
+.sd-upload{display:inline-flex;align-items:center;gap:7px;flex:none;padding:8px 14px;min-height:42px;border-radius:12px;background:#F4F6F8;border:1px solid var(--line);font-size:13px;font-weight:800;color:#758091;cursor:pointer}
+.sd-upload:hover{color:var(--maroon)}
+.sd-upload svg{width:18px;height:18px}
+.sd-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.sd-kpi{position:relative;overflow:hidden;padding:19px 22px 17px;display:flex;flex-direction:column;gap:4px}
+.sd-kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
+.sd-kpi span{font-weight:800}
+.sd-kpi strong{font-size:34px;line-height:1.15;font-weight:800}
+.sd-kpi small{color:var(--secondary)}
+.sd-panel{overflow:hidden}
+.sd-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 19px;border-bottom:1px solid var(--line)}
+.sd-panel-head h2{margin:0;font-size:19px;font-weight:800}
+.sd-badge{padding:5px 10px;background:#F7F0F2;border-radius:999px;font-weight:800;color:var(--maroon);font-size:12px;white-space:nowrap}
+.sd-table-wrap{overflow:auto;max-height:560px;margin:12px;border:1px solid var(--line);border-radius:12px}
+.sd-table{width:100%;border-collapse:collapse;font-size:14px}
+.sd-table th{position:sticky;top:0;background:#EEF5FC;color:#3975B9;font-size:12.5px;font-weight:800;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+.sd-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.sd-table .num{text-align:right;font-variant-numeric:tabular-nums}
+.sd-table tbody tr:hover{background:#FAFBFC}
+.sd-table tfoot td{position:sticky;bottom:0;background:#F5F7FA;font-weight:800;border-top:2px solid var(--line)}
+.sd-order{color:var(--secondary);width:56px}
+.sd-empty{text-align:center;color:var(--secondary);padding:28px 12px}
+@media (max-width:800px){
+  .sd-page{padding:12px;gap:12px}
+  .sd-hero h1{font-size:22px}
+  .sd-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .sd-kpi{padding:14px 16px}
+  .sd-kpi strong{font-size:24px}
+  .sd-bar small{display:none}
+  .sd-table th,.sd-table td{white-space:nowrap;padding:9px 10px}
+}
