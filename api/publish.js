@@ -42,13 +42,21 @@ export default async function handler(req, res) {
   const publishedAt = new Date().toISOString();
   const folder = `published/${publishedAt.replace(/[:.]/g, '-')}`;
   const saved = [];
-  for (const [i, f] of files.entries()) {
-    const pathname = `${folder}/${i + 1}.csv`; // original names (often Thai) live in the pointer, not the path
-    await put(pathname, f.text, { access: 'private', contentType: 'text/csv; charset=utf-8' });
-    saved.push({ name: f.name.slice(0, 200), pathname });
+  try {
+    for (const [i, f] of files.entries()) {
+      const pathname = `${folder}/${i + 1}.csv`; // original names (often Thai) live in the pointer, not the path
+      await put(pathname, f.text, { access: 'private', contentType: 'text/csv; charset=utf-8' });
+      saved.push({ name: f.name.slice(0, 200), pathname });
+    }
+    await put('latest.json', JSON.stringify({ publishedAt, files: saved }), {
+      access: 'private', contentType: 'application/json', allowOverwrite: true, cacheControlMaxAge: 60,
+    });
+  } catch (err) {
+    // Usually setup: no Blob store connected / not redeployed since (no BLOB_READ_WRITE_TOKEN), or a public-only store.
+    // The SDK message names the cause and holds no secret, so pass it on for the person sharing to report.
+    console.error(err);
+    const hint = process.env.BLOB_READ_WRITE_TOKEN ? '' : ' (ไม่พบ BLOB_READ_WRITE_TOKEN: เชื่อม Blob store กับโปรเจกต์แล้ว Redeploy)';
+    return res.status(500).json({ error: `บันทึกไฟล์ลง Blob ไม่สำเร็จ${hint}: ${err.message}` });
   }
-  await put('latest.json', JSON.stringify({ publishedAt, files: saved }), {
-    access: 'private', contentType: 'application/json', allowOverwrite: true, cacheControlMaxAge: 60,
-  });
   return res.status(200).json({ publishedAt, files: saved.map(f => f.name) });
 }
