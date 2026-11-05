@@ -31,12 +31,6 @@ h1,h2,h3{margin:0;font-weight:600}
 .top .kicker{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--accent);text-transform:uppercase}
 .top h1{font-size:26px;line-height:1.25}
 .top .period{color:var(--text-2)}
-.source{display:flex;align-items:center;gap:12px;min-width:0}
-.source small{color:var(--text-2);text-align:right;max-width:420px;overflow-wrap:anywhere}
-.upload{display:inline-flex;align-items:center;gap:8px;flex:none;padding:9px 16px;border-radius:999px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
-.upload:hover{background:var(--accent-hover)}
-.upload:focus-within{outline:3px solid var(--track);outline-offset:2px}
-.upload svg{width:18px;height:18px}
 
 /* Headline: one hero figure + stat tiles */
 .headline{display:grid;grid-template-columns:minmax(260px,1.3fr) repeat(4,minmax(0,1fr));gap:16px}
@@ -87,8 +81,6 @@ tbody tr:last-child td{border-bottom:0}
   .page{padding:12px;gap:12px}
   .grid-2{grid-template-columns:1fr}
   .top h1{font-size:21px}
-  .source{width:100%;justify-content:space-between}
-  .source small{text-align:left}
   .hero .value{font-size:48px}
   .tile .value{font-size:24px}
   .bar-row{grid-template-columns:minmax(70px,110px) minmax(0,1fr) 60px}
@@ -102,10 +94,6 @@ tbody tr:last-child td{border-bottom:0}
       <div class="kicker">รายงานจำนวนคำร้องและความเสียหาย</div>
       <h1>สรุปคำร้องทุกประเภทภัย</h1>
       <div class="period">ข้อมูล ณ ช่วงวันที่ <strong id="period">-</strong></div>
-    </div>
-    <div class="source">
-      <small id="files">ยังไม่ได้อัปโหลดไฟล์ · เลือกได้หลายไฟล์</small>
-      <label class="upload"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 0-4 4m4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>อัปโหลด CSV<input id="csv" type="file" accept=".csv,text/csv" multiple hidden></label>
     </div>
   </header>
 
@@ -215,9 +203,8 @@ function renderMeters(box,items){
 function row(cells){const tr=el('tr');for(const [text,cls] of cells){const td=el('td',cls);if(text instanceof Node)td.append(text);else td.textContent=text;tr.append(td);}return tr;}
 function tags(set){const f=document.createDocumentFragment();for(const t of set)f.append(el('span','tag',t));return f;}
 
-function render(d,label){
+function render(d){
   $('period').textContent=d.period.full;
-  $('files').textContent=label;
   $('total').textContent=fmt((d.warning||0)+(d.need||0));
   $('total-note').textContent=`แจ้งภัย ${fmt(d.warning||0)} · ร้องขอความช่วยเหลือ ${fmt(d.need||0)}`;
   $('types').textContent=fmt(d.byDisaster.length);
@@ -242,8 +229,8 @@ document.addEventListener('pointermove',ev=>{const r=ev.target.closest?.('.bar-r
 document.addEventListener('focusin',ev=>{const r=ev.target.closest?.('.bar-row');if(r){const b=r.getBoundingClientRect();showTip(r,b.left+b.width/2,b.bottom-10);}});
 document.addEventListener('focusout',()=>{tip.style.display='none';});
 
-// Default data from data/ on load; an upload replaces it (see connectCSV in shared/csv.js).
-connectCSV($('csv'),(files,label)=>render(build(files),label));
+// Data comes from the bar above the tabs (index.html); see receiveCSV in shared/csv.js.
+receiveCSV(files=>render(build(files)));
 </script>
 </body>
 </html>

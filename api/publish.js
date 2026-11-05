@@ -49,7 +49,10 @@ export default async function handler(req, res) {
       await put(pathname, f.text, { access: 'private', contentType: 'text/csv; charset=utf-8' });
       saved.push({ name: f.name.slice(0, 200), pathname });
     }
-    await put('latest.json', JSON.stringify({ publishedAt, files: saved }), {
+    const manifest = JSON.stringify({ publishedAt, files: saved });
+    // manifest.json keeps this share's file names for the history list (api/history.js); latest.json is overwritten
+    await put(`${folder}/manifest.json`, manifest, { access: 'private', contentType: 'application/json' });
+    await put('latest.json', manifest, {
       access: 'private', contentType: 'application/json', allowOverwrite: true, cacheControlMaxAge: 60,
     });
   } catch (err) {

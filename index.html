@@ -6,28 +6,71 @@
 <title>Dashboard พ้นภัย</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--maroon:#913D50;--secondary:#758091;--line:#E5EAF0;--bg:#F5F7FA}
+:root{--maroon:#913D50;--ink:#303947;--secondary:#758091;--line:#E5EAF0;--bg:#F5F7FA;--share:#157347;--share-hover:#0F5C38}
 html,body{height:100%;margin:0}
-body{display:flex;flex-direction:column;background:var(--bg);font-family:'Sarabun','Noto Sans Thai','Segoe UI',Tahoma,sans-serif}
-.tabs{flex:none;display:flex;gap:6px;padding:8px 16px;background:#fff;border-bottom:1px solid var(--line);overflow-x:auto}
-.tab{flex:none;padding:8px 16px;border:1px solid transparent;border-radius:10px;background:transparent;font:inherit;font-size:14px;font-weight:800;color:var(--secondary);cursor:pointer;white-space:nowrap}
+body{display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:'Sarabun','Noto Sans Thai','Segoe UI',Tahoma,sans-serif}
+button{font:inherit}
+
+/* Top bar: fixed for every dashboard. Left = tabs, right = data controls (upload / share / history). */
+.topbar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;background:#fff;border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:6px;overflow-x:auto;min-width:0}
+.tab{flex:none;padding:8px 16px;border:1px solid transparent;border-radius:10px;background:transparent;font-size:14px;font-weight:800;color:var(--secondary);cursor:pointer;white-space:nowrap}
 .tab:hover{color:var(--maroon)}
 .tab[aria-selected="true"]{background:#F7EEF0;border-color:#E7D1D8;color:var(--maroon)}
-.tab:focus-visible{outline:3px solid #6499D0;outline-offset:2px}
+.data-bar{display:flex;align-items:center;gap:8px;min-width:0;flex:0 1 auto}
+.data-label{min-width:0;max-width:420px;font-size:12px;color:var(--secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn{flex:none;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;min-height:36px;box-sizing:border-box;border-radius:10px;border:1px solid #D6DBE2;background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#F4F6F8}
+.btn svg{width:16px;height:16px;flex:none}
+.btn.share{background:var(--share);border-color:var(--share);color:#fff} /* white on green: 5.9:1 */
+.btn.share:hover{background:var(--share-hover);border-color:var(--share-hover)}
+.btn[hidden]{display:none}
+.btn:disabled{opacity:.65;cursor:progress}
+.tab:focus-visible,.btn:focus-visible,.btn:focus-within{outline:3px solid #6499D0;outline-offset:2px}
+
 .frames{flex:1;position:relative;min-height:0}
 .frames iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+@media (max-width:800px){
+  .topbar{flex-wrap:wrap;padding:6px 10px;gap:6px}
+  .tabs{flex:1 1 100%}
+  .tab{padding:7px 12px;font-size:13px}
+  .data-bar{flex:1 1 100%;flex-wrap:wrap}
+  .data-label{order:9;flex:1 1 100%;max-width:none;white-space:normal;font-size:11px} /* executives on phones still see which data they look at */
+  .btn{padding:6px 10px;font-size:12.5px}
+  #history-btn span{display:none} /* icon only: the buttons stay on one row */
+}
 </style>
 </head>
 <body>
-<nav class="tabs" id="tabs" role="tablist" aria-label="เลือก Dashboard"></nav>
+<header class="topbar">
+  <nav class="tabs" id="tabs" role="tablist" aria-label="เลือก Dashboard"></nav>
+  <div class="data-bar" aria-label="ข้อมูลของ dashboard">
+    <small class="data-label" id="data-label">กำลังโหลดข้อมูล…</small>
+    <label class="btn" title="อัปโหลดไฟล์ .csv รายงานจำนวนคำร้องและความเสียหาย (เลือกได้หลายไฟล์) เพื่อดูตัวอย่าง">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 0-4 4m4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+      อัปโหลด CSV<input id="csv-file" type="file" accept=".csv,text/csv" multiple hidden>
+    </label>
+    <button class="btn share" id="share-btn" type="button" hidden title="แชร์ข้อมูลที่กำลังดูตัวอย่างให้ผู้ชมทุกคน">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+      <span>แชร์</span>
+    </button>
+    <button class="btn" id="history-btn" type="button" aria-label="ประวัติการแชร์" title="ประวัติการแชร์: ดูหรือนำชุดข้อมูลเก่ากลับมาแชร์">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>
+      <span>ประวัติการแชร์</span>
+    </button>
+  </div>
+</header>
 <div class="frames" id="frames"></div>
+<script src="dashboards/shared/csv.js"></script>
 <script>
 'use strict';
 // ===== รายการ dashboard (ลำดับ = ลำดับแท็บ) =====
-// เพิ่ม dashboard ใหม่: copy dashboards/_template.html เป็นไฟล์ใหม่ แก้ค่าในไฟล์นั้น แล้วเพิ่ม 1 บรรทัดตรงนี้
+// เพิ่ม dashboard ใหม่: สร้างไฟล์ใน dashboards/ (ดู README "เพิ่ม dashboard ใหม่") แล้วเพิ่ม 1 บรรทัดตรงนี้
 //   id    ชื่อสั้นภาษาอังกฤษ ใช้ในลิงก์ เช่น index.html#flood
 //   title ข้อความบนแท็บ
 //   file  ไฟล์ dashboard
+// แถบด้านบน (แท็บ + อัปโหลด/แชร์/ประวัติ) เป็นส่วนคงที่ของทุก dashboard: หน้า dashboard ไม่มีปุ่มเหล่านี้เอง
 const DASHBOARDS = [
   { id: 'flood',     title: 'อุทกภัยรายจังหวัด', file: 'dashboards/flood.html' },
   { id: 'disasters', title: 'สรุปคำร้องทุกประเภทภัย',  file: 'dashboards/disasters.html' },
@@ -35,17 +78,29 @@ const DASHBOARDS = [
 
 const tabs = document.getElementById('tabs');
 const frames = document.getElementById('frames');
-const loaded = new Map(); // id -> iframe; each tab is loaded once and kept, so uploaded data survives tab switches
+
+// Data controls first, so no tab's "ready" message is missed.
+initDataControls({
+  input: document.getElementById('csv-file'),
+  shareBtn: document.getElementById('share-btn'),
+  historyBtn: document.getElementById('history-btn'),
+  labelEl: document.getElementById('data-label'),
+  frames: () => [...frames.querySelectorAll('iframe')],
+});
+
+// Every tab loads up front, so an upload is checked against all of them before anyone sees it.
+// ponytail: fine for a handful of tabs; load on first open if there are many heavy dashboards.
+const loaded = new Map(DASHBOARDS.map(dash => {
+  const frame = document.createElement('iframe');
+  frame.src = dash.file;
+  frame.title = dash.title;
+  frame.hidden = true;
+  frames.appendChild(frame);
+  return [dash.id, frame];
+}));
 
 function show(id) {
   const dash = DASHBOARDS.find(d => d.id === id) || DASHBOARDS[0];
-  if (!loaded.has(dash.id)) {
-    const frame = document.createElement('iframe');
-    frame.src = dash.file;
-    frame.title = dash.title;
-    frames.appendChild(frame);
-    loaded.set(dash.id, frame);
-  }
   for (const [key, frame] of loaded) frame.hidden = key !== dash.id;
   for (const btn of tabs.children) btn.setAttribute('aria-selected', String(btn.dataset.id === dash.id));
   if (location.hash.slice(1) !== dash.id) history.replaceState(null, '', '#' + dash.id);

@@ -62,11 +62,14 @@ const readCSVFiles=list=>Promise.all([...list].map(async f=>({name:f.name,text:d
 
 // ===== ที่มาของข้อมูล =====
 // ตอนเปิดหน้า: 1) ข้อมูลล่าสุดที่ทีมกรมแชร์ (/api/latest บน Vercel)  2) ถ้าไม่มี ใช้ข้อมูลตั้งต้นใน data/
-// ทุกแท็บใช้ข้อมูลชุดเดียวกัน (path เทียบกับไฟล์ใน dashboards/)
-const LATEST_API='../api/latest';
-const PUBLISH_API='../api/publish';
-// ข้อมูลตั้งต้น: ใช้เมื่อยังไม่เคยแชร์ หรือรันในเครื่องด้วย python3 -m http.server
-const DEFAULT_CSV_FILES=['../data/md_flood_report.csv'];
+// ทุกแท็บใช้ข้อมูลชุดเดียวกัน ปุ่มอัปโหลด/แชร์/ประวัติอยู่ที่แถบด้านบนใน index.html เท่านั้น (initDataControls)
+// หน้า dashboard รับข้อมูลด้วย receiveCSV(apply)
+const PROJECT_ROOT=new URL('../../',document.currentScript.src); // this file is dashboards/shared/csv.js, loaded by index.html and by every dashboard
+const LATEST_API=new URL('api/latest',PROJECT_ROOT).href;
+const PUBLISH_API=new URL('api/publish',PROJECT_ROOT).href;
+const HISTORY_API=new URL('api/history',PROJECT_ROOT).href;
+// ข้อมูลตั้งต้น (path จากโฟลเดอร์โปรเจกต์): ใช้เมื่อยังไม่เคยแชร์ หรือรันในเครื่องด้วย python3 -m http.server
+const DEFAULT_CSV_FILES=['data/md_flood_report.csv'];
 
 const thaiTime=iso=>new Date(iso).toLocaleString('th-TH',{dateStyle:'medium',timeStyle:'short'});
 function describeFiles(files,source,publishedAt){
@@ -74,6 +77,7 @@ function describeFiles(files,source,publishedAt){
   const list=names.length===1?names[0]:`${names.length} ไฟล์: ${names.join(', ')}`;
   if(source==='published') return `ข้อมูลล่าสุด แชร์เมื่อ ${thaiTime(publishedAt)} · ${list}`;
   if(source==='default') return `ข้อมูลตั้งต้น · ${list}`;
+  if(source==='history') return `${list} · ชุดที่แชร์เมื่อ ${thaiTime(publishedAt)} · ตัวอย่าง ยังไม่ได้แชร์ (กด "แชร์" เพื่อใช้ชุดนี้อีกครั้ง หรือรีเฟรชหน้าเพื่อกลับไปดูข้อมูลล่าสุด)`;
   return `${list} · ตัวอย่าง ยังไม่ได้แชร์ (รีเฟรชหน้าเพื่อกลับไปดูข้อมูลล่าสุด)`;
 }
 
@@ -86,7 +90,7 @@ async function loadInitialData(){
   }catch(err){/* no API here (local server or file://) */}
   try{
     const files=await Promise.all(DEFAULT_CSV_FILES.map(async path=>{
-      const res=await fetch(path,{cache:'no-cache'});
+      const res=await fetch(new URL(path,PROJECT_ROOT),{cache:'no-cache'});
       if(!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
       return {name:path.split('/').pop(),text:decodeCSV(await res.arrayBuffer())};
     }));
@@ -132,61 +136,145 @@ async function publishFiles(files,password){
   return body; // {publishedAt, files:[names]}
 }
 
-// The share button looks the same on every page and stands apart from the upload button (green, white text: 5.9:1).
-function addShareStyles(){
-  if(document.getElementById('csv-share-style'))return;
-  const css=document.createElement('style');css.id='csv-share-style';
-  css.textContent=`.csv-publish{display:inline-flex!important;align-items:center;gap:6px;background:#157347!important;color:#fff!important;border:1px solid #157347!important;font:inherit;font-weight:700!important;cursor:pointer}
-.csv-publish:hover{background:#0F5C38!important;border-color:#0F5C38!important}
-.csv-publish:disabled{opacity:.65;cursor:progress}
-.csv-publish svg{width:16px!important;height:16px!important;flex:none}`;
-  document.head.append(css);
+// History of shares (api/history). Resolves {publishedAt, files:[{name,text}]} for the share picked, or null.
+// Picking only previews it; the share button in the top bar makes it the latest data for everyone again.
+function showShareHistory(){
+  return new Promise(resolve=>{
+    const dlg=document.createElement('dialog');
+    dlg.style.cssText='border:1px solid #d5d8de;border-radius:14px;padding:20px 22px;width:min(560px,calc(100vw - 32px));font:inherit;color:#303947';
+    dlg.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <strong style="font-size:16px">ประวัติการแชร์</strong>
+        <button data-close style="padding:6px 12px;border-radius:8px;border:1px solid #c9cdd4;background:#fff;font:inherit;cursor:pointer">ปิด</button></div>
+      <p style="margin:6px 0 12px;font-size:13px;color:#5a6270">เลือก "ดูชุดนี้" เพื่อดูตัวอย่าง (เห็นคนเดียว) ถ้าต้องการให้ทุกคนเห็นชุดนั้นอีกครั้ง ให้กด "แชร์" ต่อ</p>
+      <div data-list style="max-height:min(60vh,480px);overflow:auto;border-top:1px solid #e5eaf0"><p style="color:#5a6270;font-size:13px">กำลังโหลด…</p></div>`;
+    const box=dlg.querySelector('[data-list]');
+    const done=v=>{dlg.close();dlg.remove();resolve(v);};
+    dlg.querySelector('[data-close]').addEventListener('click',()=>done(null));
+    dlg.addEventListener('cancel',e=>{e.preventDefault();done(null);});
+    document.body.append(dlg);dlg.showModal();
+    const message=text=>{const p=document.createElement('p');p.style.cssText='color:#5a6270;font-size:13px';p.textContent=text;box.replaceChildren(p);};
+    fetch(HISTORY_API,{cache:'no-store'}).then(async res=>{
+      if(res.status===404||res.status===501) return message('ประวัติการแชร์ใช้ได้เฉพาะบนเว็บที่ deploy บน Vercel');
+      const body=await res.json().catch(()=>({}));
+      if(!res.ok) return message('อ่านประวัติไม่ได้: '+(body.error||`HTTP ${res.status}`));
+      if(!body.items.length) return message('ยังไม่เคยมีการแชร์');
+      box.replaceChildren(...body.items.map((item,i)=>{
+        const row=document.createElement('div');
+        row.style.cssText='display:flex;align-items:center;gap:12px;padding:10px 2px;border-bottom:1px solid #e5eaf0';
+        const info=document.createElement('div');info.style.cssText='flex:1;min-width:0';
+        const when=document.createElement('strong');when.style.cssText='display:block;font-size:14px';when.textContent=thaiTime(item.publishedAt);
+        if(i===0){const tag=document.createElement('span');tag.textContent='ชุดปัจจุบัน';tag.style.cssText='margin-left:8px;padding:1px 8px;border-radius:999px;background:#E7F4EC;color:#157347;font-size:12px;font-weight:700';when.append(tag);}
+        const names=document.createElement('small');names.style.cssText='display:block;color:#5a6270;overflow-wrap:anywhere';
+        names.textContent=item.files?item.files.join(', '):'ไม่มีชื่อไฟล์ (แชร์ก่อนมีระบบประวัติ)'; // names come from uploads: textContent
+        info.append(when,names);
+        const pick=document.createElement('button');pick.type='button';pick.textContent='ดูชุดนี้';
+        pick.style.cssText='flex:none;padding:7px 12px;border-radius:8px;border:1px solid #c9cdd4;background:#fff;font:inherit;cursor:pointer';
+        pick.addEventListener('click',async()=>{
+          pick.disabled=true;pick.textContent='กำลังโหลด…';
+          try{
+            const r=await fetch(`${HISTORY_API}?id=${encodeURIComponent(item.id)}`);
+            const share=await r.json().catch(()=>({}));
+            if(!r.ok) throw new Error(share.error||`HTTP ${r.status}`);
+            done(share);
+          }catch(err){alert('โหลดชุดข้อมูลไม่สำเร็จ: '+err.message);pick.disabled=false;pick.textContent='ดูชุดนี้';}
+        });
+        row.append(info,pick);return row;
+      }));
+    }).catch(()=>message('ประวัติการแชร์ใช้ได้เฉพาะบนเว็บที่ deploy บน Vercel'));
+  });
 }
 
-// Wires a page to its data:
-// - on load shows the latest shared data (or data/ defaults)
-// - an upload is a private preview for the uploader, with a "แชร์" button that makes it the latest data for everyone
-// apply(files, label) must throw on bad data before changing the page, so a bad upload keeps the current view.
-function connectCSV(input,apply){
-  addShareStyles();
-  const label=input.closest('label');
-  const publishBtn=document.createElement('button');
-  publishBtn.type='button';publishBtn.className=(label?.className||'')+' csv-publish';
-  publishBtn.title='แชร์ข้อมูลที่อัปโหลดให้ผู้ชมทุกคน';
-  publishBtn.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg><span>แชร์</span>';
-  const btnText=publishBtn.querySelector('span');
-  publishBtn.style.display='none';
-  (label||input).after(publishBtn);
+// ===== หน้า dashboard =====
+// apply(files, label) คำนวณและแสดงผล และต้อง throw ก่อนเปลี่ยนหน้าเมื่อข้อมูลผิด แถบด้านบนจะแจ้งข้อผิดพลาดและย้อนกลับให้
+// หน้า dashboard ไม่มีปุ่มอัปโหลด/แชร์ของตัวเอง ข้อมูลมาจากแถบด้านบน (index.html) ผ่าน postMessage
+// (ใช้ postMessage เพราะบน file:// แต่ละ iframe เป็นคนละ origin เรียกฟังก์ชันข้ามกันตรงๆ ไม่ได้)
+function receiveCSV(apply){
+  const run=(files,label)=>{try{apply(files,label);return {ok:true};}catch(err){console.error(err);return {ok:false,error:err.message};}};
+  if(window.parent===window){ // opened on its own (e.g. while developing a dashboard): show the latest or default data
+    loadInitialData().then(data=>data&&run(data.files,data.label));
+    return;
+  }
+  window.addEventListener('message',ev=>{
+    const m=ev.data;
+    if(ev.source!==window.parent||m?.type!=='csv:data')return;
+    window.parent.postMessage({type:'csv:applied',id:m.id,...run(m.files,m.label)},'*');
+  });
+  window.parent.postMessage({type:'csv:ready'},'*');
+}
 
-  let uploaded=false,preview=null,needPassword=false; // an upload that lands before the initial data finishes loading wins
+// ===== แถบด้านบน (index.html) =====
+// input: <input type=file multiple>, shareBtn/historyBtn: <button> (shareBtn has a <span> for its text),
+// labelEl: shows which data is on screen, frames(): the dashboard iframes
+function initDataControls({input,shareBtn,historyBtn,labelEl,frames}){
+  let current=null,preview=null,needPassword=false,touched=false,seq=0;
+  const ready=new Set(),waiting=new Map(); // waiting: message id -> {resolve, pending tabs, errors}
+  const send=(frame,data,id)=>frame.contentWindow.postMessage({type:'csv:data',id,files:data.files,label:data.label},'*');
+  window.addEventListener('message',ev=>{
+    const frame=frames().find(f=>f.contentWindow===ev.source);
+    if(!frame)return;
+    const m=ev.data;
+    if(m?.type==='csv:ready'){ready.add(frame);if(current)send(frame,current,++seq);} // a tab that loads later catches up
+    else if(m?.type==='csv:applied'){
+      const w=waiting.get(m.id);if(!w)return;
+      w.pending.delete(frame);if(!m.ok)w.errors.push(`แท็บ "${frame.title}": ${m.error}`);
+      if(!w.pending.size){waiting.delete(m.id);w.resolve(w.errors);}
+    }
+  });
+  // Sends data to every loaded tab; resolves with one message per tab that could not read it.
+  function broadcast(data){
+    const targets=[...ready],id=++seq;
+    if(!targets.length) return Promise.resolve([]);
+    return new Promise(resolve=>{
+      waiting.set(id,{resolve,pending:new Set(targets),errors:[]});
+      targets.forEach(f=>send(f,data,id));
+      setTimeout(()=>{const w=waiting.get(id);if(w){waiting.delete(id);resolve(w.errors);}},15000); // a stuck tab must not block the bar
+    });
+  }
+  const show=data=>{current=data;labelEl.textContent=data.label;labelEl.title=data.label;};
+  // Preview files for this viewer only. If any tab rejects them, every tab goes back to what it showed before.
+  async function tryPreview(files,label){
+    const errors=await broadcast({files,label});
+    if(errors.length){alert('อ่านไฟล์ CSV ไม่สำเร็จ\n'+errors.join('\n'));if(current)await broadcast(current);return;}
+    show({files,label});preview=files;shareBtn.hidden=false;
+  }
   input.addEventListener('change',async()=>{
     const picked=[...input.files];input.value='';
     if(!picked.length)return;
-    uploaded=true;
-    try{const files=await readCSVFiles(picked);apply(files,describeFiles(files,'preview'));preview=files;publishBtn.style.display='';}
+    touched=true; // an upload that lands before the initial data finishes loading wins
+    try{const files=await readCSVFiles(picked);await tryPreview(files,describeFiles(files,'preview'));}
     catch(err){console.error(err);alert('อ่านไฟล์ CSV ไม่สำเร็จ: '+err.message);}
   });
-  publishBtn.addEventListener('click',async()=>{
+  historyBtn.addEventListener('click',async()=>{
+    const share=await showShareHistory();
+    if(!share)return;
+    touched=true;
+    await tryPreview(share.files,describeFiles(share.files,'history',share.publishedAt));
+  });
+  const shareText=shareBtn.querySelector('span');
+  shareBtn.addEventListener('click',async()=>{
     if(!preview)return;
     let note='';
     for(;;){
       const answer=await askShare(preview,needPassword,note);
       if(!answer)return;
-      publishBtn.disabled=true;btnText.textContent='กำลังแชร์…';
+      shareBtn.disabled=true;shareText.textContent='กำลังแชร์…';
       try{
         const result=await publishFiles(preview,answer.password);
-        apply(preview,describeFiles(preview,'published',result.publishedAt));
-        preview=null;publishBtn.style.display='none';
+        show({files:preview,label:describeFiles(preview,'published',result.publishedAt)});
+        preview=null;shareBtn.hidden=true;broadcast(current);
         alert('แชร์แล้ว ผู้ชมจะเห็นข้อมูลชุดนี้เมื่อเปิดหรือรีเฟรชหน้า (ภายในไม่เกิน 1 นาที)');
         return;
       }catch(err){
         if(!err.needPassword){alert('แชร์ไม่สำเร็จ: '+err.message);return;}
         needPassword=true;note=err.message; // server has a password set: ask again with the password field
-      }finally{publishBtn.disabled=false;btnText.textContent='แชร์';}
+      }finally{shareBtn.disabled=false;shareText.textContent='แชร์';}
     }
   });
-  loadInitialData().then(data=>{
-    if(!data||uploaded)return;
-    try{apply(data.files,data.label);}catch(err){console.error('ข้อมูลเริ่มต้นอ่านไม่ได้:',err);}
+  loadInitialData().then(async data=>{
+    if(touched)return;
+    if(!data){labelEl.textContent='ยังไม่มีข้อมูล · กด “อัปโหลด CSV”';return;}
+    show(data);
+    const errors=await broadcast(data);
+    if(errors.length) console.error('ข้อมูลเริ่มต้นอ่านไม่ได้:',errors);
   });
 }

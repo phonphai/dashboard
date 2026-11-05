@@ -13,8 +13,6 @@ function renderDashboard(cfg){
   document.body.innerHTML=`<main class="sd-page">
   <header class="sd-hero"><div class="sd-eyebrow">${esc(cfg.eyebrow||'Dashboard')}</div><h1>${esc(cfg.title)}</h1>
     <p>ข้อมูล ณ ช่วงวันที่ <strong id="sd-period">-</strong></p></header>
-  <section class="sd-bar"><div><strong>ข้อมูลรายงาน</strong><small id="sd-files">ยังไม่ได้อัปโหลดไฟล์ · กด “อัปโหลด CSV” (เลือกได้หลายไฟล์)</small></div>
-    <label class="sd-upload"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 0-4 4m4-4 4 4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg> อัปโหลด CSV<input id="sd-input" type="file" accept=".csv,text/csv" multiple hidden></label></section>
   <section class="sd-kpis">${kpis.map((k,i)=>`<article class="sd-card sd-kpi" style="--accent:${['#913D50','#6499D0','#61A58B','#D6AE62','#CE8296'][i%5]}"><span>${esc(k.label)}</span><strong id="sd-kpi-${i}">-</strong><small>${esc(k.unit||'')}</small></article>`).join('')}</section>
   <section class="sd-card sd-panel"><div class="sd-panel-head"><h2>${esc(cfg.tableTitle||'รายละเอียด')}</h2><span class="sd-badge" id="sd-count">-</span></div>
     <div class="sd-table-wrap"><table class="sd-table"><thead><tr><th>ลำดับ</th>${columns.map(c=>`<th class="${c.number||c.distinct?'num':''}">${esc(c.label)}</th>`).join('')}</tr></thead>
@@ -52,11 +50,10 @@ function renderDashboard(cfg){
     return {rows,list,period:mergePeriods(periodLines)};
   }
 
-  function render({rows,list,period},label){
+  function render({rows,list,period}){
     const distinct=(rs,col)=>new Set(rs.map(r=>r[col]).filter(Boolean)).size;
     const total=col=>rows.reduce((s,r)=>add(s,r[col]),null);
     document.getElementById('sd-period').textContent=period.full;
-    document.getElementById('sd-files').textContent=label;
     document.getElementById('sd-count').textContent=`${fmt(list.length)} รายการ`;
     kpis.forEach((k,i)=>{document.getElementById('sd-kpi-'+i).textContent=fmt(k.count?list.length:total(k.column));});
     const cell=(c,r,rs)=>c.distinct?`<td class="num">${fmt(distinct(rs,c.distinct))}</td>`:c.number?`<td class="num">${fmt(r[c.column])}</td>`:`<td>${esc(r[c.column]||'-')}</td>`;
@@ -65,5 +62,5 @@ function renderDashboard(cfg){
     document.getElementById('sd-tfoot').innerHTML=`<tr><td>รวม</td>${columns.map((c,i)=>i===0&&!c.number&&!c.distinct?'<td></td>':cell(c,totals,rows)).join('')}</tr>`;
   }
 
-  connectCSV(document.getElementById('sd-input'),(files,label)=>render(build(files),label));
+  receiveCSV(files=>render(build(files))); // data comes from the bar above the tabs (index.html)
 }

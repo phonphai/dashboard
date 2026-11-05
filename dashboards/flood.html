@@ -1669,14 +1669,10 @@ html.view-mobile .mobile-onepage-summary .badge{font-size:12px!important}
   html.view-mobile .mobile-totals-value{font-size:16px}
 }
 html:not(.view-mobile) .mobile-totals-list{display:none!important}
-.picker-actions{display:flex;align-items:center;gap:8px;flex:none}
-.csv-upload{cursor:pointer}
 /* A CSV can list many provinces: scroll rows inside the table so the panels keep their original height */
 html.view-web .table-scroll{max-height:460px;overflow-y:auto!important}
 html.view-web .data-table thead th{position:sticky;top:0;z-index:2}
 html.view-web .data-table tfoot td{position:sticky;bottom:0;z-index:2}
-/* Viewers on phones still need to see which data (and publish time) they are looking at */
-html.view-mobile #csv-file-name{display:block!important;font-size:11px!important;line-height:1.35;color:var(--secondary)}
 
 
 /* V24: edit of the uploaded flood.html. Remove contacts and balance the two remaining insight cards and table. */
@@ -1780,10 +1776,7 @@ html.view-mobile .relief-contact{display:none !important;}
 <p class="hero-period">ข้อมูล ณ ช่วงวันที่ <strong data-bind="periodFull">-</strong></p>
 </div>
 <div class="source-mark">ประเภทภัย: อุทกภัย</div>
-</header><nav aria-label="ไฟล์ข้อมูลรายงาน" class="view-picker">
-<div class="view-picker-copy"><svg aria-hidden="true" class="picker-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path></svg><div><strong>ข้อมูลรายงาน</strong><small id="csv-file-name">ยังไม่ได้อัปโหลดไฟล์ · กด “อัปโหลด CSV” (เลือกได้หลายไฟล์)</small></div></div>
-<div class="picker-actions"><div class="view-buttons"><label aria-label="อัปโหลด CSV" class="view-choice csv-upload" title="อัปโหลดไฟล์ .csv รายงานจำนวนคำร้องและความเสียหาย (เลือกได้หลายไฟล์)"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 15V3m0 0-4 4m4-4 4 4"></path><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"></path></svg><span class="csv-upload-text"> อัปโหลด CSV</span><input accept=".csv,text/csv" hidden="" id="csv-file" multiple="" type="file"/></label></div></div>
-</nav><nav aria-label="เลือกเนื้อหาบนมือถือ" class="mobile-tabs" role="tablist">
+</header><nav aria-label="เลือกเนื้อหาบนมือถือ" class="mobile-tabs" role="tablist">
 <button aria-controls="mobile-overview-shortcuts" aria-selected="true" class="mobile-tab" data-tab="overview" id="mobile-tab-overview" role="tab" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="8" rx="2" width="8" x="3" y="3"></rect><rect height="8" rx="2" width="8" x="13" y="3"></rect><rect height="8" rx="2" width="8" x="3" y="13"></rect><rect height="8" rx="2" width="8" x="13" y="13"></rect></svg><span>ภาพรวม</span></button>
 <button aria-controls="mobile-map-actions" aria-selected="false" class="mobile-tab" data-tab="map" id="mobile-tab-map" role="tab" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z"></path><path d="M9 3v15m6-12v15"></path></svg><span>แผนที่</span></button>
 <button aria-controls="mobile-province-explorer" aria-selected="false" class="mobile-tab" data-tab="province" id="mobile-tab-province" role="tab" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 4h16v16H4z"></path><path d="M8 9h8M8 13h8M8 17h5"></path></svg><span>รายจังหวัด</span></button>
@@ -2280,11 +2273,10 @@ ${cell('vulnerable-num','จำนวนผู้เปราะบาง (ร�
 }
 // Each upload replaces what is shown with the files picked in that upload (one or many).
 render('-');
-// Default data from data/ on load; an upload replaces it (see connectCSV in shared/csv.js).
-connectCSV(document.getElementById('csv-file'),(files,label)=>{
+// Data comes from the bar above the tabs (index.html); see receiveCSV in shared/csv.js.
+receiveCSV((files,label)=>{
   const report=buildReport(files);
   affectedData=report.data;period=report.period;render(label);
-  document.getElementById('csv-file-name').textContent=label;
 });
 </script>
 <script>
