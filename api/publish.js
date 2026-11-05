@@ -1,23 +1,27 @@
-// POST /api/publish — ทีมกรมเผยแพร่ CSV ชุดใหม่ให้ผู้ชมทุกคน
-// ต้องตั้งใน Vercel: PUBLISH_PASSWORD (รหัสผ่านสำหรับเผยแพร่) และเชื่อม Blob store (สร้าง BLOB_READ_WRITE_TOKEN ให้เอง)
-// body: { files: [{ name, text }] }  header: x-publish-password
+// POST /api/publish — ทีมกรมแชร์ CSV ชุดใหม่ให้ผู้ชมทุกคน
+// ต้องเชื่อม Blob store ใน Vercel (สร้าง BLOB_READ_WRITE_TOKEN ให้เอง)
+// รหัสผ่าน (ไม่บังคับ): ถ้าตั้ง PUBLISH_PASSWORD ไว้ ต้องส่ง header x-publish-password ให้ตรง ถ้าไม่ตั้ง ใครเปิดเว็บก็แชร์ได้
+// body: { files: [{ name, text }] }
 import { put } from '@vercel/blob';
 import { timingSafeEqual } from 'node:crypto';
 
 const MAX_FILES = 20;
 const MAX_TOTAL_CHARS = 4_000_000; // Vercel rejects request bodies over 4.5 MB
 
-function passwordOk(given) {
-  const expected = process.env.PUBLISH_PASSWORD;
-  if (!expected || typeof given !== 'string') return false;
+function passwordOk(given, expected) {
+  if (typeof given !== 'string') return false;
   const a = Buffer.from(given), b = Buffer.from(expected);
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'ใช้ได้เฉพาะ POST' });
-  if (!process.env.PUBLISH_PASSWORD) return res.status(500).json({ error: 'ยังไม่ได้ตั้ง PUBLISH_PASSWORD ใน Vercel' });
-  if (!passwordOk(req.headers['x-publish-password'])) return res.status(401).json({ error: 'รหัสผ่านไม่ถูกต้อง' });
+  const expected = process.env.PUBLISH_PASSWORD;
+  if (expected) {
+    const given = req.headers['x-publish-password'];
+    if (!given) return res.status(401).json({ error: 'ต้องใส่รหัสผ่าน', needPassword: true });
+    if (!passwordOk(given, expected)) return res.status(401).json({ error: 'รหัสผ่านไม่ถูกต้อง', needPassword: true });
+  }
 
   const files = req.body?.files;
   if (!Array.isArray(files) || !files.length || files.length > MAX_FILES)
@@ -26,6 +30,9 @@ export default async function handler(req, res) {
   for (const f of files) {
     if (typeof f?.name !== 'string' || typeof f?.text !== 'string' || !/\.csv$/i.test(f.name) || !f.text.trim())
       return res.status(400).json({ error: 'ทุกไฟล์ต้องเป็น .csv และมีข้อมูล' });
+    // Every tab reads the same report format; reject anything without its header row so a stray file cannot blank the dashboards
+    if (!/^\s*"?province"?\s*,/m.test(f.text))
+      return res.status(400).json({ error: `${f.name}: ไม่ใช่ไฟล์รายงานจำนวนคำร้องและความเสียหาย (ไม่พบแถวหัวคอลัมน์ province)` });
     total += f.text.length;
   }
   if (total > MAX_TOTAL_CHARS) return res.status(413).json({ error: 'ไฟล์รวมกันใหญ่เกินไป (สูงสุดประมาณ 4 MB)' });
