@@ -1,9 +1,10 @@
 // ชุดข้อมูลที่ API รับ (ไฟล์ขึ้นต้นด้วย _ จึงไม่ใช่ endpoint บน Vercel)
-// เพิ่มชุดข้อมูลใหม่: เพิ่มที่นี่ และที่ DATASETS ใน dashboards/shared/csv.js ให้ id ตรงกัน
+// เพิ่มชุดข้อมูลใหม่: เพิ่มบรรทัดที่นี่ วางไฟล์ตั้งต้นเป็น data/<id>.csv และให้หน้า dashboard เรียก receiveCSV(apply, '<id>')
 //   headerFirstColumn  ช่องแรกของแถวหัวคอลัมน์ ใช้กันไฟล์ผิดชนิดถูกแชร์ทับ
 export const DATASETS = {
   report:   { headerFirstColumn: 'province' }, // รายงานจำนวนคำร้องและความเสียหาย
   vulnerable: { headerFirstColumn: 'เขตสุขภาพ' }, // รายงานการแจ้งตำแหน่งพิกัดกลุ่มเปราะบาง (ตาราง 13 เขตสุขภาพ)
+  shelters: { headerFirstColumn: 'date' }, // รายงานศูนย์พักพิงชั่วคราว
 };
 
 // 'report' keeps the paths it had before datasets existed (latest.json, published/…), so its earlier shares stay.

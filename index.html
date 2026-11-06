@@ -72,6 +72,7 @@ button{font:inherit}
 //   file  ไฟล์ dashboard
 // แถบด้านบน (แท็บ + อัปโหลด/แชร์/ประวัติ) เป็นส่วนคงที่ของทุก dashboard: หน้า dashboard ไม่มีปุ่มเหล่านี้เอง
 // ชุดข้อมูลของแต่ละแท็บ หน้า dashboard เป็นคนบอกเอง (receiveCSV(apply, '<id>')) ปุ่มจะทำงานกับชุดข้อมูลของแท็บที่เปิดอยู่
+// ข้อมูลตั้งต้นของชุด <id> คือ data/<id>.csv และชุดที่ API รับอยู่ใน api/_datasets.js
 const DASHBOARDS = [
   { id: 'flood',      title: 'อุทกภัยรายจังหวัด', file: 'dashboards/flood.html' },
   { id: 'vulnerable', title: 'กลุ่มเปราะบาง',      file: 'dashboards/vulnerable.html' },

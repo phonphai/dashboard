@@ -63,13 +63,10 @@ const readCSVFiles=list=>Promise.all([...list].map(async f=>({name:f.name,text:d
 // ===== ชุดข้อมูล =====
 // แต่ละแท็บใช้ชุดข้อมูลหนึ่งชุด (หน้า dashboard บอกด้วย receiveCSV(apply, '<id>')) แท็บที่ใช้ชุดเดียวกันเห็นข้อมูลชุดเดียวกัน
 // ปุ่มอัปโหลด/แชร์/ประวัติที่แถบด้านบน (index.html) ทำงานกับชุดข้อมูลของแท็บที่เปิดอยู่
-// เพิ่มชุดข้อมูลใหม่: เพิ่มที่นี่ และที่ api/_datasets.js ให้ id ตรงกัน
-//   name      ชื่อที่ผู้ใช้เห็น (ในหน้าต่างแชร์และประวัติ)
-//   defaults  ข้อมูลตั้งต้น (path จากโฟลเดอร์โปรเจกต์) ใช้เมื่อยังไม่เคยแชร์ หรือรันในเครื่องด้วย python3 -m http.server
-const DATASETS={
-  report:  {name:'รายงานจำนวนคำร้องและความเสียหาย',defaults:['data/md_flood_report.csv']},
-  vulnerable:{name:'รายงานการแจ้งตำแหน่งพิกัดกลุ่มเปราะบาง',defaults:['data/pinpoint_data_all.csv']},
-};
+// ไม่มีรายการชุดข้อมูลในไฟล์นี้ (เพิ่มชุดใหม่จึงไม่ต้องแก้ไฟล์นี้):
+//   ข้อมูลตั้งต้นของชุด <id> คือ data/<id>.csv ใช้เมื่อยังไม่เคยแชร์ หรือรันในเครื่องด้วย python3 -m http.server
+//   ชุดที่ API รับอยู่ใน api/_datasets.js
+const DATASET_ID=/^[a-z][a-z0-9-]{0,30}$/;
 const PROJECT_ROOT=new URL('../../',document.currentScript.src); // this file is dashboards/shared/csv.js, loaded by index.html and by every dashboard
 const apiUrl=(name,dataset,extra='')=>new URL(`api/${name}?dataset=${encodeURIComponent(dataset)}${extra}`,PROJECT_ROOT).href;
 
@@ -91,18 +88,17 @@ async function loadInitialData(dataset){
     if(res.status!==404) console.warn('อ่านข้อมูลที่แชร์ไม่ได้:',res.status);
   }catch(err){/* no API here (local server or file://) */}
   try{
-    const files=await Promise.all(DATASETS[dataset].defaults.map(async path=>{
-      const res=await fetch(new URL(path,PROJECT_ROOT),{cache:'no-cache'});
-      if(!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
-      return {name:path.split('/').pop(),text:decodeCSV(await res.arrayBuffer())};
-    }));
+    const path=`data/${dataset}.csv`;
+    const res=await fetch(new URL(path,PROJECT_ROOT),{cache:'no-cache'});
+    if(!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
+    const files=[{name:path.split('/').pop(),text:decodeCSV(await res.arrayBuffer())}];
     return {files,label:describeFiles(files,'default')};
   }catch(err){console.warn('ไม่ได้โหลดข้อมูลตั้งต้น:',err.message);return null;}
 }
 
 // Share confirmation. Asks for a password only when the server says one is set (PUBLISH_PASSWORD).
-// -> {password} when confirmed, null when cancelled
-function askShare(dataset,files,needPassword,note){
+// scope: which tabs this affects, e.g. 'แท็บ "อุทกภัยรายจังหวัด"'. -> {password} when confirmed, null when cancelled
+function askShare(scope,files,needPassword,note){
   return new Promise(resolve=>{
     const dlg=document.createElement('dialog');
     dlg.style.cssText='border:1px solid #d5d8de;border-radius:14px;padding:20px 22px;width:min(400px,calc(100vw - 32px));font:inherit;color:#303947';
@@ -117,7 +113,7 @@ function askShare(dataset,files,needPassword,note){
         <button value="ok" style="padding:8px 14px;border-radius:8px;border:0;background:#157347;color:#fff;font:inherit;font-weight:700;cursor:pointer">แชร์</button>
       </div></form>`;
     const pw=dlg.querySelector('input'),noteEl=dlg.querySelector('[data-note]');
-    dlg.querySelector('[data-scope]').textContent=`ชุดข้อมูล "${DATASETS[dataset].name}": ผู้ชมทุกคนจะเห็นข้อมูลชุดนี้ในทุกแท็บที่ใช้ชุดข้อมูลนี้ แทนข้อมูลเดิม เมื่อเปิดหรือรีเฟรชหน้า`;
+    dlg.querySelector('[data-scope]').textContent=`ผู้ชมทุกคนจะเห็นข้อมูลชุดนี้ใน${scope} แทนข้อมูลเดิม เมื่อเปิดหรือรีเฟรชหน้า`;
     dlg.querySelector('[data-files]').textContent=files.map(f=>f.name).join(', '); // file names come from the user: textContent
     noteEl.textContent=note||'';noteEl.hidden=!note;
     pw.hidden=!needPassword;pw.required=needPassword;
@@ -141,7 +137,7 @@ async function publishFiles(dataset,files,password){
 
 // History of shares of one dataset (api/history). Resolves {publishedAt, files:[{name,text}]} for the share picked, or null.
 // Picking only previews it; the share button in the top bar makes it the latest data for everyone again.
-function showShareHistory(dataset){
+function showShareHistory(dataset,scope){
   return new Promise(resolve=>{
     const dlg=document.createElement('dialog');
     dlg.style.cssText='border:1px solid #d5d8de;border-radius:14px;padding:20px 22px;width:min(560px,calc(100vw - 32px));font:inherit;color:#303947';
@@ -150,7 +146,7 @@ function showShareHistory(dataset){
         <button data-close style="padding:6px 12px;border-radius:8px;border:1px solid #c9cdd4;background:#fff;font:inherit;cursor:pointer">ปิด</button></div>
       <p data-scope style="margin:6px 0 12px;font-size:13px;color:#5a6270"></p>
       <div data-list style="max-height:min(60vh,480px);overflow:auto;border-top:1px solid #e5eaf0"><p style="color:#5a6270;font-size:13px">กำลังโหลด…</p></div>`;
-    dlg.querySelector('[data-scope]').textContent=`ชุดข้อมูล "${DATASETS[dataset].name}" · เลือก "ดูชุดนี้" เพื่อดูตัวอย่าง (เห็นคนเดียว) ถ้าต้องการให้ทุกคนเห็นชุดนั้นอีกครั้ง ให้กด "แชร์" ต่อ`;
+    dlg.querySelector('[data-scope]').textContent=`ข้อมูลของ${scope} · เลือก "ดูชุดนี้" เพื่อดูตัวอย่าง (เห็นคนเดียว) ถ้าต้องการให้ทุกคนเห็นชุดนั้นอีกครั้ง ให้กด "แชร์" ต่อ`;
     const box=dlg.querySelector('[data-list]');
     const done=v=>{dlg.close();dlg.remove();resolve(v);};
     dlg.querySelector('[data-close]').addEventListener('click',()=>done(null));
@@ -189,12 +185,12 @@ function showShareHistory(dataset){
 }
 
 // ===== หน้า dashboard =====
-// receiveCSV(apply, dataset): dataset คือ id ใน DATASETS (ไม่ใส่ = 'report')
+// receiveCSV(apply, dataset): dataset คือ id ชุดข้อมูล ตัวอักษรอังกฤษเล็ก (ไม่ใส่ = 'report') ข้อมูลตั้งต้นอยู่ที่ data/<id>.csv
 // apply(files, label) คำนวณและแสดงผล และต้อง throw ก่อนเปลี่ยนหน้าเมื่อข้อมูลผิด แถบด้านบนจะแจ้งข้อผิดพลาดและย้อนกลับให้
 // หน้า dashboard ไม่มีปุ่มอัปโหลด/แชร์ของตัวเอง ข้อมูลมาจากแถบด้านบน (index.html) ผ่าน postMessage
 // (ใช้ postMessage เพราะบน file:// แต่ละ iframe เป็นคนละ origin เรียกฟังก์ชันข้ามกันตรงๆ ไม่ได้)
 function receiveCSV(apply,dataset='report'){
-  if(!DATASETS[dataset]) throw new Error(`ไม่รู้จักชุดข้อมูล "${dataset}" (เพิ่มใน DATASETS ของ shared/csv.js)`);
+  if(!DATASET_ID.test(dataset)) throw new Error(`id ชุดข้อมูล "${dataset}" ใช้ไม่ได้ (ใช้ a-z, 0-9, - และขึ้นต้นด้วยตัวอักษร)`);
   const run=(files,label)=>{try{apply(files,label);return {ok:true};}catch(err){console.error(err);return {ok:false,error:err.message};}};
   if(window.parent===window){ // opened on its own (e.g. while developing a dashboard): show the latest or default data
     loadInitialData(dataset).then(data=>data&&run(data.files,data.label));
@@ -219,6 +215,7 @@ function initDataControls({input,shareBtn,historyBtn,labelEl,frames}){
   const waiting=new Map();          // message id -> {resolve, pending tabs, errors}
   const ds=id=>state[id]??={current:null,preview:null,touched:false,loading:false};
   const tabsOf=id=>[...tabDataset].filter(([,d])=>d===id).map(([f])=>f);
+  const scopeOf=id=>tabsOf(id).map(f=>`แท็บ "${f.title}"`).join(', '); // shown in the share and history dialogs
   const send=(frame,data,id)=>frame.contentWindow.postMessage({type:'csv:data',id,files:data.files,label:data.label},'*');
 
   // The bar always shows the dataset of the open tab.
@@ -253,7 +250,7 @@ function initDataControls({input,shareBtn,historyBtn,labelEl,frames}){
     if(!frame)return;
     const m=ev.data;
     if(m?.type==='csv:ready'){
-      const id=DATASETS[m.dataset]?m.dataset:'report';
+      const id=DATASET_ID.test(m.dataset)?m.dataset:'report';
       tabDataset.set(frame,id);
       const s=ds(id);
       if(s.current) send(frame,s.current,++seq);             // a tab that loads later catches up
@@ -282,7 +279,7 @@ function initDataControls({input,shareBtn,historyBtn,labelEl,frames}){
   });
   historyBtn.addEventListener('click',async()=>{
     const id=tabDataset.get(active);if(!id)return;
-    const share=await showShareHistory(id);
+    const share=await showShareHistory(id,scopeOf(id));
     if(share) await tryPreview(id,share.files,describeFiles(share.files,'history',share.publishedAt));
   });
   const shareText=shareBtn.querySelector('span');
@@ -291,7 +288,7 @@ function initDataControls({input,shareBtn,historyBtn,labelEl,frames}){
     if(!s?.preview)return;
     let note='';
     for(;;){
-      const answer=await askShare(id,s.preview,needPassword,note);
+      const answer=await askShare(scopeOf(id),s.preview,needPassword,note);
       if(!answer)return;
       shareBtn.disabled=true;shareText.textContent='กำลังแชร์…';
       try{

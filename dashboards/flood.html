@@ -1802,9 +1802,12 @@ html.view-mobile .hero h1{font-size:clamp(14px,4vw,17px)!important}
     flex:1 1 auto !important;
     min-height:0 !important;
   }
+  /* The table fills the stretched panel (no gap under it) and scrolls inside.
+     flex-basis 0 keeps its rows from making the whole row taller than the map; 460px is the floor. */
   html:not(.view-mobile) .desktop-right-column > .table-panel .table-scroll {
-    flex:1 1 auto !important;
-    min-height:0;
+    flex:1 1 0 !important;
+    min-height:460px;
+    max-height:none !important;
   }
 }
 </style></head>
