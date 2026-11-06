@@ -73,9 +73,8 @@ button{font:inherit}
 // แถบด้านบน (แท็บ + อัปโหลด/แชร์/ประวัติ) เป็นส่วนคงที่ของทุก dashboard: หน้า dashboard ไม่มีปุ่มเหล่านี้เอง
 // ชุดข้อมูลของแต่ละแท็บ หน้า dashboard เป็นคนบอกเอง (receiveCSV(apply, '<id>')) ปุ่มจะทำงานกับชุดข้อมูลของแท็บที่เปิดอยู่
 const DASHBOARDS = [
-  { id: 'flood',     title: 'อุทกภัยรายจังหวัด', file: 'dashboards/flood.html' },
-  { id: 'disasters', title: 'สรุปคำร้องทุกประเภทภัย',  file: 'dashboards/disasters.html' },
-  { id: 'supplies',  title: 'แจกจ่ายถุงยังชีพ',        file: 'dashboards/supplies.html' },
+  { id: 'flood',      title: 'อุทกภัยรายจังหวัด', file: 'dashboards/flood.html' },
+  { id: 'vulnerable', title: 'กลุ่มเปราะบาง',      file: 'dashboards/vulnerable.html' },
 ];
 
 const tabs = document.getElementById('tabs');

@@ -68,7 +68,7 @@ const readCSVFiles=list=>Promise.all([...list].map(async f=>({name:f.name,text:d
 //   defaults  ข้อมูลตั้งต้น (path จากโฟลเดอร์โปรเจกต์) ใช้เมื่อยังไม่เคยแชร์ หรือรันในเครื่องด้วย python3 -m http.server
 const DATASETS={
   report:  {name:'รายงานจำนวนคำร้องและความเสียหาย',defaults:['data/md_flood_report.csv']},
-  supplies:{name:'รายงานการแจกจ่ายถุงยังชีพ',defaults:['data/relief_supplies.csv']},
+  vulnerable:{name:'รายงานการแจ้งตำแหน่งพิกัดกลุ่มเปราะบาง',defaults:['data/pinpoint_data_all.csv']},
 };
 const PROJECT_ROOT=new URL('../../',document.currentScript.src); // this file is dashboards/shared/csv.js, loaded by index.html and by every dashboard
 const apiUrl=(name,dataset,extra='')=>new URL(`api/${name}?dataset=${encodeURIComponent(dataset)}${extra}`,PROJECT_ROOT).href;

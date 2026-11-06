@@ -1,5 +1,5 @@
-// GET /api/history?dataset=<d>          -> { items: [{ id, publishedAt, files: [names] | null }] } ใหม่ไปเก่า สูงสุด 30 รายการ
-// GET /api/history?dataset=<d>&id=<id>  -> { id, publishedAt, files: [{ name, text }] } ข้อมูลของชุดนั้น ไว้ดูตัวอย่างแล้วกดแชร์ซ้ำ
+// GET /api/history?dataset=<d> -> { items: [{ id, publishedAt, files: [names] | null }] } ใหม่ไปเก่า สูงสุด 30 รายการ
+// GET /api/history?dataset=<d>&id=<id> -> { id, publishedAt, files: [{ name, text }] } ข้อมูลของชุดนั้น ไว้ดูตัวอย่างแล้วกดแชร์ซ้ำ
 // dataset ไม่ใส่ = report; id คือชื่อโฟลเดอร์ใน published/ (เวลาที่แชร์ UTC เช่น 2026-11-05T14-30-00-000Z)
 import { get, list } from '@vercel/blob';
 import { blobPrefix, datasetFrom } from './_datasets.js';
@@ -20,8 +20,6 @@ const readManifest = async (prefix, id) => {
 };
 
 async function listIds(prefix) {
-  // ponytail: walks every page of published/ on each call (1 Blob list operation per 1000 shares);
-  // prune old share folders if history grows into the thousands.
   const ids = [];
   let cursor;
   do {
@@ -32,7 +30,7 @@ async function listIds(prefix) {
     }
     cursor = page.hasMore ? page.cursor : undefined;
   } while (cursor);
-  return ids.sort().reverse(); // ISO-like names sort by time
+  return ids.sort().reverse();
 }
 
 async function readShare(prefix, id) {
@@ -42,7 +40,7 @@ async function readShare(prefix, id) {
     if (texts.some(t => t == null)) return null;
     return { id, publishedAt: manifest.publishedAt, files: manifest.files.map((f, i) => ({ name: f.name, text: texts[i] })) };
   }
-  const files = []; // legacy share: files are 1.csv, 2.csv, ... with no recorded names
+  const files = [];
   for (let i = 1; i <= MAX_LEGACY_FILES; i++) {
     const text = await readText(`${prefix}published/${id}/${i}.csv`);
     if (text == null) break;

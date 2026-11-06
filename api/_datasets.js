@@ -3,7 +3,7 @@
 //   headerFirstColumn  ช่องแรกของแถวหัวคอลัมน์ ใช้กันไฟล์ผิดชนิดถูกแชร์ทับ
 export const DATASETS = {
   report:   { headerFirstColumn: 'province' }, // รายงานจำนวนคำร้องและความเสียหาย
-  supplies: { headerFirstColumn: 'date' },     // รายงานการแจกจ่ายถุงยังชีพ
+  vulnerable: { headerFirstColumn: 'เขตสุขภาพ' }, // รายงานการแจ้งตำแหน่งพิกัดกลุ่มเปราะบาง (ตาราง 13 เขตสุขภาพ)
 };
 
 // 'report' keeps the paths it had before datasets existed (latest.json, published/…), so its earlier shares stay.
