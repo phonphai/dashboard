@@ -1998,25 +1998,7 @@ html body .desktop-right-column .data-table thead th:nth-child(2) {text-align:le
 }
 
 </style>
-<style id="v4-map-table-balance">
-/* V4: remove regional legend below map and balance map/table heights */
-.legend{display:none !important;}
-/* keep only clean map card content */
-.map-wrap{height:100% !important;display:flex !important;flex-direction:column !important;min-height:0 !important;padding-bottom:12px !important;}
-.map-panel,.table-panel{height:100% !important;align-self:stretch !important;}
-.main{align-items:stretch !important;}
-.map-stage{flex:1 1 auto !important;height:100% !important;min-height:0 !important;max-height:none !important;}
-/* give the map a practical desktop minimum so it stays visually balanced */
-@media (min-width: 1181px){
-  .main{grid-template-columns:minmax(0,41%) minmax(0,59%) !important;}
-  .map-stage{min-height:520px !important;}
-}
-@media (max-width:1180px){
-  .legend{display:none !important;}
-}
-/* if attribution is the last line, keep it compact */
-.attribution{margin-top:8px !important;}
-</style>
+
 <style id="v5-table-type">
 @media screen {
 html body .desktop-right-column .data-table thead th:nth-child(n) {
@@ -2031,6 +2013,34 @@ html body .desktop-right-column .data-table tfoot td:nth-child(n) {
 }
 html body .desktop-right-column .data-table tfoot td:nth-child(n) {font-weight:700!important;}
 }
+</style>
+<style id="v6-balanced-map-table">
+/* The map sets the row height; the right stack fills that exact height. */
+.map-wrap > .legend, html.view-mobile .mobile-map-actions {display:none!important}
+.map-region-key{position:absolute;z-index:3;right:10px;bottom:10px;padding:9px 10px;background:rgba(255,255,255,.95);border:1px solid #d8e4ec;border-radius:9px;box-shadow:0 2px 8px #174d730c;pointer-events:none;color:#304d63;font-size:12px;line-height:1.4}
+.map-key-title{display:block;font-size:12px;font-weight:700;margin-bottom:5px}
+.map-region-key .legend,html.view-mobile .map-region-key .legend{display:grid!important;grid-template-columns:1fr!important;gap:4px!important;margin:0!important;padding:0!important}
+.map-region-key .legend-item,html.view-mobile .map-region-key .legend-item{display:flex!important;align-items:center!important;gap:6px!important;min-height:0!important;height:auto!important;padding:0!important;border:0!important;background:none!important;opacity:1!important}
+.map-region-key .legend-copy strong,html.view-mobile .map-region-key .legend-copy strong{font-size:12px!important;font-weight:500!important;line-height:1.35!important;white-space:nowrap;color:#304d63!important}
+.map-region-key .legend-copy small{display:none!important}
+.map-region-key .legend-dot,.map-key-neutral i{width:10px;height:10px;flex:0 0 10px;border-radius:3px;margin:0!important}
+.map-key-neutral{display:flex;align-items:center;gap:6px;margin-top:5px;color:#62758a;font-size:11px;white-space:nowrap}
+.map-key-neutral i{background:#edf0f3;border:1px solid #d9dfe5}
+@media screen and (min-width:1181px){
+ html body section.main{grid-template-columns:minmax(0,40fr) minmax(0,60fr)!important}
+ html:not(.view-mobile) body section.main{align-items:stretch!important}
+ html:not(.view-mobile) body section.main > .map-panel{align-self:stretch!important;height:auto!important;min-height:0!important}
+ html:not(.view-mobile) body section.main > .map-panel .map-wrap{height:auto!important;min-height:0!important;flex:1 1 auto!important}
+ html:not(.view-mobile) body section.main > .map-panel .map-stage{height:var(--v24-map-fit,300px)!important;min-height:var(--v24-map-fit,300px)!important;max-height:var(--v24-map-fit,300px)!important;flex:0 0 var(--v24-map-fit,300px)!important}
+ html:not(.view-mobile) body section.main > .desktop-right-column{align-self:stretch!important;height:auto!important;min-height:0!important;contain:size;display:flex!important;flex-direction:column!important}
+ html:not(.view-mobile) body section.main > .desktop-right-column > .table-panel{flex:1 1 0!important;height:auto!important;min-height:0!important;display:flex!important;flex-direction:column!important}
+ html:not(.view-mobile) body section.main > .desktop-right-column > .table-panel > .table-wrap{flex:1 1 0!important;height:auto!important;min-height:0!important;display:flex!important;flex-direction:column!important}
+ html:not(.view-mobile) body section.main > .desktop-right-column > .table-panel .table-scroll{flex:1 1 0!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:auto!important}
+ html:not(.view-mobile) body section.main > .desktop-right-column > .table-panel .data-table{height:auto!important}
+ html:not(.view-mobile) .data-table thead th{position:sticky;top:0;z-index:2}
+ html:not(.view-mobile) .data-table tfoot td{position:sticky;bottom:0;z-index:2}
+}
+@media(max-width:600px){.map-region-key{right:5px;bottom:5px;padding:5px 6px;line-height:1.2}.map-key-title{font-size:10px;margin-bottom:4px}.map-region-key .legend-copy strong,html.view-mobile .map-region-key .legend-copy strong{font-size:10px!important}.map-region-key .legend,html.view-mobile .map-region-key .legend{gap:2px!important}.map-key-neutral{font-size:9px;margin-top:3px}}
 </style>
 </head>
 <body><main class="page">
@@ -2080,14 +2090,13 @@ html body .desktop-right-column .data-table tfoot td:nth-child(n) {font-weight:7
 <svg aria-label="แผนที่ประเทศไทยขอบเขตระดับจังหวัด สีตามภาคเฉพาะจังหวัดที่ได้รับผลกระทบ" class="map-canvas" id="province-map" preserveaspectratio="xMidYMid meet" role="img" viewbox="0 0 1000 1000">
 <g id="province-shapes"></g><g id="province-labels"></g>
 </svg><div aria-hidden="true" class="map-html-labels" id="map-html-labels"></div>
-<div class="map-tooltip" id="map-tooltip" role="tooltip"></div>
+<aside class="map-region-key" aria-label="คำอธิบายสีประจำภาค"><strong class="map-key-title">คำอธิบายสีประจำภาค</strong><div class="legend"></div></aside><div class="map-tooltip" id="map-tooltip" role="tooltip"></div>
 <div class="map-message" id="map-message"><div class="map-message-inner"><svg aria-hidden="true" class="lucide" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z"></path><path d="M9 3v15m6-12v15"></path></svg><h3 id="map-msg-title">กำลังโหลดขอบเขตจังหวัด</h3><p id="map-msg-copy">อ่านข้อมูลขอบเขตจังหวัดจริงจากแหล่งเผยแพร่ GeoJSON</p><button hidden="" id="retry-map" type="button">ลองโหลดแผนที่อีกครั้ง</button></div></div>
 </div><div class="mobile-map-actions" id="mobile-map-actions">
 <button class="mobile-map-province-detail" hidden="" id="mobile-map-province-detail" type="button">ดูข้อมูลรายจังหวัด <span aria-hidden="true">›</span></button>
 <div class="mobile-regions"><div class="mobile-regions-heading">คำอธิบายสีของภูมิภาค </div><div class="mobile-regions-note">แสดงสีเฉพาะจังหวัดที่ได้รับผลกระทบ ข้อมูลภูมิภาคทั้ง 6 ภาคยังครบถ้วนในรายงาน</div><div class="legend"></div></div>
 </div><section aria-live="polite" class="mobile-province-detail" hidden="" id="mobile-province-detail"></section>
 <div class="map-footer"><div class="map-selection"><strong id="selection-title">คลิกจังหวัดบนแผนที่ หรือเลือกจากตาราง</strong><small id="selection-sub">-</small></div><span class="selection-chip" id="selection-chip">-</span></div>
-<div class="legend"></div>
 <div class="attribution" id="map-source">ขอบเขตจังหวัด: GeoJSON ตามต้นฉบับผู้เผยแพร่ (แผนที่ไม่มีบริการภาพพื้นหลังที่อาจถูกปิดกั้น)</div>
 </div>
 </section><section aria-label="สรุปรายจังหวัดและข้อมูลเพิ่มเติม" class="panel mobile-onepage-summary">
